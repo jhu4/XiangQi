@@ -1,0 +1,4 @@
+INDEX VERSION 1.129+S:\EclipseNeon_Java_workspace\.metadata\.plugins\org.eclipse.jdt.core
+3791122547.index
+3377969702.index
+412162408.index
