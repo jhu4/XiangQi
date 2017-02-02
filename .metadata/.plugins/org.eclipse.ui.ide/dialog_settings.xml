@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\tengq\Downloads\StableSortStarter.zip"/>
 		<item value="C:\Users\tengq\Downloads\JinanHu_hw1.zip"/>
 	</list>
 	<section name="ExternalProjectImportWizard">

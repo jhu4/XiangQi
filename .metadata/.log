@@ -819,3 +819,76 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.core 4 4 2017-02-02 11:15:24.376
+!MESSAGE JavaBuilder handling CoreException
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: File not found: S:\EclipseNeon_Java_workspace\StableSortStarter.zip_expanded\StableSort\bin\stablesort\StableSorterTest.class.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:840)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:277)
+	at org.eclipse.jdt.internal.core.util.Util.getResourceContentsAsByteArray(Util.java:1135)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.writeClassFileCheck(IncrementalImageBuilder.java:889)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.writeClassFileContents(IncrementalImageBuilder.java:831)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.writeClassFile(AbstractImageBuilder.java:860)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.acceptResult(AbstractImageBuilder.java:191)
+	at org.eclipse.jdt.internal.compiler.Compiler.processCompiledUnits(Compiler.java:593)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:462)
+	at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:417)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:368)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.compile(IncrementalImageBuilder.java:330)
+	at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:305)
+	at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.build(IncrementalImageBuilder.java:135)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildDeltas(JavaBuilder.java:267)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:195)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:735)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:301)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:304)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:360)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:383)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:144)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:235)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2017-02-02 11:15:24.380
+!MESSAGE File not found: S:\EclipseNeon_Java_workspace\StableSortStarter.zip_expanded\StableSort\bin\stablesort\StableSorterTest.class.
+
+!ENTRY com.mountainminds.eclemma.core 4 5001 2017-02-02 11:21:10.148
+!MESSAGE Error while loading coverage session (code 5001).
+!STACK 1
+org.eclipse.core.runtime.CoreException: Error while analyzing package fragment root src at F/StableSort/bin (code 5007).
+	at com.mountainminds.eclemma.internal.core.analysis.PackageFragementRootAnalyzer.analyzeInternal(PackageFragementRootAnalyzer.java:78)
+	at com.mountainminds.eclemma.internal.core.analysis.PackageFragementRootAnalyzer.analyze(PackageFragementRootAnalyzer.java:50)
+	at com.mountainminds.eclemma.internal.core.analysis.SessionAnalyzer.processPackageFragmentRoot(SessionAnalyzer.java:100)
+	at com.mountainminds.eclemma.internal.core.analysis.SessionAnalyzer.processSession(SessionAnalyzer.java:80)
+	at com.mountainminds.eclemma.internal.core.JavaCoverageLoader$LoadSessionJob.run(JavaCoverageLoader.java:82)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.core.internal.resources.ResourceException: File not found: S:\EclipseNeon_Java_workspace\StableSortStarter.zip_expanded\StableSort\bin\stablesort\StableSort.class.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:840)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:277)
+	at com.mountainminds.eclemma.internal.core.analysis.ResourceTreeWalker.walkResource(ResourceTreeWalker.java:60)
+	at com.mountainminds.eclemma.internal.core.analysis.ResourceTreeWalker.walkResource(ResourceTreeWalker.java:74)
+	at com.mountainminds.eclemma.internal.core.analysis.ResourceTreeWalker.walkResource(ResourceTreeWalker.java:74)
+	at com.mountainminds.eclemma.internal.core.analysis.ResourceTreeWalker.walk(ResourceTreeWalker.java:50)
+	at com.mountainminds.eclemma.internal.core.analysis.PackageFragementRootAnalyzer.analyzeInternal(PackageFragementRootAnalyzer.java:73)
+	... 5 more
+!SUBENTRY 1 com.mountainminds.eclemma.core 4 5007 2017-02-02 11:21:10.148
+!MESSAGE Error while analyzing package fragment root src at F/StableSort/bin (code 5007).
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: File not found: S:\EclipseNeon_Java_workspace\StableSortStarter.zip_expanded\StableSort\bin\stablesort\StableSort.class.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:840)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:277)
+	at com.mountainminds.eclemma.internal.core.analysis.ResourceTreeWalker.walkResource(ResourceTreeWalker.java:60)
+	at com.mountainminds.eclemma.internal.core.analysis.ResourceTreeWalker.walkResource(ResourceTreeWalker.java:74)
+	at com.mountainminds.eclemma.internal.core.analysis.ResourceTreeWalker.walkResource(ResourceTreeWalker.java:74)
+	at com.mountainminds.eclemma.internal.core.analysis.ResourceTreeWalker.walk(ResourceTreeWalker.java:50)
+	at com.mountainminds.eclemma.internal.core.analysis.PackageFragementRootAnalyzer.analyzeInternal(PackageFragementRootAnalyzer.java:73)
+	at com.mountainminds.eclemma.internal.core.analysis.PackageFragementRootAnalyzer.analyze(PackageFragementRootAnalyzer.java:50)
+	at com.mountainminds.eclemma.internal.core.analysis.SessionAnalyzer.processPackageFragmentRoot(SessionAnalyzer.java:100)
+	at com.mountainminds.eclemma.internal.core.analysis.SessionAnalyzer.processSession(SessionAnalyzer.java:80)
+	at com.mountainminds.eclemma.internal.core.JavaCoverageLoader$LoadSessionJob.run(JavaCoverageLoader.java:82)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 2 org.eclipse.core.resources 4 368 2017-02-02 11:21:10.148
+!MESSAGE File not found: S:\EclipseNeon_Java_workspace\StableSortStarter.zip_expanded\StableSort\bin\stablesort\StableSort.class.
