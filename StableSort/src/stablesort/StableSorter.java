@@ -24,8 +24,16 @@ public class StableSorter implements StableSort
 	 */
 	@Override
 	public <T extends Comparable<T>> T[] stableSort(T ... items)
-	{
-		// TODO Implement this method.
+	{	
+		for(int length=items.length-1;length>0;length--){
+			for(int i=0;i<length;i++){
+				if(items[i].compareTo(items[i+1])>0){
+					T temp = items[i];
+					items[i]=items[i+1];
+					items[i+1]=temp;
+				}
+			}
+		}
 		return items;
 	}
 }
