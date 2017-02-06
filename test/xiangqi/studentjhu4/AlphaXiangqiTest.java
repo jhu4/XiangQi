@@ -13,6 +13,9 @@ import xiangqi.common.XiangqiGame;
 import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPiece;
 import xiangqi.common.XiangqiPieceType;
+import xiangqi.common.XiangqiGame;
+import xiangqi.common.XiangqiGameVersion;
+
 /**
  * Test cases for XiangQi Alpha
  * @author Dorothy
@@ -20,7 +23,7 @@ import xiangqi.common.XiangqiPieceType;
  */
 public class AlphaXiangqiTest {
 	private XiangqiGame game;
-	
+
 	static class TestCoordinate implements XiangqiCoordinate{
 		private final int rank;
 		private final int file;

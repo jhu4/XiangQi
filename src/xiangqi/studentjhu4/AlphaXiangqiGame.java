@@ -15,7 +15,6 @@ public class AlphaXiangqiGame implements XiangqiGame {
 		this.moveCount=0;
 	}
 	
-	
 	@Override
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
 		if (source.getRank()==2 || destination.getRank()==2) return MoveResult.ILLEGAL;
