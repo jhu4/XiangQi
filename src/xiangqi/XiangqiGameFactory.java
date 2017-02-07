@@ -14,6 +14,7 @@ package xiangqi;
 
 import xiangqi.common.*;
 import xiangqi.studentjhu4.AlphaXiangqiGame;
+import xiangqi.studentjhu4.BetaXiangqiGame;
 
 /**
  * A simple factory object that creates the appropriate instance of a XiangqiGame.
@@ -28,6 +29,6 @@ public class XiangqiGameFactory
 	 */
 	public static XiangqiGame makeXiangqiGame(XiangqiGameVersion version)
 	{
-		return version==XiangqiGameVersion.ALPHA_XQ? new AlphaXiangqiGame(): null;
+		return version==XiangqiGameVersion.ALPHA_XQ? new AlphaXiangqiGame(): new BetaXiangqiGame();
 	}
 }

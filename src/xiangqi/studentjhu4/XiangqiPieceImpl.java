@@ -12,6 +12,7 @@ public class XiangqiPieceImpl implements XiangqiPiece {
 		this.type=type;
 		this.color=color;
 	}
+	
 	public static XiangqiPiece makePiece(XiangqiPieceType type,XiangqiColor color){
 		return new XiangqiPieceImpl(type,color);
 	}

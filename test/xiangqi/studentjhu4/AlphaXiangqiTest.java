@@ -46,7 +46,6 @@ public class AlphaXiangqiTest {
 		public int getFile() {
 			return file;
 		}
-		
 	}
 	
 	@Before
@@ -55,39 +54,39 @@ public class AlphaXiangqiTest {
 	}
 	
 	
-	@Test
+	@Test //1
 	public void factoryProduceAlphaXiangQiGame(){
 		assertNotNull(game);
 	}
 	
-	@Test
+	@Test //2
 	public void redMakesValidFirstMove(){
 		assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(1,1),
 													TestCoordinate.makeCoordinate(1, 2)));
 	}
 	
-	@Test
+	@Test //3
 	public void blackMakesValidSecondMove(){
 		game.makeMove(TestCoordinate.makeCoordinate(1,1),TestCoordinate.makeCoordinate(1, 2));
 		assertEquals(MoveResult.RED_WINS,game.makeMove(TestCoordinate.makeCoordinate(1, 1),
 														TestCoordinate.makeCoordinate(1, 2)));
 	}
 	
-	@Test
+	@Test //4
 	public void tryToMoveToInvalidLocation(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(TestCoordinate.makeCoordinate(1, 1),
 				TestCoordinate.makeCoordinate(2, 1)));
 		assertTrue(game.getMoveMessage().length()>=1);
 	}
 	
-	@Test
+	@Test //5
 	public void tryToMoveFromInvalidLocation(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(TestCoordinate.makeCoordinate(2, 1),
 				TestCoordinate.makeCoordinate(1, 2)));
 		assertTrue(game.getMoveMessage().length()>=1);
 	}
 	
-	@Test
+	@Test //6
 	public void getPieceAtReturnsNoneNone(){
 		final XiangqiPiece p=game.getPieceAt(TestCoordinate.makeCoordinate(1, 1), XiangqiColor.RED);
 		assertEquals(XiangqiPieceType.NONE,p.getPieceType());
