@@ -30,13 +30,21 @@ public class BetaXiangqiBoard implements XiangqiBoard {
 		board[5][2]=XiangqiPieceImpl.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.BLACK);
 		board[5][3]=XiangqiPieceImpl.makePiece(XiangqiPieceType.GENERAL, XiangqiColor.BLACK);
 		board[5][4]=XiangqiPieceImpl.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.BLACK);
-		board[5][5]=XiangqiPieceImpl.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK);
+		board[5][1]=XiangqiPieceImpl.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK);
 		board[4][3]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK);
 	}
 	
 	@Override
 	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
-		return board[where.getRank()][where.getFile()];
+		if(aspect==XiangqiColor.RED){
+			return board[where.getRank()][where.getFile()];
+		}
+		else if(aspect==XiangqiColor.BLACK){
+			return board[ranks-where.getRank()][files-where.getFile()];
+		}
+		else{
+			return XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
+		}
 	}
 
 }
