@@ -1,16 +1,14 @@
 package xiangqi.studentjhu4;
 
 import xiangqi.common.XiangqiColor;
-import xiangqi.common.XiangqiCoordinate;
 import xiangqi.common.XiangqiPiece;
 import xiangqi.common.XiangqiPieceType;
 
-public class BetaXiangqiBoard implements XiangqiBoard {
-	private XiangqiPiece[][] board;
-	final int ranks=6;
-	final int files=6;
+public class BetaXiangqiBoard extends XiangqiBoard{
 	
 	public BetaXiangqiBoard(){
+		ranks=6;
+		files=6;
 		board=new XiangqiPiece[ranks][files];
 		//initialize the whole board
 		for(int i=0;i<ranks;i++){
@@ -33,18 +31,4 @@ public class BetaXiangqiBoard implements XiangqiBoard {
 		board[5][1]=XiangqiPieceImpl.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK);
 		board[4][3]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK);
 	}
-	
-	@Override
-	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
-		if(aspect==XiangqiColor.RED){
-			return board[where.getRank()][where.getFile()];
-		}
-		else if(aspect==XiangqiColor.BLACK){
-			return board[ranks-where.getRank()][files-where.getFile()];
-		}
-		else{
-			return XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
-		}
-	}
-
 }

@@ -149,5 +149,18 @@ public class BetaXiangqiTest {
 		assertEquals(XiangqiPieceType.SOLDIER,p23.getPieceType());
 	}
 	
-
+	@Test //6
+	public void nonepiecesInitializedCorrectlyInRedAspect(){
+		//any coordinate in the file of 2-4 except (2,3) and (4,3) 
+		for(int rank=2;rank<=4;rank++){
+			for(int file=1;file<=5;file++){
+				if((rank!=2 && file!=3)||(rank!=4 && file!=3)){
+					XiangqiPiece pxy=game.getPieceAt(makeCoordinate(rank,file), XiangqiColor.RED);
+					assertEquals(XiangqiColor.NONE,pxy.getColor());
+					assertEquals(XiangqiPieceType.NONE,pxy.getPieceType());
+				}
+			}
+		}
+	}
+	
 }

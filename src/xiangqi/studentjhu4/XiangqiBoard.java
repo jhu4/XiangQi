@@ -3,8 +3,13 @@ package xiangqi.studentjhu4;
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiCoordinate;
 import xiangqi.common.XiangqiPiece;
+import xiangqi.common.XiangqiPieceType;
 
-public interface XiangqiBoard {
+public abstract class XiangqiBoard{
+	protected XiangqiPiece[][] board;
+	protected int ranks;
+	protected int files;
+	protected int round=1;
 	/**
 	 * Method used for querying the board.
 	 * @param where the coordinate to access
@@ -15,6 +20,15 @@ public interface XiangqiBoard {
 	 *   this returns a piece with the type of XiangqiPieceType.NONE, and a color of 
 	 *   XiangqiColor.NONE.
 	 */
-	XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect);
-	
+	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect){
+		if(aspect==XiangqiColor.RED){
+			return board[where.getRank()][where.getFile()];
+		}
+		else if(aspect==XiangqiColor.BLACK){
+			return board[ranks-where.getRank()][files-where.getFile()];
+		}
+		else{
+			return XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
+		}
+	}
 }
