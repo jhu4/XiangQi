@@ -174,51 +174,99 @@ public class BetaXiangqiTest {
 	}
 	
 	@Test //8
-	public void redChariotCanMoveFrom11To21(){
+	public void redChariotCanMoveFrom11To21Correctly(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
-		XiangqiPiece p21=game.getPieceAt(makeCoordinate(2,1),XiangqiColor.RED);
 		XiangqiPiece p11=game.getPieceAt(makeCoordinate(1,1),XiangqiColor.RED);
-		assertEquals(XiangqiPieceType.CHARIOT,p21.getPieceType());
-		assertEquals(XiangqiColor.RED,p21.getColor());
+		XiangqiPiece p21=game.getPieceAt(makeCoordinate(2,1),XiangqiColor.RED);
 		assertEquals(XiangqiPieceType.NONE,p11.getPieceType());
 		assertEquals(XiangqiColor.NONE,p11.getColor());
+		assertEquals(XiangqiPieceType.CHARIOT,p21.getPieceType());
+		assertEquals(XiangqiColor.RED,p21.getColor());
 		
 	}
 	
 	@Test //9
 	public void redChariotCanMoveFrom15To45(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(4,5)));
+		XiangqiPiece p15=game.getPieceAt(makeCoordinate(1,5),XiangqiColor.RED);
+		XiangqiPiece p45=game.getPieceAt(makeCoordinate(4,5),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.NONE,p15.getPieceType());
+		assertEquals(XiangqiColor.NONE,p15.getColor());
+		assertEquals(XiangqiPieceType.CHARIOT,p45.getPieceType());
+		assertEquals(XiangqiColor.RED,p45.getColor());
+		
 	}
 	
 	@Test //10
 	public void redChariotCanMoveFrom15To55(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(5,5)));
+		XiangqiPiece p15=game.getPieceAt(makeCoordinate(1,5),XiangqiColor.RED);
+		XiangqiPiece p55=game.getPieceAt(makeCoordinate(5,5),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.NONE,p15.getPieceType());
+		assertEquals(XiangqiColor.NONE,p15.getColor());
+		assertEquals(XiangqiPieceType.CHARIOT,p55.getPieceType());
+		assertEquals(XiangqiColor.RED,p55.getColor());
 	}
 	
 	@Test //11
 	public void redChariotCanNotMoveFrom11To22(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,2)));
+		XiangqiPiece p11=game.getPieceAt(makeCoordinate(1,1),XiangqiColor.RED);
+		XiangqiPiece p22=game.getPieceAt(makeCoordinate(2,2),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.CHARIOT,p11.getPieceType());
+		assertEquals(XiangqiColor.RED,p11.getColor());
+		assertEquals(XiangqiPieceType.NONE,p22.getPieceType());
+		assertEquals(XiangqiColor.NONE,p22.getColor());
 	}
 	
 	@Test //12
 	public void redChariotCanNotMoveFrom15To14(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,5),makeCoordinate(1,4)));
+		XiangqiPiece p15=game.getPieceAt(makeCoordinate(1,5),XiangqiColor.RED);
+		XiangqiPiece p14=game.getPieceAt(makeCoordinate(1,4),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.CHARIOT,p15.getPieceType());
+		assertEquals(XiangqiColor.RED,p15.getColor());
+		assertEquals(XiangqiPieceType.ADVISOR,p14.getPieceType());
+		assertEquals(XiangqiColor.RED,p14.getColor());
 	}
 	
 	@Test //13
 	public void redChariotCanNotMoveFrom11To11(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,1)));
+		XiangqiPiece p11=game.getPieceAt(makeCoordinate(1,1),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.CHARIOT,p11.getPieceType());
+		assertEquals(XiangqiColor.RED,p11.getColor());
 	}
 	
 	@Test //14
 	public void redChariotCanNotMoveToOutOfBoardCoordinate(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(0,1)));
+		XiangqiPiece p11=game.getPieceAt(makeCoordinate(1,1),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.CHARIOT,p11.getPieceType());
+		assertEquals(XiangqiColor.RED,p11.getColor());
 	}
 	
-	@Test //15 move Red Chariot (1,1)->(2,1) move Black Chariot (1,1)->(2,1)
-			//if it false to move, it means that the round didn't alter
-	public void gameRoundAlterCorrectly(){
+	@Test //15 
+	public void gameRoundAltersCorrectly(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		XiangqiPiece p11_red=game.getPieceAt(makeCoordinate(1,1),XiangqiColor.RED);
+		XiangqiPiece p21_red=game.getPieceAt(makeCoordinate(2,1),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.NONE,p11_red.getPieceType());
+		assertEquals(XiangqiColor.NONE,p11_red.getColor());
+		assertEquals(XiangqiPieceType.CHARIOT,p21_red.getPieceType());
+		assertEquals(XiangqiColor.RED,p21_red.getColor());
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		XiangqiPiece p55_red=game.getPieceAt(makeCoordinate(5,5),XiangqiColor.RED);
+		XiangqiPiece p45_red=game.getPieceAt(makeCoordinate(4,5),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.NONE,p55_red.getPieceType());
+		assertEquals(XiangqiColor.NONE,p55_red.getColor());
+		assertEquals(XiangqiPieceType.CHARIOT,p45_red.getPieceType());
+		assertEquals(XiangqiColor.BLACK,p45_red.getColor());
+		XiangqiPiece p11_black=game.getPieceAt(makeCoordinate(1,1),XiangqiColor.BLACK);
+		XiangqiPiece p21_black=game.getPieceAt(makeCoordinate(2,1),XiangqiColor.BLACK);
+		assertEquals(XiangqiPieceType.NONE,p11_black.getPieceType());
+		assertEquals(XiangqiColor.NONE,p11_black.getColor());
+		assertEquals(XiangqiPieceType.CHARIOT,p21_black.getPieceType());
+		assertEquals(XiangqiColor.BLACK,p21_black.getColor());
 	}
 }

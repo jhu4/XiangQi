@@ -40,7 +40,7 @@ public abstract class XiangqiBoard{
 		return boardColor;
 	}
 	
-	public void alterColor(){
+	private void alterColor(){
 		boardColor=(boardColor==XiangqiColor.BLACK)?XiangqiColor.RED:XiangqiColor.BLACK;
 	}
 

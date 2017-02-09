@@ -24,7 +24,7 @@ public class BetaXiangqiGame implements XiangqiGame {
 	
 	@Override
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination){
-		if(isValidMove(source,destination)){
+		if(isValidMove(source,destination,board.getBoardColor())){
 			board.makeMove(source,destination);
 			return MoveResult.OK;
 		}
@@ -55,10 +55,9 @@ public class BetaXiangqiGame implements XiangqiGame {
 	 * @param destination Coordinate 
 	 * @return true if it is a valid move
 	 */
-	private boolean isValidMove(XiangqiCoordinate source, XiangqiCoordinate destination){
-		XiangqiPiece pc=getPieceAt(source,XiangqiColor.RED);
+	private boolean isValidMove(XiangqiCoordinate source, XiangqiCoordinate destination, XiangqiColor aspect){
+		XiangqiPiece pc=getPieceAt(source,aspect);
 		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
-		
 		if(rule.test(board, source, destination)){
 			return true;
 		}
