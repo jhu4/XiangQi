@@ -1,16 +1,18 @@
 package xiangqiPieceRule;
 
 import xiangqi.common.XiangqiCoordinate;
+import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPieceType;
 import xiangqi.studentjhu4.XiangqiBoard;
-import xiangqi.studentjhu4.XiangqiCoordinateImpl;
 
 public class NoneRule extends XiangqiPieceRule{
 	
-	public NoneRule(XiangqiPieceType type) {
-		super(type);
-	}
+
 	
+	public NoneRule(XiangqiPieceType type, XiangqiGameVersion version) {
+		super(type, version);
+	}
+
 	@Override
 	public boolean test(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination){
 		return false;

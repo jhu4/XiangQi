@@ -1,14 +1,15 @@
 package xiangqiPieceRule;
 
 import xiangqi.common.XiangqiCoordinate;
+import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPieceType;
 import xiangqi.studentjhu4.XiangqiBoard;
-import xiangqi.studentjhu4.XiangqiCoordinateImpl;
 
 public class ChariotRule extends XiangqiPieceRule {
 
-	public ChariotRule(XiangqiPieceType type) {
-		super(type);
+
+	public ChariotRule(XiangqiPieceType type, XiangqiGameVersion version) {
+		super(type, version);
 	}
 
 	@Override

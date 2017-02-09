@@ -9,6 +9,7 @@ import java.util.function.BiPredicate;
 
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiCoordinate;
+import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPiece;
 import xiangqi.common.XiangqiPieceType;
 import xiangqi.studentjhu4.XiangqiBoard;
@@ -16,9 +17,10 @@ import xiangqi.studentjhu4.XiangqiCoordinateImpl;
 
 public abstract class XiangqiPieceRule {
 	protected final List<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> coordinateValidator;
-	
-	public XiangqiPieceRule(XiangqiPieceType type){
+	protected final XiangqiGameVersion version;
+	public XiangqiPieceRule(XiangqiPieceType type,XiangqiGameVersion version){
 		this.coordinateValidator=makeValidators(type);
+		this.version=version;
 	}
 	
 	/**

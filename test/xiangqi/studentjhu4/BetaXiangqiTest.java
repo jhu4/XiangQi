@@ -373,10 +373,11 @@ public class BetaXiangqiTest {
 	}
 	
 	@Test //24
-	public void generalCanMoveFrom13To23(){
+	public void generalCanNotMoveFrom13To23(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
-		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(2,3)));
-		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(2,3)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,3),makeCoordinate(2,3)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,3),makeCoordinate(2,3)));
 	}
 }

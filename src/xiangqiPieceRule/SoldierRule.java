@@ -1,13 +1,14 @@
 package xiangqiPieceRule;
 
 import xiangqi.common.XiangqiCoordinate;
+import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPieceType;
 import xiangqi.studentjhu4.XiangqiBoard;
 
 public class SoldierRule extends XiangqiPieceRule{
 	
-	public SoldierRule(XiangqiPieceType type) {
-		super(type);
+	public SoldierRule(XiangqiPieceType type, XiangqiGameVersion version) {
+		super(type, version);
 	}
 
 	@Override
