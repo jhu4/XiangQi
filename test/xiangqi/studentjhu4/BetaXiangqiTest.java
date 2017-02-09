@@ -151,36 +151,68 @@ public class BetaXiangqiTest {
 	}
 	
 	@Test //6
-	public void nonepiecesInitializedCorrectlyInRedAspect(){
+	public void nonepiecesInitializedCorrectlyInBothAspect(){
 		//any coordinate in the file of 2-4 except (2,3) and (4,3) 
 		for(int rank=2;rank<=4;rank++){
 			for(int file=1;file<=5;file++){
 				if((rank!=2 && file!=3)||(rank!=4 && file!=3)){
-					XiangqiPiece pxy=game.getPieceAt(makeCoordinate(rank,file), XiangqiColor.RED);
-					assertEquals(XiangqiColor.NONE,pxy.getColor());
-					assertEquals(XiangqiPieceType.NONE,pxy.getPieceType());
+					XiangqiPiece pxy_red=game.getPieceAt(makeCoordinate(rank,file), XiangqiColor.RED);
+					XiangqiPiece pxy_black=game.getPieceAt(makeCoordinate(rank,file), XiangqiColor.BLACK);
+					assertEquals(XiangqiColor.NONE,pxy_red.getColor());
+					assertEquals(XiangqiPieceType.NONE,pxy_red.getPieceType());
+					assertEquals(XiangqiColor.NONE,pxy_black.getColor());
+					assertEquals(XiangqiPieceType.NONE,pxy_black.getPieceType());
 				}
 			}
 		}
 	}
 	
 	@Test //7
-	public void redChariotCanMoveFrom11To21(){
-		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+	public void invalidCoordinateMove(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(0,-1),makeCoordinate(-10,99)));
 	}
 	
 	@Test //8
+	public void redChariotCanMoveFrom11To21(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		XiangqiPiece p21=game.getPieceAt(makeCoordinate(2,1),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.CHARIOT,p21.getPieceType());
+		assertEquals(XiangqiColor.RED,p21.getColor());
+		
+	}
+	
+	@Test //9
 	public void redChariotCanMoveFrom15To45(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(4,5)));
 	}
 	
-	@Test //9
+	@Test //10
+	public void redChariotCanMoveFrom15To55(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(5,5)));
+	}
+	
+	@Test //11
 	public void redChariotCanNotMoveFrom11To22(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,2)));
 	}
 	
-	@Test //10
-	public void redChariotCanNotMoveFrom11To12(){
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,2)));
+	@Test //12
+	public void redChariotCanNotMoveFrom15To14(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,5),makeCoordinate(1,4)));
+	}
+	
+	@Test //13
+	public void redChariotCanNotMoveFrom11To11(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,1)));
+	}
+	
+	@Test //14
+	public void redChariotCanNotMoveToOutOfBoardCoordinate(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(0,1)));
+	}
+	
+	@Test //15
+	public void redCannotMoveBlackChariot(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(5,1),makeCoordinate(4,1)));
 	}
 }

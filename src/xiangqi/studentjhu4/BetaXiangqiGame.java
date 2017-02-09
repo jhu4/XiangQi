@@ -13,8 +13,8 @@ import xiangqiPieceRule.XiangqiPieceRuleFactory;
 
 public class BetaXiangqiGame implements XiangqiGame {
 	private XiangqiBoard board;
-	 HashMap<String,XiangqiPieceRule> rulemap;
-	 
+	HashMap<String,XiangqiPieceRule> rulemap;
+	
 	public BetaXiangqiGame(){
 		board=XiangqiBoardFactory.makeXiangqiBoard(XiangqiGameVersion.BETA_XQ);
 		rulemap=new  HashMap<String,XiangqiPieceRule>();
@@ -24,15 +24,14 @@ public class BetaXiangqiGame implements XiangqiGame {
 	
 	@Override
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination){
-		XiangqiPiece pc=getPieceAt(source,XiangqiColor.RED);
-		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
-		
-		if(rule.test(board, source, destination)){
+		if(isValidMove(source,destination)){
+			board.makeMove(source,destination);
 			return MoveResult.OK;
 		}
 		else{
 			return MoveResult.ILLEGAL;
 		}
+		
 	}
 
 	@Override
@@ -45,5 +44,26 @@ public class BetaXiangqiGame implements XiangqiGame {
 	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
 		return board.getPieceAt(where, aspect);
 	}
-
+	
+	public XiangqiColor whoseRound(){
+		return board.getBoardColor();
+	}
+	
+	/**
+	 * Test if it is a valid move
+	 * @param source Coordinate
+	 * @param destination Coordinate 
+	 * @return true if it is a valid move
+	 */
+	private boolean isValidMove(XiangqiCoordinate source, XiangqiCoordinate destination){
+		XiangqiPiece pc=getPieceAt(source,XiangqiColor.RED);
+		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
+		
+		if(rule.test(board, source, destination)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

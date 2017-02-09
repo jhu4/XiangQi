@@ -12,13 +12,16 @@ import xiangqi.studentjhu4.XiangqiCoordinateImpl;
 public class CoordinateValidatorFactory {
 	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> orthogonalValidator = 
 			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isOrthogonal(c2);
-					
+	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> actualMoveValidator =
+			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.notEquals(c2);
+			
 	public static List<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> makeValidators(XiangqiPieceType type)
 	{
 		List<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> validators = 
 				new LinkedList<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>>();
 		switch (type.getPrintableName()) {
 			case "Chariot":
+				validators.add(actualMoveValidator);
 				validators.add(orthogonalValidator);
 				break;
 			default:

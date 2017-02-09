@@ -25,12 +25,14 @@ public abstract class XiangqiPieceRule {
 		return testCommonRule(board,source,destination)&&testSpecificRule(board,source,destination);
 	}
 	
-	public boolean testCommonRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination){
-		return testCoordinateMoveRule(source,destination)
-				&& testColorMoveRule(board,source,destination);
+	protected boolean testCommonRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination){
+		return testDestNotOutOfBoundRule(board,source,destination)
+				&& testNotControllingEnemyRule(board,source)
+				&& testCoordinateMoveRule(source,destination)
+				&& testCannotEatSameColorRule(board,source,destination);
 	}
 	
-	public abstract boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination);
+	protected abstract boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination);
 	
 	/**
 	 * Test if a piece can do the action in simple rule in coordinate-wise
@@ -38,7 +40,7 @@ public abstract class XiangqiPieceRule {
 	 * @param source The source coordinate
 	 * @return true if it can, false if it cannot
 	 */
-	public boolean testCoordinateMoveRule(XiangqiCoordinate source, XiangqiCoordinate destination){
+	protected boolean testCoordinateMoveRule(XiangqiCoordinate source, XiangqiCoordinate destination){
 		boolean result = true;
 		Iterator<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> iter = coordinateValidator.iterator();
 		while (result && iter.hasNext()) {
@@ -55,13 +57,31 @@ public abstract class XiangqiPieceRule {
 	 * @param destination The destination coordinate on the board
 	 * @return true if the destination has no piece or piece in different color, false otherwise
 	 */
-	public boolean testColorMoveRule(XiangqiBoard board,XiangqiCoordinate source, XiangqiCoordinate destination){
-		XiangqiColor round = board.getRound();
-		XiangqiPiece from=board.getPieceAt(source, round);
-		XiangqiPiece to=board.getPieceAt(destination, round);
+	protected boolean testCannotEatSameColorRule(XiangqiBoard board,XiangqiCoordinate source, XiangqiCoordinate destination){
+		XiangqiColor boardcolor = board.getBoardColor();
+		XiangqiPiece from=board.getPieceAt(source, boardcolor);
+		XiangqiPiece to=board.getPieceAt(destination, boardcolor);
 		if(from.getColor()==to.getColor())
 			return false;
 		else
 			return true;
+	}
+	
+	protected boolean testDestNotOutOfBoundRule(XiangqiBoard board,XiangqiCoordinate source, XiangqiCoordinate destination){
+		int filebound=board.getExclusiveFileBound();
+		int rankbound=board.getExclusiveRankBound();  
+		boolean destNotOutOfBound=destination.getFile()<filebound && destination.getRank()<rankbound
+				&& destination.getFile()>0 && destination.getRank()>0;
+		return destNotOutOfBound;
+	}
+	
+	protected boolean testNotControllingEnemyRule(XiangqiBoard board,XiangqiCoordinate source){
+		XiangqiColor boardColor = board.getBoardColor();
+		if(boardColor==board.getPieceAt(source, boardColor).getColor()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

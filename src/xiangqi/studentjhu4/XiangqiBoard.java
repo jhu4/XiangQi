@@ -9,7 +9,7 @@ public abstract class XiangqiBoard{
 	protected XiangqiPiece[][] board;
 	protected int ranks;
 	protected int files;
-	protected XiangqiColor round=XiangqiColor.RED;
+	protected XiangqiColor boardColor=XiangqiColor.RED;
 	
 	/**
 	 * Method used for querying the board.
@@ -22,10 +22,13 @@ public abstract class XiangqiBoard{
 	 *   XiangqiColor.NONE.
 	 */
 	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect){
-		if(aspect==XiangqiColor.RED){
+		boolean validCoordinate=where.getFile()>0 && where.getFile()<files 
+										&&where.getRank()>0 && where.getRank()<ranks;
+										
+		if(aspect==XiangqiColor.RED && validCoordinate){
 			return board[where.getRank()][where.getFile()];
 		}
-		else if(aspect==XiangqiColor.BLACK){
+		else if(aspect==XiangqiColor.BLACK && validCoordinate){
 			return board[ranks-where.getRank()][files-where.getFile()];
 		}
 		else{
@@ -33,11 +36,30 @@ public abstract class XiangqiBoard{
 		}
 	}
 	
-	public XiangqiColor getRound(){
-		return round;
+	public XiangqiColor getBoardColor(){
+		return boardColor;
 	}
 	
-	public void alterRound(){
-		round=(round==XiangqiColor.BLACK)?XiangqiColor.RED:XiangqiColor.BLACK;
+	public void alterColor(){
+		boardColor=(boardColor==XiangqiColor.BLACK)?XiangqiColor.RED:XiangqiColor.BLACK;
+	}
+
+	public void makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
+		if(boardColor==XiangqiColor.RED){
+			board[destination.getRank()][destination.getFile()]=board[source.getRank()][source.getFile()];
+		}
+		else{
+			board[ranks-destination.getRank()][files-destination.getFile()]=
+					board[ranks-source.getRank()][files-source.getRank()];
+		}
+		alterColor();
+	}
+	
+	public int getExclusiveRankBound(){
+		return this.ranks;
+	}
+	
+	public int getExclusiveFileBound(){
+		return this.files;
 	}
 }

@@ -12,7 +12,12 @@ public class NoneRule extends XiangqiPieceRule{
 	}
 	
 	@Override
-	public boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination) {
+	public boolean test(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination){
 		return false;
-	}	
+	}
+
+	@Override
+	protected boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination) {
+		return false;
+	}
 }
