@@ -271,7 +271,7 @@ public class BetaXiangqiTest {
 	}
 	
 	@Test //16
-	public void soldierCanMoveFrom23To33(){
+	public void soldierCanMoveFrom23To33AndEatEnemysPiece(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
 		XiangqiPiece p23red=game.getPieceAt(makeCoordinate(2,3),XiangqiColor.RED);
 		XiangqiPiece p33red=game.getPieceAt(makeCoordinate(3,3),XiangqiColor.RED);
@@ -304,5 +304,33 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1), makeCoordinate(2,1)));
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(3,3),makeCoordinate(3,2)));
+	}
+	
+	@Test //19
+	public void soldierCannotStepOnTheSameColor(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(3,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(3,1),makeCoordinate(3,3)));
+		XiangqiPiece p33red=game.getPieceAt(makeCoordinate(3,3),XiangqiColor.RED);
+		assertEquals(XiangqiColor.RED,p33red.getColor());
+		assertEquals(XiangqiPieceType.CHARIOT,p33red.getPieceType());
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(4,5)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
+		p33red=game.getPieceAt(makeCoordinate(3,3),XiangqiColor.RED);
+		assertEquals(XiangqiColor.RED,p33red.getColor());
+		assertEquals(XiangqiPieceType.CHARIOT,p33red.getPieceType());
+	}
+	
+	@Test //20
+	public void chariotCannotGoCrossAnyPieces(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(2,5)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,1),makeCoordinate(5,1)));
+		XiangqiPiece p25black=game.getPieceAt(makeCoordinate(2,5),XiangqiColor.BLACK);
+		XiangqiPiece p45black=game.getPieceAt(makeCoordinate(4,5),XiangqiColor.BLACK);
+		assertEquals(XiangqiColor.BLACK,p25black.getColor());
+		assertEquals(XiangqiColor.RED,p45black.getColor());
+		assertEquals(XiangqiPieceType.CHARIOT,p45black.getPieceType());
+		assertEquals(XiangqiPieceType.CHARIOT,p25black.getPieceType());
 	}
 }

@@ -29,7 +29,7 @@ public abstract class XiangqiPieceRule {
 	 * @return true if the move is valid, false otherwise
 	 */
 	public boolean test(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest){
-		return testCommonRule(board,source,dest)&&testSpecificRule(board,source,dest);
+		return testCommonRule(board,source,dest) && testSpecificRule(board,source,dest);
 	}
 	
 	/**
@@ -128,5 +128,11 @@ public abstract class XiangqiPieceRule {
 	protected int calculateDistance(XiangqiCoordinate source,XiangqiCoordinate dest){
 		return makeCoordinate(source.getRank(),source.getFile())
 				.distanceTo(makeCoordinate(dest.getRank(),dest.getFile()));
+	}
+	
+	
+	protected int calculatePiecesOnOrthogonalPath(XiangqiBoard board,XiangqiCoordinate source,XiangqiCoordinate dest){
+		return board.getNumberPieceOrthogonalPathBtw(makeCoordinate(source.getRank(),source.getFile())
+				,makeCoordinate(dest.getRank(),dest.getFile()));
 	}
 }

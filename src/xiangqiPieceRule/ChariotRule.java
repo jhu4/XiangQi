@@ -12,8 +12,8 @@ public class ChariotRule extends XiangqiPieceRule {
 	}
 
 	@Override
-	public boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination) {
-		return true;
+	public boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest) {
+		return calculatePiecesOnOrthogonalPath(board, source, dest)==0;
 	}
 
 }
