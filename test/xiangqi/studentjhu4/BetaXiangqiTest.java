@@ -287,4 +287,22 @@ public class BetaXiangqiTest {
 		assertEquals(XiangqiPieceType.SOLDIER,p33black.getPieceType());
 		assertEquals(XiangqiColor.BLACK,p33black.getColor());
 	}
+	
+	@Test //17
+	public void soldierCanNotMoveHorizontally(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,3),makeCoordinate(2,4)));
+		XiangqiPiece p23red=game.getPieceAt(makeCoordinate(2,3),XiangqiColor.RED);
+		XiangqiPiece p24red=game.getPieceAt(makeCoordinate(2,4),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.SOLDIER,p23red.getPieceType());
+		assertEquals(XiangqiColor.RED,p23red.getColor());
+		assertEquals(XiangqiPieceType.NONE,p24red.getPieceType());
+		assertEquals(XiangqiColor.NONE,p24red.getColor());
+	}
+	
+	@Test //18
+	public void soldierCanNotMoveBackward(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1), makeCoordinate(2,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(3,3),makeCoordinate(3,2)));
+	}
 }
