@@ -11,6 +11,12 @@ public class XiangqiCoordinateImpl implements XiangqiCoordinate{
 		this.file=file;
 	}
 	
+	/**
+	 * Constructor for XiangqiCoordinateImpl
+	 * @param rank rank of the coordinate
+	 * @param file file of the coordinate
+	 * @return
+	 */
 	public static XiangqiCoordinateImpl makeCoordinate(int rank, int file){
 		return new XiangqiCoordinateImpl(rank,file);
 	}
@@ -26,10 +32,31 @@ public class XiangqiCoordinateImpl implements XiangqiCoordinate{
 	}
 	
 	public boolean isOrthogonal(XiangqiCoordinateImpl c){
-		return (rank==c.getRank()) || (file==c.getFile());
+		return isSameFile(c)^isSameRank(c);
+	}
+	
+	public boolean isDiagonal(XiangqiCoordinateImpl c) {
+		return Math.abs(rank-c.getRank())==Math.abs(file-c.getFile());
+	}
+	
+	public boolean isSameFile(XiangqiCoordinateImpl c) {
+		return file==c.getFile();
+	}
+	
+	public boolean isSameRank(XiangqiCoordinateImpl c) {
+		return rank==c.getRank();
+	}
+	
+	public boolean isOneDiagonal(XiangqiCoordinateImpl c) {
+		return Math.abs(file-c.getFile())==1 && Math.abs(rank-c.getRank())==1;
 	}
 
-	public boolean notEquals(XiangqiCoordinateImpl c) {
-		return !(rank==c.getRank() && file==c.getFile());
+	public boolean isForward(XiangqiCoordinateImpl c) {
+		return c.getRank()-rank>0;
 	}
+
+	public int distanceTo(XiangqiCoordinateImpl c){
+		return Math.abs(rank-c.getRank())+Math.abs(file-c.getFile());
+	}
+
 }

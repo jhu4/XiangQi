@@ -21,18 +21,39 @@ public abstract class XiangqiPieceRule {
 		this.coordinateValidator=makeValidators(type);
 	}
 	
-	public boolean test(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination){
-		return testCommonRule(board,source,destination)&&testSpecificRule(board,source,destination);
+	/**
+	 * The main test method for a specific Rule
+	 * @param board The game board
+	 * @param source The source coordinate
+	 * @param dest The destination coordinate on the board
+	 * @return true if the move is valid, false otherwise
+	 */
+	public boolean test(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest){
+		return testCommonRule(board,source,dest)&&testSpecificRule(board,source,dest);
 	}
 	
-	protected boolean testCommonRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination){
-		return testDestNotOutOfBoundRule(board,source,destination)
+	/**
+	 * The Common rules test method for any Rule
+	 * @param board The game board
+	 * @param source The source coordinate
+	 * @param dest The destination coordinate on the board
+	 * @return true if the move is valid for common rules, false otherwise
+	 */
+	protected boolean testCommonRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest){
+		return testDestNotOutOfBoundRule(board,source,dest)
 				&& testNotControllingEnemyRule(board,source)
-				&& testCoordinateMoveRule(source,destination)
-				&& testCannotEatSameColorRule(board,source,destination);
+				&& testCoordinateMoveRule(source,dest)
+				&& testCannotEatSameColorRule(board,source,dest);
 	}
 	
-	protected abstract boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination);
+	/**
+	 * Detailed and specific rules tester for a specific rule
+	 * @param board The game board
+	 * @param source The source coordinate
+	 * @param dest The destination coordinate on the board
+	 * @return true if rules pass, false otherwise
+	 */
+	protected abstract boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest);
 	
 	/**
 	 * Test if a piece can do the action in simple rule in coordinate-wise
@@ -40,12 +61,12 @@ public abstract class XiangqiPieceRule {
 	 * @param source The source coordinate
 	 * @return true if it can, false if it cannot
 	 */
-	protected boolean testCoordinateMoveRule(XiangqiCoordinate source, XiangqiCoordinate destination){
+	protected boolean testCoordinateMoveRule(XiangqiCoordinate source, XiangqiCoordinate dest){
 		boolean result = true;
 		Iterator<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> iter = coordinateValidator.iterator();
 		while (result && iter.hasNext()) {
 			result = iter.next().test(makeCoordinate(source.getRank(), source.getFile())
-					,makeCoordinate(destination.getRank(), destination.getFile()));
+					,makeCoordinate(dest.getRank(), dest.getFile()));
 		}
 		return result;
 	}
@@ -54,27 +75,40 @@ public abstract class XiangqiPieceRule {
 	 * Test if a piece can move from source to destination in its color rule
 	 * @param board The game board
 	 * @param source The source coordinate
-	 * @param destination The destination coordinate on the board
+	 * @param dest The destination coordinate on the board
 	 * @return true if the destination has no piece or piece in different color, false otherwise
 	 */
-	protected boolean testCannotEatSameColorRule(XiangqiBoard board,XiangqiCoordinate source, XiangqiCoordinate destination){
+	protected boolean testCannotEatSameColorRule(XiangqiBoard board,XiangqiCoordinate source, XiangqiCoordinate dest){
 		XiangqiColor boardcolor = board.getBoardColor();
 		XiangqiPiece from=board.getPieceAt(source, boardcolor);
-		XiangqiPiece to=board.getPieceAt(destination, boardcolor);
+		XiangqiPiece to=board.getPieceAt(dest, boardcolor);
 		if(from.getColor()==to.getColor())
 			return false;
 		else
 			return true;
 	}
 	
-	protected boolean testDestNotOutOfBoundRule(XiangqiBoard board,XiangqiCoordinate source, XiangqiCoordinate destination){
+	/**
+	 * Test the destination coordinate is not out of bound
+	 * @param board The game board
+	 * @param source The source coordinate
+	 * @param dest The destination coordinate on the board
+	 * @return true if not out of bound, false otherwise
+	 */
+	protected boolean testDestNotOutOfBoundRule(XiangqiBoard board,XiangqiCoordinate source, XiangqiCoordinate dest){
 		int filebound=board.getExclusiveFileBound();
 		int rankbound=board.getExclusiveRankBound();  
-		boolean destNotOutOfBound=destination.getFile()<filebound && destination.getRank()<rankbound
-				&& destination.getFile()>0 && destination.getRank()>0;
+		boolean destNotOutOfBound=dest.getFile()<filebound && dest.getRank()<rankbound
+				&& dest.getFile()>0 && dest.getRank()>0;
 		return destNotOutOfBound;
 	}
 	
+	/**
+	 * Tester for check the player is not controlling the enemy's piece
+	 * @param board The game board
+	 * @param source The source coordinate
+	 * @return true if the player is controlling his/her own piece, false otherwise
+	 */
 	protected boolean testNotControllingEnemyRule(XiangqiBoard board,XiangqiCoordinate source){
 		XiangqiColor boardColor = board.getBoardColor();
 		if(boardColor==board.getPieceAt(source, boardColor).getColor()){
@@ -83,5 +117,16 @@ public abstract class XiangqiPieceRule {
 		else{
 			return false;
 		}
+	}
+	 
+	/**
+	 * Calculated the distance btw 2 coordinates
+	 * @param source The source coordinate
+	 * @param dest The destination coordinate on the board
+	 * @return x+y
+	 */
+	protected int calculateDistance(XiangqiCoordinate source,XiangqiCoordinate dest){
+		return makeCoordinate(source.getRank(),source.getFile())
+				.distanceTo(makeCoordinate(dest.getRank(),dest.getFile()));
 	}
 }

@@ -52,8 +52,8 @@ public abstract class XiangqiBoard{
 		}
 		else{
 			board[ranks-destination.getRank()][files-destination.getFile()]=
-					board[ranks-source.getRank()][files-source.getRank()];
-			board[ranks-source.getRank()][files-source.getRank()]=
+					board[ranks-source.getRank()][files-source.getFile()];
+			board[ranks-source.getRank()][files-source.getFile()]=
 					XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
 		}
 		alterColor();

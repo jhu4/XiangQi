@@ -269,4 +269,22 @@ public class BetaXiangqiTest {
 		assertEquals(XiangqiPieceType.CHARIOT,p21_black.getPieceType());
 		assertEquals(XiangqiColor.BLACK,p21_black.getColor());
 	}
+	
+	@Test //16
+	public void soldierCanMoveFrom23To33(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
+		XiangqiPiece p23red=game.getPieceAt(makeCoordinate(2,3),XiangqiColor.RED);
+		XiangqiPiece p33red=game.getPieceAt(makeCoordinate(3,3),XiangqiColor.RED);
+		assertEquals(XiangqiPieceType.NONE,p23red.getPieceType());
+		assertEquals(XiangqiColor.NONE,p23red.getColor());
+		assertEquals(XiangqiPieceType.SOLDIER,p33red.getPieceType());
+		assertEquals(XiangqiColor.RED,p33red.getColor());
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
+		XiangqiPiece p23black=game.getPieceAt(makeCoordinate(2,3),XiangqiColor.BLACK);
+		XiangqiPiece p33black=game.getPieceAt(makeCoordinate(3,3),XiangqiColor.BLACK);
+		assertEquals(XiangqiPieceType.NONE,p23black.getPieceType());
+		assertEquals(XiangqiColor.NONE,p23black.getColor());
+		assertEquals(XiangqiPieceType.SOLDIER,p33black.getPieceType());
+		assertEquals(XiangqiColor.BLACK,p33black.getColor());
+	}
 }

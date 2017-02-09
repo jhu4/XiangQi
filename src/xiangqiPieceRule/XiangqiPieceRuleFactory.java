@@ -8,6 +8,8 @@ public class XiangqiPieceRuleFactory{
 		switch(type.getPrintableName()){
 			case "Chariot":
 				return new ChariotRule(type);
+			case "Soldier":
+				return new SoldierRule(type);
 			default:
 				return new NoneRule(type);
 		}

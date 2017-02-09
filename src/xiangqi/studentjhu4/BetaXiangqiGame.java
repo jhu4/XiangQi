@@ -20,6 +20,7 @@ public class BetaXiangqiGame implements XiangqiGame {
 		rulemap=new  HashMap<String,XiangqiPieceRule>();
 		rulemap.put("",XiangqiPieceRuleFactory.makeXiangqiPieceRule(XiangqiPieceType.NONE));
 		rulemap.put("Chariot",XiangqiPieceRuleFactory.makeXiangqiPieceRule(XiangqiPieceType.CHARIOT));
+		rulemap.put("Soldier",XiangqiPieceRuleFactory.makeXiangqiPieceRule(XiangqiPieceType.SOLDIER));
 	}
 	
 	@Override
