@@ -170,7 +170,7 @@ public class BetaXiangqiTest {
 	}
 	
 	@Test //8
-	public void redChariotCanMoveFrom11To51(){
+	public void redChariotCanMoveFrom15To45(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(4,5)));
 	}
 	

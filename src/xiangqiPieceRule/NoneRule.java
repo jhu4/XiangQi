@@ -10,9 +10,9 @@ public class NoneRule extends XiangqiPieceRule{
 	public NoneRule(XiangqiPieceType type) {
 		super(type);
 	}
-
+	
 	@Override
-	public boolean test(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination) {
+	public boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate destination) {
 		return false;
 	}	
 }

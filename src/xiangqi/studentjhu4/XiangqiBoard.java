@@ -9,7 +9,8 @@ public abstract class XiangqiBoard{
 	protected XiangqiPiece[][] board;
 	protected int ranks;
 	protected int files;
-	protected int round=1;
+	protected XiangqiColor round=XiangqiColor.RED;
+	
 	/**
 	 * Method used for querying the board.
 	 * @param where the coordinate to access
@@ -30,5 +31,13 @@ public abstract class XiangqiBoard{
 		else{
 			return XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
 		}
+	}
+	
+	public XiangqiColor getRound(){
+		return round;
+	}
+	
+	public void alterRound(){
+		round=(round==XiangqiColor.BLACK)?XiangqiColor.RED:XiangqiColor.BLACK;
 	}
 }
