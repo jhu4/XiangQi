@@ -13,7 +13,6 @@ import xiangqi.common.XiangqiGame;
 import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPiece;
 import xiangqi.common.XiangqiPieceType;
-import xiangqi.studentjhu4.AlphaXiangqiTest.TestCoordinate;
 
 /**
  * Test cases for Beta Xiangqi Game
