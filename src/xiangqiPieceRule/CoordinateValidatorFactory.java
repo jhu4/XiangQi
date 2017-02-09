@@ -17,8 +17,6 @@ public class CoordinateValidatorFactory {
 			
 	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> sameFileValidator = 
 			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isSameFile(c2);
-	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> sameRankValidator = 
-			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isSameRank(c2);
 			
 	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> forwardValidator = 
 			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isForward(c2);
@@ -34,6 +32,13 @@ public class CoordinateValidatorFactory {
 			case "Soldier":
 				validators.add(sameFileValidator);
 				validators.add(forwardValidator);
+				break;
+			case "Advisor":
+				validators.add(diagonalValidator);
+				break;
+			case "General":
+				validators.add(orthogonalValidator);
+				break;
 			default:
 				//not yet implemented or None type
 				break;

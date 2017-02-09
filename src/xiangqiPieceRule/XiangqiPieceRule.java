@@ -130,7 +130,13 @@ public abstract class XiangqiPieceRule {
 				.distanceTo(makeCoordinate(dest.getRank(),dest.getFile()));
 	}
 	
-	
+	/**
+	 * Calculated how many the pieces in the orthogonal path
+	 * @param board The game board
+	 * @param source The source coordinate
+	 * @param dest The destination coordinate on the board
+	 * @return number of pieces in the path
+	 */
 	protected int calculatePiecesOnOrthogonalPath(XiangqiBoard board,XiangqiCoordinate source,XiangqiCoordinate dest){
 		return board.getNumberPieceOrthogonalPathBtw(makeCoordinate(source.getRank(),source.getFile())
 				,makeCoordinate(dest.getRank(),dest.getFile()));

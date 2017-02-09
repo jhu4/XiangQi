@@ -70,7 +70,7 @@ public abstract class XiangqiBoard{
 
 	
 	
-	private int getNumberPieceInFileBtw(int file, int start,int end) {
+	private int getNumberPieceInFileBetween(int file, int start,int end) {
 		if((end-start)==1) return 0;
 		int incrementor=start<end?1:-1;
 		int count=-1;
@@ -82,7 +82,7 @@ public abstract class XiangqiBoard{
 		return count;
 	}	
 	
-	private int getNumberPieceInRankBtw(int rank, int start,int end){
+	private int getNumberPieceInRankBetween(int rank, int start,int end){
 		if((end-start)==1) return 0;
 		int incrementor=start<end?1:-1;
 		int count=-1;
@@ -99,17 +99,16 @@ public abstract class XiangqiBoard{
 		return makeCoordinate(ranks-c.getRank(),files-c.getFile());
 	}
 	
-	public int getNumberPieceOrthogonalPathBtw(XiangqiCoordinateImpl from,
-			XiangqiCoordinateImpl to) {
+	public int getNumberPieceOrthogonalPathBtw(XiangqiCoordinateImpl from,XiangqiCoordinateImpl to) {
 		if(boardColor==XiangqiColor.BLACK){
 			from=convertCoordinateToBlack(from);
 			to=convertCoordinateToBlack(to);
 		}
 		if(from.getRank()==to.getRank()){
-			return getNumberPieceInRankBtw(from.getRank(),from.getFile(),to.getFile());
+			return getNumberPieceInRankBetween(from.getRank(),from.getFile(),to.getFile());
 		}
 		else{
-			return getNumberPieceInFileBtw(to.getFile(), from.getRank(),to.getRank());
+			return getNumberPieceInFileBetween(to.getFile(), from.getRank(),to.getRank());
 		}
 	}
 }

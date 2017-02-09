@@ -322,7 +322,7 @@ public class BetaXiangqiTest {
 	}
 	
 	@Test //20
-	public void chariotCannotGoCrossAnyPieces(){
+	public void chariotCannotGoCrossAnyPiecesVertically(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(2,5)));
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,1),makeCoordinate(5,1)));
@@ -332,5 +332,51 @@ public class BetaXiangqiTest {
 		assertEquals(XiangqiColor.RED,p45black.getColor());
 		assertEquals(XiangqiPieceType.CHARIOT,p45black.getPieceType());
 		assertEquals(XiangqiPieceType.CHARIOT,p25black.getPieceType());
+	}
+	
+	@Test //21
+	public void chariotCannotGoCrossAnyPiecesHorizontally(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(3,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(3,1),makeCoordinate(3,4)));	
+	}
+	
+	@Test //22
+	public void advisorCanMoveOneDiagonal(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4),makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4),makeCoordinate(2,5)));
+	}
+	
+	@Test //23
+	public void advisorCanNotEatSameColor(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,3)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4),makeCoordinate(2,3)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,3)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4),makeCoordinate(2,3)));
+	}
+	
+	@Test //23
+	public void advisorCanNotMoveOrthognally(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,2)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4),makeCoordinate(4,4)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,2)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4),makeCoordinate(4,4)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,1),makeCoordinate(2,2)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,1),makeCoordinate(3,2)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,1),makeCoordinate(2,2)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,1),makeCoordinate(3,2)));
+	}
+	
+	@Test //24
+	public void generalCanMoveFrom13To23(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(2,3)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(2,3)));
 	}
 }

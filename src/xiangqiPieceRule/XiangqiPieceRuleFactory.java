@@ -10,6 +10,10 @@ public class XiangqiPieceRuleFactory{
 				return new ChariotRule(type);
 			case "Soldier":
 				return new SoldierRule(type);
+			case "Advisor":
+				return new AdvisorRule(type);
+			case "General":
+				return new GeneralRule(type);
 			default:
 				return new NoneRule(type);
 		}
