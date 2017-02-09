@@ -47,10 +47,14 @@ public abstract class XiangqiBoard{
 	public void makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
 		if(boardColor==XiangqiColor.RED){
 			board[destination.getRank()][destination.getFile()]=board[source.getRank()][source.getFile()];
+			board[source.getRank()][source.getFile()]=
+					XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
 		}
 		else{
 			board[ranks-destination.getRank()][files-destination.getFile()]=
 					board[ranks-source.getRank()][files-source.getRank()];
+			board[ranks-source.getRank()][files-source.getRank()]=
+					XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
 		}
 		alterColor();
 	}

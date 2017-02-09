@@ -170,14 +170,18 @@ public class BetaXiangqiTest {
 	@Test //7
 	public void invalidCoordinateMove(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(0,-1),makeCoordinate(-10,99)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(3,3),makeCoordinate(3,4)));
 	}
 	
 	@Test //8
 	public void redChariotCanMoveFrom11To21(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
 		XiangqiPiece p21=game.getPieceAt(makeCoordinate(2,1),XiangqiColor.RED);
+		XiangqiPiece p11=game.getPieceAt(makeCoordinate(1,1),XiangqiColor.RED);
 		assertEquals(XiangqiPieceType.CHARIOT,p21.getPieceType());
 		assertEquals(XiangqiColor.RED,p21.getColor());
+		assertEquals(XiangqiPieceType.NONE,p11.getPieceType());
+		assertEquals(XiangqiColor.NONE,p11.getColor());
 		
 	}
 	
@@ -211,8 +215,10 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(0,1)));
 	}
 	
-	@Test //15
-	public void redCannotMoveBlackChariot(){
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(5,1),makeCoordinate(4,1)));
+	@Test //15 move Red Chariot (1,1)->(2,1) move Black Chariot (1,1)->(2,1)
+			//if it false to move, it means that the round didn't alter
+	public void gameRoundAlterCorrectly(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
 	}
 }
