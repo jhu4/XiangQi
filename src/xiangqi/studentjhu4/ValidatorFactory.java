@@ -16,11 +16,11 @@ public class ValidatorFactory {
 	{
 		List<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> validators = 
 				new LinkedList<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>>();
-		switch (type.getSymbol()) {
-			case "C":
+		switch (type.getPrintableName()) {
+			case "Chariot":
+				System.out.println("Chariot Validator");
 				validators.add(orthogonalValidator);
 				break;
-			
 			default:
 				System.out.println("Not yet implemented");
 				break;

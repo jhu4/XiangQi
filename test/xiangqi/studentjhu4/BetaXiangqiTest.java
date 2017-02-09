@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import xiangqi.XiangqiGameFactory;
+import xiangqi.common.MoveResult;
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiCoordinate;
 import xiangqi.common.XiangqiGame;
@@ -34,7 +35,7 @@ public class BetaXiangqiTest {
 		public static XiangqiCoordinate makeCoordinate(int rank,int file){
 			return new TestCoordinate(rank,file);
 		}
-		
+		 
 		@Override
 		public int getRank() {
 			return rank;
@@ -163,4 +164,18 @@ public class BetaXiangqiTest {
 		}
 	}
 	
+	@Test //7
+	public void redChariotCanMoveFrom11To21(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+	}
+	
+	@Test //8
+	public void redChariotCanMoveFrom11To51(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(5,1)));
+	}
+	
+	@Test //9
+	public void redChariotCanNotMoveFrom11To22(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,2)));
+	}
 }
