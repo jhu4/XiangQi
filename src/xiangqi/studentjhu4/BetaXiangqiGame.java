@@ -1,38 +1,38 @@
 package xiangqi.studentjhu4;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.function.BiPredicate;
-
+import java.util.HashMap;
 import xiangqi.common.MoveResult;
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiCoordinate;
 import xiangqi.common.XiangqiGame;
 import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPiece;
-import static xiangqi.studentjhu4.ValidatorFactory.makeValidators;
-import static xiangqi.studentjhu4.XiangqiCoordinateImpl.makeCoordinate;
+import xiangqi.common.XiangqiPieceType;
+import xiangqiPieceRule.XiangqiPieceRule;
+import xiangqiPieceRule.XiangqiPieceRuleFactory;
 
 public class BetaXiangqiGame implements XiangqiGame {
 	private XiangqiBoard board;
-	
+	 HashMap<String,XiangqiPieceRule> rulemap;
+	 
 	public BetaXiangqiGame(){
 		board=XiangqiBoardFactory.makeXiangqiBoard(XiangqiGameVersion.BETA_XQ);
+		rulemap=new  HashMap<String,XiangqiPieceRule>();
+		rulemap.put("",XiangqiPieceRuleFactory.makeXiangqiPieceRule(XiangqiPieceType.NONE));
+		rulemap.put("Chariot",XiangqiPieceRuleFactory.makeXiangqiPieceRule(XiangqiPieceType.CHARIOT));
 	}
 	
 	@Override
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination){
-		final List<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> chessValidators=
-				makeValidators(getPieceAt(source,XiangqiColor.RED).getPieceType());
+		XiangqiPiece pc=getPieceAt(source,XiangqiColor.RED);
+		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
 		
-		boolean result = true;
-		Iterator<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> iter = chessValidators.iterator();
-		while (result && iter.hasNext()) {
-			result = iter.next().test(makeCoordinate(source.getRank(), source.getRank())
-					, makeCoordinate(destination.getRank(), destination.getFile()));
+		if(rule.test(board, source, destination)){
+			return MoveResult.OK;
 		}
-		if(result) return MoveResult.OK;
-		else return MoveResult.ILLEGAL;
+		else{
+			return MoveResult.ILLEGAL;
+		}
 	}
 
 	@Override

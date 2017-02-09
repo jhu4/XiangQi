@@ -171,11 +171,16 @@ public class BetaXiangqiTest {
 	
 	@Test //8
 	public void redChariotCanMoveFrom11To51(){
-		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(5,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(4,5)));
 	}
 	
 	@Test //9
 	public void redChariotCanNotMoveFrom11To22(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,2)));
+	}
+	
+	@Test //10
+	public void redChariotCanNotMoveFrom11To12(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,2)));
 	}
 }

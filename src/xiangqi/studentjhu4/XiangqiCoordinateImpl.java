@@ -28,9 +28,4 @@ public class XiangqiCoordinateImpl implements XiangqiCoordinate{
 	public boolean isOrthogonal(XiangqiCoordinateImpl c){
 		return (rank==c.getRank()) || (file==c.getFile());
 	}
-	
-	public boolean isDiagonal(XiangqiCoordinateImpl c){
-		return true;
-	}
-	
 }
