@@ -10,6 +10,7 @@ import xiangqi.common.XiangqiPiece;
 import xiangqi.common.XiangqiPieceType;
 import xiangqiPieceRule.XiangqiPieceRule;
 import xiangqiPieceRule.XiangqiPieceRuleFactory;
+import static xiangqi.studentjhu4.XiangqiCoordinateImpl.makeCoordinate;
 
 public class BetaXiangqiGame implements XiangqiGame {
 	private XiangqiBoard board;
@@ -17,6 +18,7 @@ public class BetaXiangqiGame implements XiangqiGame {
 	int moveCounter=0;
 	final int MoveBound=20;
 	MoveResult lastMoveResult;
+	
 	
 	public BetaXiangqiGame(){
 		board=XiangqiBoardFactory.makeXiangqiBoard(XiangqiGameVersion.BETA_XQ);
@@ -52,11 +54,7 @@ public class BetaXiangqiGame implements XiangqiGame {
 	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
 		return board.getPieceAt(where, aspect);
 	}
-	
-	public XiangqiColor whoseRound(){
-		return board.getBoardColor();
-	}
-	
+		
 	/**
 	 * Test if it is a valid move
 	 * @param source Coordinate
@@ -76,5 +74,17 @@ public class BetaXiangqiGame implements XiangqiGame {
 	
 	private void updateLastMoveResult(MoveResult mr){
 		this.lastMoveResult=mr;
+	}
+	
+	private boolean isGeneralUnderAttack(XiangqiColor aspect){
+		return false;
+	}
+	
+	private boolean isCheckmate(XiangqiColor aspect){
+		return false;
+	}
+	
+	private void updateGeneralLocation(XiangqiCoordinate location,XiangqiColor aspect){
+		return;
 	}
 }

@@ -102,12 +102,12 @@ public class BetaXiangqiTest {
 		assertEquals(XiangqiColor.BLACK,p52.getColor());
 		assertEquals(XiangqiColor.BLACK,p51.getColor());
 		assertEquals(XiangqiColor.BLACK,p43.getColor());
-		assertEquals(XiangqiPieceType.CHARIOT,p55.getPieceType());
-		assertEquals(XiangqiPieceType.ADVISOR,p54.getPieceType());
-		assertEquals(XiangqiPieceType.GENERAL,p53.getPieceType());
-		assertEquals(XiangqiPieceType.ADVISOR,p52.getPieceType());
-		assertEquals(XiangqiPieceType.CHARIOT,p51.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p43.getPieceType());
+		assertEquals(p55.getPieceType().toString(),"Chariot");
+		assertEquals(p51.getPieceType().toString(),"Chariot");
+		assertEquals(p52.getPieceType().toString(),"Advisor");
+		assertEquals(p54.getPieceType().toString(),"Advisor");
+		assertEquals(p53.getPieceType().toString(),"General");
+		assertEquals(p43.getPieceType().toString(),"Soldier");
 	}
 	
 	@Test //4
@@ -163,9 +163,9 @@ public class BetaXiangqiTest {
 					XiangqiPiece pxy_red=game.getPieceAt(makeCoordinate(rank,file), XiangqiColor.RED);
 					XiangqiPiece pxy_black=game.getPieceAt(makeCoordinate(rank,file), XiangqiColor.BLACK);
 					assertEquals(XiangqiColor.NONE,pxy_red.getColor());
-					assertEquals(XiangqiPieceType.NONE,pxy_red.getPieceType());
+					assertEquals(".",pxy_red.getPieceType().getSymbol());
 					assertEquals(XiangqiColor.NONE,pxy_black.getColor());
-					assertEquals(XiangqiPieceType.NONE,pxy_black.getPieceType());
+					assertEquals("",pxy_black.getPieceType().getPrintableName());
 				}
 			}
 		}
@@ -344,7 +344,7 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(3,1),makeCoordinate(3,4)));	
 	}
-	
+	 
 	@Test //22
 	public void advisorCanMoveOneDiagonal(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));

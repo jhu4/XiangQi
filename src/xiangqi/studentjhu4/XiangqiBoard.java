@@ -6,12 +6,15 @@ import xiangqi.common.XiangqiPiece;
 import xiangqi.common.XiangqiPieceType;
 import static xiangqi.studentjhu4.XiangqiCoordinateImpl.makeCoordinate;
 
+import java.util.HashMap;
+
 public abstract class XiangqiBoard{
 	protected XiangqiPiece[][] board;
 	protected int ranks;
 	protected int files;
+	protected HashMap<XiangqiCoordinateImpl,XiangqiPiece> redpieces;
+	protected HashMap<XiangqiCoordinateImpl,XiangqiPiece> blackpieces;
 	protected XiangqiColor boardColor=XiangqiColor.RED;
-	
 	/**
 	 * Method used for querying the board.
 	 * @param where the coordinate to access
@@ -68,8 +71,6 @@ public abstract class XiangqiBoard{
 		return this.files;
 	}
 
-	
-	
 	private int getNumberPieceInFileBetween(int file, int start,int end) {
 		if((end-start)==1) return 0;
 		int incrementor=start<end?1:-1;
