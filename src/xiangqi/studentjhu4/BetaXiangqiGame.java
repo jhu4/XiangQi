@@ -14,6 +14,9 @@ import xiangqiPieceRule.XiangqiPieceRuleFactory;
 public class BetaXiangqiGame implements XiangqiGame {
 	private XiangqiBoard board;
 	HashMap<String,XiangqiPieceRule> rulemap;
+	int moveCounter=0;
+	final int MoveBound=20;
+	MoveResult lastMoveResult;
 	
 	public BetaXiangqiGame(){
 		board=XiangqiBoardFactory.makeXiangqiBoard(XiangqiGameVersion.BETA_XQ);
@@ -27,14 +30,17 @@ public class BetaXiangqiGame implements XiangqiGame {
 	
 	@Override
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination){
+		MoveResult result;
 		if(isValidMove(source,destination,board.getBoardColor())){
 			board.makeMove(source,destination);
-			return MoveResult.OK;
+			moveCounter++;
+			result=(moveCounter>=MoveBound)?MoveResult.DRAW:MoveResult.OK;
 		}
 		else{
-			return MoveResult.ILLEGAL;
+			result=MoveResult.ILLEGAL;
 		}
-		
+		updateLastMoveResult(result);
+		return result;
 	}
 
 	@Override
@@ -67,5 +73,9 @@ public class BetaXiangqiGame implements XiangqiGame {
 		else{
 			return false;
 		}
+	}
+	
+	private void updateLastMoveResult(MoveResult mr){
+		this.lastMoveResult=mr;
 	}
 }

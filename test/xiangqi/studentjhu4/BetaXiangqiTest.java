@@ -423,5 +423,17 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(1,4)));
 	}
 	
-	
+	@Test //30
+	public void gameCanEndWithADraw(){
+		for(int i=0;i<4;i++){
+			assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+			assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+			assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,1),makeCoordinate(1,1)));
+			assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,1),makeCoordinate(1,1)));
+		}
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,1),makeCoordinate(1,1)));
+		assertEquals(MoveResult.DRAW,game.makeMove(makeCoordinate(2,1),makeCoordinate(1,1)));
+	}
 }
