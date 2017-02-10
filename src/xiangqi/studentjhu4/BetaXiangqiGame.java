@@ -45,8 +45,7 @@ public class BetaXiangqiGame implements XiangqiGame {
 
 	@Override
 	public String getMoveMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return lastMoveResult==MoveResult.ILLEGAL?"ILLEGAL MOVE":null;
 	}
 
 	@Override

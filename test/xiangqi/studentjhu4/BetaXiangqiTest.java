@@ -436,4 +436,31 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,1),makeCoordinate(1,1)));
 		assertEquals(MoveResult.DRAW,game.makeMove(makeCoordinate(2,1),makeCoordinate(1,1)));
 	}
+	
+	@Test //31
+	public void noIllegalMsgWithOKMove(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(null,game.getMoveMessage());
+	}
+	
+	@Test //32
+	public void illegalMsgWithIllegalMove(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,2)));
+		assertTrue(game.getMoveMessage().length()>=1);
+	}
+	
+	@Test //33
+	public void legalMsgWorkSeveralTimes(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,2)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(null,game.getMoveMessage());
+	}
+	
+	@Test //34
+	public void illegalMsgWorkSeveralTimes(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,2)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,2),makeCoordinate(2,3)));
+		assertTrue(game.getMoveMessage().length()>=1);
+	}
 }
