@@ -14,6 +14,8 @@ public abstract class XiangqiBoard{
 	protected int files;
 	protected HashMap<XiangqiCoordinateImpl,XiangqiPiece> redpieces;
 	protected HashMap<XiangqiCoordinateImpl,XiangqiPiece> blackpieces;
+	protected XiangqiCoordinateImpl redGeneralLocation;
+	protected XiangqiCoordinateImpl blackGeneralLocation;
 	protected XiangqiColor boardColor=XiangqiColor.RED;
 	/**
 	 * Method used for querying the board.
@@ -28,45 +30,80 @@ public abstract class XiangqiBoard{
 	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect){
 		boolean validCoordinate=where.getFile()>0 && where.getFile()<files 
 										&&where.getRank()>0 && where.getRank()<ranks;
-		
-		if(aspect==XiangqiColor.RED && validCoordinate){
-			return board[where.getRank()][where.getFile()];
+		if(aspect==XiangqiColor.BLACK){
+			where=convertCoordinateToBlack(where);
 		}
-		else if(aspect==XiangqiColor.BLACK && validCoordinate){
-			return board[ranks-where.getRank()][files-where.getFile()];
+		if(validCoordinate){
+			return board[where.getRank()][where.getFile()];
 		}
 		else{
 			return XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
 		}
 	}
 	
+	/**
+	 * Get the color of the game board
+	 * @return RED or BLACK
+	 */
 	public XiangqiColor getBoardColor(){
 		return boardColor;
 	}
 	
-	private void alterColor(){
-		boardColor=(boardColor==XiangqiColor.BLACK)?XiangqiColor.RED:XiangqiColor.BLACK;
-	}
-
-	public void makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
-		if(boardColor==XiangqiColor.RED){
-			board[destination.getRank()][destination.getFile()]=board[source.getRank()][source.getFile()];
-			board[source.getRank()][source.getFile()]=
-					XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
-		}
-		else{
-			board[ranks-destination.getRank()][files-destination.getFile()]=
-					board[ranks-source.getRank()][files-source.getFile()];
-			board[ranks-source.getRank()][files-source.getFile()]=
-					XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
-		}
+	public void makeMove(XiangqiCoordinate source, XiangqiCoordinate dest) {
+		if(boardColor==XiangqiColor.BLACK){
+			source=convertCoordinateToBlack(source);
+			dest=convertCoordinateToBlack(dest);
+		}	
+		board[dest.getRank()][dest.getFile()]=board[source.getRank()][source.getFile()];
+		board[source.getRank()][source.getFile()]=
+				XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
 		alterColor();
 	}
 	
+	/**
+	 * Update the general location
+	 * @param dest the new location
+	 */
+	public void updateGeneralLocation(XiangqiCoordinate dest){
+		if(boardColor==XiangqiColor.RED){
+			redGeneralLocation=makeCoordinate(dest.getRank(),dest.getFile());
+		}
+		else{
+			blackGeneralLocation=makeCoordinate(dest.getRank(),dest.getFile());
+		}
+	}
+	
+	/**
+	 * Get the numbers of piece from a coordinate to another coordinate
+	 * @param from the start location(exclusive)
+	 * @param to the end location(exclusive)
+	 * @return
+	 */
+	public int getNumberPieceOrthogonalPathBtw(XiangqiCoordinateImpl from,XiangqiCoordinateImpl to) {
+		if(boardColor==XiangqiColor.BLACK){
+			from=convertCoordinateToBlack(from);
+			to=convertCoordinateToBlack(to);
+		}
+		if(from.getRank()==to.getRank()){
+			return getNumberPieceInRankBetween(from.getRank(),from.getFile(),to.getFile());
+		}
+		else{
+			return getNumberPieceInFileBetween(to.getFile(), from.getRank(),to.getRank());
+		}
+	}
+	
+	/**
+	 * Get the rank boundary
+	 * @return number representing rank boundary
+	 */
 	public int getExclusiveRankBound(){
 		return this.ranks;
 	}
 	
+	/**
+	 * Get the file boundary
+	 * @return number representing file boundary
+	 */
 	public int getExclusiveFileBound(){
 		return this.files;
 	}
@@ -100,16 +137,9 @@ public abstract class XiangqiBoard{
 		return makeCoordinate(ranks-c.getRank(),files-c.getFile());
 	}
 	
-	public int getNumberPieceOrthogonalPathBtw(XiangqiCoordinateImpl from,XiangqiCoordinateImpl to) {
-		if(boardColor==XiangqiColor.BLACK){
-			from=convertCoordinateToBlack(from);
-			to=convertCoordinateToBlack(to);
-		}
-		if(from.getRank()==to.getRank()){
-			return getNumberPieceInRankBetween(from.getRank(),from.getFile(),to.getFile());
-		}
-		else{
-			return getNumberPieceInFileBetween(to.getFile(), from.getRank(),to.getRank());
-		}
+	private void alterColor(){
+		boardColor=(boardColor==XiangqiColor.BLACK)?XiangqiColor.RED:XiangqiColor.BLACK;
 	}
+	
+
 }

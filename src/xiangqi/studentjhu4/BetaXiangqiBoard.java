@@ -31,10 +31,10 @@ public class BetaXiangqiBoard extends XiangqiBoard{
 		board[2][3]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED);
 		redpieces.put(makeCoordinate(1,1),board[1][1]);
 		redpieces.put(makeCoordinate(1,2),board[1][2]);
-		redpieces.put(makeCoordinate(1,3),board[1][3]);
 		redpieces.put(makeCoordinate(1,4),board[1][4]);
 		redpieces.put(makeCoordinate(1,5),board[1][5]);
 		redpieces.put(makeCoordinate(2,3),board[2][3]);
+		redGeneralLocation=makeCoordinate(1,3);
 		//Initialized black pieces
 		board[5][5]=XiangqiPieceImpl.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK);
 		board[5][4]=XiangqiPieceImpl.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.BLACK);
@@ -44,9 +44,9 @@ public class BetaXiangqiBoard extends XiangqiBoard{
 		board[4][3]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK);
 		blackpieces.put(makeCoordinate(1,1), board[5][5]);
 		blackpieces.put(makeCoordinate(1,2), board[5][4]);
-		blackpieces.put(makeCoordinate(1,3), board[5][3]);
 		blackpieces.put(makeCoordinate(1,4), board[5][2]);
 		blackpieces.put(makeCoordinate(1,5), board[5][1]);
 		blackpieces.put(makeCoordinate(2,3), board[4][3]);
+		blackGeneralLocation=makeCoordinate(1,3);
 	}
 }
