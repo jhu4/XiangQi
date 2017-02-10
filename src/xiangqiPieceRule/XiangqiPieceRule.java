@@ -35,6 +35,20 @@ public abstract class XiangqiPieceRule {
 	}
 	
 	/**
+	 * Mocking the one's move testing regardless of the real color on the board
+	 * @param board The game board
+	 * @param source The source coordinate
+	 * @param dest The destination coordinate on the board
+	 * @return true if the move is valid, false otherwise
+	 */
+	public boolean mockTest(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest){
+		return testDestNotOutOfBoundRule(board,source,dest)
+				&& testCoordinateMoveRule(source,dest)
+				&& testCannotEatSameColorRule(board,source,dest)
+				&& testSpecificRule(board,source,dest);
+	}
+	
+	/**
 	 * The Common rules test method for any Rule
 	 * @param board The game board
 	 * @param source The source coordinate

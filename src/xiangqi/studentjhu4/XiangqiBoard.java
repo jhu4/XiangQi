@@ -31,7 +31,7 @@ public abstract class XiangqiBoard{
 		boolean validCoordinate=where.getFile()>0 && where.getFile()<files 
 										&&where.getRank()>0 && where.getRank()<ranks;
 		if(aspect==XiangqiColor.BLACK){
-			where=convertCoordinateToBlack(where);
+			where=convertCoordinateToOtherColor(where);
 		}
 		if(validCoordinate){
 			return board[where.getRank()][where.getFile()];
@@ -51,8 +51,8 @@ public abstract class XiangqiBoard{
 	
 	public void makeMove(XiangqiCoordinate source, XiangqiCoordinate dest) {
 		if(boardColor==XiangqiColor.BLACK){
-			source=convertCoordinateToBlack(source);
-			dest=convertCoordinateToBlack(dest);
+			source=convertCoordinateToOtherColor(source);
+			dest=convertCoordinateToOtherColor(dest);
 		}	
 		board[dest.getRank()][dest.getFile()]=board[source.getRank()][source.getFile()];
 		board[source.getRank()][source.getFile()]=
@@ -98,8 +98,8 @@ public abstract class XiangqiBoard{
 	 */
 	public int getNumberPieceOrthogonalPathBtw(XiangqiCoordinateImpl from,XiangqiCoordinateImpl to) {
 		if(boardColor==XiangqiColor.BLACK){
-			from=convertCoordinateToBlack(from);
-			to=convertCoordinateToBlack(to);
+			from=convertCoordinateToOtherColor(from);
+			to=convertCoordinateToOtherColor(to);
 		}
 		if(from.getRank()==to.getRank()){
 			return getNumberPieceInRankBetween(from.getRank(),from.getFile(),to.getFile());
@@ -125,6 +125,33 @@ public abstract class XiangqiBoard{
 		return this.files;
 	}
 
+	/**
+	 * Getter
+	 * @param color RED or BLACK
+	 * @return a hashmap containing all the pieces in color
+	 */
+	public HashMap<XiangqiCoordinateImpl,XiangqiPiece> getPieces(XiangqiColor color){
+		return color==XiangqiColor.RED?redpieces:blackpieces;
+	}
+	 
+	/**
+	 * The coordinate in enemy's aspect
+	 * @param c the coordinate
+	 * @return the coordinate in enemy's aspect
+	 */
+	public XiangqiCoordinateImpl convertCoordinateToOtherColor(XiangqiCoordinate c){
+		return makeCoordinate(ranks-c.getRank(),files-c.getFile());
+	}
+	
+	/**
+	 * Getter for general's location
+	 * @param color the general in which color
+	 * @return the general location in its own aspect
+	 */
+	public XiangqiCoordinate getGeneralLocation(XiangqiColor color){
+		return color==XiangqiColor.RED?redGeneralLocation:blackGeneralLocation;
+	}
+	
 	private int getNumberPieceInFileBetween(int file, int start,int end) {
 		if((end-start)==1) return 0;
 		int incrementor=start<end?1:-1;
@@ -150,9 +177,7 @@ public abstract class XiangqiBoard{
 		
 	}
 
-	private XiangqiCoordinateImpl convertCoordinateToBlack(XiangqiCoordinate c){
-		return makeCoordinate(ranks-c.getRank(),files-c.getFile());
-	}
+	
 	
 	private void alterColor(){
 		boardColor=(boardColor==XiangqiColor.BLACK)?XiangqiColor.RED:XiangqiColor.BLACK;

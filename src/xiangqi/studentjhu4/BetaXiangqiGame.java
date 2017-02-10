@@ -1,5 +1,6 @@
 package xiangqi.studentjhu4;
 
+import java.util.Collection;
 import java.util.HashMap;
 import xiangqi.common.MoveResult;
 import xiangqi.common.XiangqiColor;
@@ -33,6 +34,8 @@ public class BetaXiangqiGame implements XiangqiGame {
 	@Override
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate dest){
 		MoveResult result;
+		XiangqiColor boardColor=board.getBoardColor();
+		XiangqiColor enemyColor=board.getBoardColor()==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
 		if(isValidMove(source,dest,board.getBoardColor())){
 			XiangqiPiece pc=board.getPieceAt(source,board.getBoardColor());
 			if(pc.getPieceType()==XiangqiPieceType.GENERAL){
@@ -44,6 +47,9 @@ public class BetaXiangqiGame implements XiangqiGame {
 			board.makeMove(source,dest);
 			moveCounter++;
 			result=(moveCounter>=MoveBound)?MoveResult.DRAW:MoveResult.OK;
+			if(isCheckmate(enemyColor)){
+				result=boardColor==XiangqiColor.RED?MoveResult.RED_WINS:MoveResult.BLACK_WINS;
+			} 
 		}
 		else{
 			result=MoveResult.ILLEGAL;
@@ -62,12 +68,6 @@ public class BetaXiangqiGame implements XiangqiGame {
 		return board.getPieceAt(where, aspect);
 	}
 		
-	/**
-	 * Test if it is a valid move
-	 * @param source Coordinate
-	 * @param dest Coordinate 
-	 * @return true if it is a valid move
-	 */
 	private boolean isValidMove(XiangqiCoordinate source, XiangqiCoordinate dest, XiangqiColor aspect){
 		XiangqiPiece pc=getPieceAt(source,aspect);
 		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
@@ -79,15 +79,38 @@ public class BetaXiangqiGame implements XiangqiGame {
 		}
 	}
 	
+	private boolean isValidMockMove(XiangqiCoordinate source, XiangqiCoordinate dest, XiangqiColor aspect){
+		XiangqiPiece pc=getPieceAt(source,aspect);
+		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
+		if(rule.mockTest(board, source, dest)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
 	private void updateLastMoveResult(MoveResult mr){
 		this.lastMoveResult=mr;
 	}
 	
+	
 	private boolean isGeneralUnderAttack(XiangqiColor aspect){
-		return false;
+		XiangqiColor enemyColor=aspect==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
+		XiangqiCoordinate generalLocationInEnemyAspect=
+				board.convertCoordinateToOtherColor(board.getGeneralLocation(aspect));
+		boolean result=true;
+		Collection<XiangqiCoordinateImpl> enemysLocation=board.getPieces(enemyColor).keySet();
+		for(XiangqiCoordinate key: enemysLocation){
+			result&=isValidMockMove(key,generalLocationInEnemyAspect,enemyColor);
+		} 
+		return result;
 	}
 	
 	private boolean isCheckmate(XiangqiColor aspect){
+		if(isGeneralUnderAttack(aspect)){
+			return true;
+		}
 		return false;
 	}
 }
