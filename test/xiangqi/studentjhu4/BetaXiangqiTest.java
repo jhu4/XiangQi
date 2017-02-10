@@ -88,7 +88,7 @@ public class BetaXiangqiTest {
 		assertEquals(XiangqiPieceType.SOLDIER,p23.getPieceType());
 	}
 	
-	@Test //4
+	@Test //3
 	public void blackPiecesInitializedCorrectlyInRedAspect(){
 		final XiangqiPiece p55=game.getPieceAt(makeCoordinate(5,5), XiangqiColor.RED);
 		final XiangqiPiece p54=game.getPieceAt(makeCoordinate(5,2), XiangqiColor.RED);
@@ -250,7 +250,7 @@ public class BetaXiangqiTest {
 		assertEquals(XiangqiColor.RED,p11.getColor());
 	}
 	
-	@Test //15 
+	@Test //15
 	public void gameRoundAltersCorrectly(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
 		XiangqiPiece p11_red=game.getPieceAt(makeCoordinate(1,1),XiangqiColor.RED);
@@ -362,7 +362,7 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4),makeCoordinate(2,3)));
 	}
 	
-	@Test //23
+	@Test //24
 	public void advisorCanNotMoveOrthognally(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,2)));
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4),makeCoordinate(4,4)));
@@ -376,7 +376,7 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,1),makeCoordinate(3,2)));
 	}
 	
-	@Test //24
+	@Test //25
 	public void generalCanMoveHorizontallyWithInRange13To12(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
@@ -384,7 +384,7 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(1,2)));
 	}
 	
-	@Test //25
+	@Test //26
 	public void generalCanMoveHorizontallyWithInRange13To14(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4),makeCoordinate(2,5)));
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4),makeCoordinate(2,5)));
@@ -392,7 +392,7 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(1,4)));
 	}
 	
-	@Test //26
+	@Test //27
 	public void generalCanNotMoveHorizontallyOutOfBound(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
@@ -401,7 +401,7 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,3),makeCoordinate(2,3)));
 	}
 	
-	@Test //27
+	@Test //28
 	public void generalCanNotEatSameColor(){
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,3),makeCoordinate(1,2)));
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
@@ -411,7 +411,7 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(1,2)));
 	}
 	
-	@Test //28
+	@Test //29
 	public void generalCanNotMoveMoreThanOneDistance(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
