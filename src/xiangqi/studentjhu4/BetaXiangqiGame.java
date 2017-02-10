@@ -109,9 +109,6 @@ public class BetaXiangqiGame implements XiangqiGame {
 	}
 	
 	private boolean isCheckmate(XiangqiColor aspect){
-		if(isGeneralUnderAttack(aspect)){
-			return true;
-		}
-		return false;
+		return isGeneralUnderAttack(aspect);
 	}
 }

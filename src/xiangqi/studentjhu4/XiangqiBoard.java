@@ -81,16 +81,8 @@ public abstract class XiangqiBoard{
 	public void updatePiecesLocations(XiangqiCoordinate source, XiangqiCoordinate dest){
 		XiangqiPiece pc;
 		if(boardColor==XiangqiColor.RED){
-			System.out.println("Before removal");
-	        for(Integer s : redpieces.keySet() ) {
-	            System.out.println(s);
-	        }
 			pc=redpieces.remove(new Integer(source.getRank()*100+source.getFile()));
 			redpieces.put(new Integer(dest.getRank()*100+dest.getFile()),pc);
-			System.out.println("After removal");
-			for(Integer s : redpieces.keySet() ) {
-		            System.out.println(s);
-		    }
 		}
 		else{
 			pc=blackpieces.remove(new Integer(source.getRank()*100+source.getFile()));

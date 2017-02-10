@@ -471,5 +471,12 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.RED_WINS,game.makeMove(makeCoordinate(4,1),makeCoordinate(4,3)));
 	}
 	
+	@Test //36
+	public void simpleCheckMateCheckBlack(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(4,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(4,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(4,1),makeCoordinate(1,1)));
+		assertEquals(MoveResult.BLACK_WINS,game.makeMove(makeCoordinate(4,1),makeCoordinate(4,3)));
+	}
 	
 }
