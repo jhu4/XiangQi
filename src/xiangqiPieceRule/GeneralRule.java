@@ -14,7 +14,26 @@ public class GeneralRule extends XiangqiPieceRule{
 
 	@Override
 	protected boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest) {
-		return calculateDistance(source, dest)==1;
+		return versionRule(dest)
+				&& oneDistanceRule(source,dest);
 	}
 
+	private boolean versionRule( XiangqiCoordinate dest){
+		switch (version){
+			case BETA_XQ:
+				return destFileBoundaryRule(2,4,dest)
+						&& destRankBoundaryRule(1,1,dest);
+			default:
+				System.out.println("GeneralRule::versionRule default");
+		}
+		return true;
+	}
+	
+	private boolean destFileBoundaryRule(int sm, int lar, XiangqiCoordinate dest){
+		return dest.getFile()<=lar && dest.getFile()>=sm;
+	}
+	
+	private boolean destRankBoundaryRule(int sm, int lar, XiangqiCoordinate dest){
+		return dest.getRank()<=lar && dest.getRank()>=sm;
+	}
 }

@@ -143,4 +143,14 @@ public abstract class XiangqiPieceRule {
 		return board.getNumberPieceOrthogonalPathBtw(makeCoordinate(source.getRank(),source.getFile())
 				,makeCoordinate(dest.getRank(),dest.getFile()));
 	}
+	
+	/**
+	 * Test whether a piece violates its moving distance(only can move to adjacent Coordinate)
+	 * @param source The source coordinate
+	 * @param dest The destination coordinate on the board
+	 * @return true if the piece only move to its adjacent node, false otherwise 
+	 */
+	protected boolean oneDistanceRule(XiangqiCoordinate source,XiangqiCoordinate dest){
+		return calculateDistance(source,dest)==1;
+	}
 }

@@ -378,4 +378,29 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,3),makeCoordinate(2,3)));
 	}
+	
+	@Test //25
+	public void generalCanMoveHorizontallyAndVericallyWithInRange(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(3,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(3,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(3,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,5),makeCoordinate(3,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4),makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4),makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(1,2)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(1,2)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(1,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,2)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(1,3)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(1,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,2),makeCoordinate(2,2)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2),makeCoordinate(1,3)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(1,4)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3),makeCoordinate(1,4)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4),makeCoordinate(1,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,3),makeCoordinate(3,3)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4),makeCoordinate(1,5)));
+	}
 }
