@@ -54,7 +54,7 @@ public class BetaXiangqiTest {
 	public void setup(){
 		game=XiangqiGameFactory.makeXiangqiGame(XiangqiGameVersion.BETA_XQ);
 	}
-	
+	/*
 	@Test //1
 	public void factoryProduceBetaXiangQiGame(){
 		assertNotNull(game);
@@ -463,7 +463,7 @@ public class BetaXiangqiTest {
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,2),makeCoordinate(2,3)));
 		assertTrue(game.getMoveMessage().length()>=1);
 	}
-	
+	*/
 	@Test //35 
 	public void simpleCheckMateCheck(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(4,1)));

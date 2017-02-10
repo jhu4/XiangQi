@@ -14,8 +14,8 @@ public class BetaXiangqiBoard extends XiangqiBoard{
 		ranks=6;
 		files=6;
 		board=new XiangqiPiece[ranks][files];
-		redpieces=new HashMap<XiangqiCoordinateImpl,XiangqiPiece>();
-		blackpieces=new HashMap<XiangqiCoordinateImpl,XiangqiPiece>();
+		redpieces=new HashMap<Integer,XiangqiPiece>();
+		blackpieces=new HashMap<Integer,XiangqiPiece>();
 		//initialize the whole board
 		for(int i=0;i<ranks;i++){
 			for(int j=0;j<files;j++){
@@ -29,11 +29,11 @@ public class BetaXiangqiBoard extends XiangqiBoard{
 		board[1][4]=XiangqiPieceImpl.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.RED);
 		board[1][5]=XiangqiPieceImpl.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.RED);
 		board[2][3]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED);
-		redpieces.put(makeCoordinate(1,1),board[1][1]);
-		redpieces.put(makeCoordinate(1,2),board[1][2]);
-		redpieces.put(makeCoordinate(1,4),board[1][4]);
-		redpieces.put(makeCoordinate(1,5),board[1][5]);
-		redpieces.put(makeCoordinate(2,3),board[2][3]);
+		redpieces.put(new Integer(101),board[1][1]);
+		redpieces.put(new Integer(102),board[1][2]);
+		redpieces.put(new Integer(103),board[1][4]);
+		redpieces.put(new Integer(104),board[1][5]);
+		redpieces.put(new Integer(203),board[2][3]);
 		redGeneralLocation=makeCoordinate(1,3);
 		//Initialized black pieces
 		board[5][5]=XiangqiPieceImpl.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK);
@@ -42,11 +42,11 @@ public class BetaXiangqiBoard extends XiangqiBoard{
 		board[5][2]=XiangqiPieceImpl.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.BLACK);
 		board[5][1]=XiangqiPieceImpl.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK);
 		board[4][3]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK);
-		blackpieces.put(makeCoordinate(1,1), board[5][5]);
-		blackpieces.put(makeCoordinate(1,2), board[5][4]);
-		blackpieces.put(makeCoordinate(1,4), board[5][2]);
-		blackpieces.put(makeCoordinate(1,5), board[5][1]);
-		blackpieces.put(makeCoordinate(2,3), board[4][3]);
+		blackpieces.put(new Integer(101), board[5][5]);
+		blackpieces.put(new Integer(102), board[5][4]);
+		blackpieces.put(new Integer(104), board[5][2]);
+		blackpieces.put(new Integer(105), board[5][1]);
+		blackpieces.put(new Integer(203), board[4][3]);
 		blackGeneralLocation=makeCoordinate(1,3);
 	}
 }

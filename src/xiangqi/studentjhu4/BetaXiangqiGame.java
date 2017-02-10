@@ -100,11 +100,12 @@ public class BetaXiangqiGame implements XiangqiGame {
 		XiangqiCoordinate generalLocationInEnemyAspect=
 				board.convertCoordinateToOtherColor(board.getGeneralLocation(aspect));
 		boolean result=true;
-		Collection<XiangqiCoordinateImpl> enemysLocation=board.getPieces(enemyColor).keySet();
-		for(XiangqiCoordinate key: enemysLocation){
-			result&=isValidMockMove(key,generalLocationInEnemyAspect,enemyColor);
+		Collection<Integer> enemysLocation=board.getPieces(enemyColor).keySet();
+		for(Integer key: enemysLocation){
+			XiangqiCoordinate loca=makeCoordinate(key%100,key-key%100);
+			result&=isValidMockMove(loca,generalLocationInEnemyAspect,enemyColor);
 		} 
-		return result;
+		return result; 
 	}
 	
 	private boolean isCheckmate(XiangqiColor aspect){

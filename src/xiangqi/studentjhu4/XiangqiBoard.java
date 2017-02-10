@@ -12,8 +12,8 @@ public abstract class XiangqiBoard{
 	protected XiangqiPiece[][] board;
 	protected int ranks;
 	protected int files;
-	protected HashMap<XiangqiCoordinateImpl,XiangqiPiece> redpieces;
-	protected HashMap<XiangqiCoordinateImpl,XiangqiPiece> blackpieces;
+	protected HashMap<Integer,XiangqiPiece> redpieces;
+	protected HashMap<Integer,XiangqiPiece> blackpieces;
 	protected XiangqiCoordinateImpl redGeneralLocation;
 	protected XiangqiCoordinateImpl blackGeneralLocation;
 	protected XiangqiColor boardColor=XiangqiColor.RED;
@@ -81,12 +81,20 @@ public abstract class XiangqiBoard{
 	public void updatePiecesLocations(XiangqiCoordinate source, XiangqiCoordinate dest){
 		XiangqiPiece pc;
 		if(boardColor==XiangqiColor.RED){
-			pc=redpieces.remove(makeCoordinate(source.getRank(),source.getFile()));
-			redpieces.put(makeCoordinate(dest.getRank(),dest.getFile()),pc);
+			System.out.println("Before removal");
+	        for(Integer s : redpieces.keySet() ) {
+	            System.out.println(s);
+	        }
+			pc=redpieces.remove(new Integer(source.getRank()*100+source.getFile()));
+			redpieces.put(new Integer(dest.getRank()*100+dest.getFile()),pc);
+			System.out.println("After removal");
+			for(Integer s : redpieces.keySet() ) {
+		            System.out.println(s);
+		    }
 		}
 		else{
-			pc=blackpieces.remove(makeCoordinate(source.getRank(),source.getFile()));
-			blackpieces.put(makeCoordinate(dest.getRank(),dest.getFile()),pc);
+			pc=blackpieces.remove(new Integer(source.getRank()*100+source.getFile()));
+			blackpieces.put(new Integer(dest.getRank()*100+dest.getFile()),pc);
 		}
 	}
 	
@@ -130,7 +138,7 @@ public abstract class XiangqiBoard{
 	 * @param color RED or BLACK
 	 * @return a hashmap containing all the pieces in color
 	 */
-	public HashMap<XiangqiCoordinateImpl,XiangqiPiece> getPieces(XiangqiColor color){
+	public HashMap<Integer,XiangqiPiece> getPieces(XiangqiColor color){
 		return color==XiangqiColor.RED?redpieces:blackpieces;
 	}
 	 
