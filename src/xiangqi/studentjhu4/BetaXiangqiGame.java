@@ -31,10 +31,17 @@ public class BetaXiangqiGame implements XiangqiGame {
 	}
 	
 	@Override
-	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination){
+	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate dest){
 		MoveResult result;
-		if(isValidMove(source,destination,board.getBoardColor())){
-			board.makeMove(source,destination);
+		if(isValidMove(source,dest,board.getBoardColor())){
+			XiangqiPiece pc=board.getPieceAt(source,board.getBoardColor());
+			if(pc.getPieceType()==XiangqiPieceType.GENERAL){
+				board.updateGeneralLocation(dest);
+			}
+			else{
+				board.updatePiecesLocations(source, dest);
+			}
+			board.makeMove(source,dest);
 			moveCounter++;
 			result=(moveCounter>=MoveBound)?MoveResult.DRAW:MoveResult.OK;
 		}
@@ -58,13 +65,13 @@ public class BetaXiangqiGame implements XiangqiGame {
 	/**
 	 * Test if it is a valid move
 	 * @param source Coordinate
-	 * @param destination Coordinate 
+	 * @param dest Coordinate 
 	 * @return true if it is a valid move
 	 */
-	private boolean isValidMove(XiangqiCoordinate source, XiangqiCoordinate destination, XiangqiColor aspect){
+	private boolean isValidMove(XiangqiCoordinate source, XiangqiCoordinate dest, XiangqiColor aspect){
 		XiangqiPiece pc=getPieceAt(source,aspect);
 		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
-		if(rule.test(board, source, destination)){
+		if(rule.test(board, source, dest)){
 			return true;
 		}
 		else{
@@ -82,9 +89,5 @@ public class BetaXiangqiGame implements XiangqiGame {
 	
 	private boolean isCheckmate(XiangqiColor aspect){
 		return false;
-	}
-	
-	private void updateGeneralLocation(XiangqiCoordinate location,XiangqiColor aspect){
-		return;
 	}
 }

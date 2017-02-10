@@ -74,6 +74,23 @@ public abstract class XiangqiBoard{
 	}
 	
 	/**
+	 * Update the pieces with new coordinate
+	 * @param source old coordinate
+	 * @param dest new coordinate
+	 */
+	public void updatePiecesLocations(XiangqiCoordinate source, XiangqiCoordinate dest){
+		XiangqiPiece pc;
+		if(boardColor==XiangqiColor.RED){
+			pc=redpieces.remove(makeCoordinate(source.getRank(),source.getFile()));
+			redpieces.put(makeCoordinate(dest.getRank(),dest.getFile()),pc);
+		}
+		else{
+			pc=blackpieces.remove(makeCoordinate(source.getRank(),source.getFile()));
+			blackpieces.put(makeCoordinate(dest.getRank(),dest.getFile()),pc);
+		}
+	}
+	
+	/**
 	 * Get the numbers of piece from a coordinate to another coordinate
 	 * @param from the start location(exclusive)
 	 * @param to the end location(exclusive)
