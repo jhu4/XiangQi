@@ -44,7 +44,6 @@ public abstract class XiangqiPieceRule {
 	public boolean mockTest(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest){
 		return testDestNotOutOfBoundRule(board,source,dest)
 				&& testCoordinateMoveRule(source,dest)
-				&& testCannotEatSameColorRule(board,source,dest)
 				&& testSpecificRule(board,source,dest);
 	}
 	

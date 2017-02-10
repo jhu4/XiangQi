@@ -185,8 +185,6 @@ public abstract class XiangqiBoard{
 		
 	}
 
-	
-	
 	private void alterColor(){
 		boardColor=(boardColor==XiangqiColor.BLACK)?XiangqiColor.RED:XiangqiColor.BLACK;
 	}
