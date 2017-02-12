@@ -4,10 +4,19 @@ import xiangqi.common.MoveResult;
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiCoordinate;
 import xiangqi.common.XiangqiGame;
+import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPiece;
+import xiangqi.studentjhu4.XiangqiBoard;
+import xiangqi.studentjhu4.XiangqiBoardFactory;
 
 public class GammaXiangqiGame implements XiangqiGame{
-
+	private XiangqiBoard board;
+	
+	
+	public GammaXiangqiGame(){
+		board=XiangqiBoardFactory.makeXiangqiBoard(XiangqiGameVersion.GAMMA_XQ);
+		
+	}
 	@Override
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
 		// TODO Auto-generated method stub
@@ -22,8 +31,7 @@ public class GammaXiangqiGame implements XiangqiGame{
 
 	@Override
 	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
-		// TODO Auto-generated method stub
-		return null;
+		return board.getPieceAt(where, aspect);
 	}
 
 }
