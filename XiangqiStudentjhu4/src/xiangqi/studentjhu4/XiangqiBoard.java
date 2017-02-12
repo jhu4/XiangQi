@@ -7,6 +7,7 @@ import xiangqi.common.XiangqiPieceType;
 import static xiangqi.studentjhu4.XiangqiCoordinateImpl.makeCoordinate;
 
 import java.util.HashMap;
+import java.util.concurrent.CompletionException;
 
 public abstract class XiangqiBoard{
 	protected XiangqiPiece[][] board;
@@ -27,18 +28,17 @@ public abstract class XiangqiBoard{
 	 *   this returns a piece with the type of XiangqiPieceType.NONE, and a color of 
 	 *   XiangqiColor.NONE.
 	 */
-	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect){
+	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
 		boolean validCoordinate=where.getFile()>0 && where.getFile()<files 
-										&&where.getRank()>0 && where.getRank()<ranks;
+										&&where.getRank()>0 && where.getRank()<ranks;								
+		if(!validCoordinate){
+			throw new CompletionException("Out of bound", new Throwable());
+		}
 		if(aspect==XiangqiColor.BLACK){
 			where=convertCoordinateToOtherColor(where);
 		}
-		if(validCoordinate){
-			return board[where.getRank()][where.getFile()];
-		}
-		else{
-			return XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
-		}
+		return board[where.getRank()][where.getFile()];
+		
 	}
 	
 	/**

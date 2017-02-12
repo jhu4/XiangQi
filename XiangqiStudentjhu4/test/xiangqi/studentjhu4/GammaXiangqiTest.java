@@ -2,6 +2,9 @@ package xiangqi.studentjhu4;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.concurrent.CompletionException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -282,5 +285,18 @@ public class GammaXiangqiTest {
 		assertEquals(XiangqiPieceType.SOLDIER,p75r.getPieceType());
 		assertEquals(XiangqiPieceType.SOLDIER,p77r.getPieceType());
 		assertEquals(XiangqiPieceType.SOLDIER,p79r.getPieceType());
+	}
+	
+	@Test //22
+	public void catchExceptionWhenGetPieceAtInvalidPlace(){
+		final XiangqiPiece invalid;
+		boolean isCompletionException=false;
+		try{
+			invalid=game.getPieceAt(makeCoordinate(-1,-1), XiangqiColor.RED);
+		}
+		catch(CompletionException e){
+			isCompletionException=true;
+		}
+		assertTrue(isCompletionException);
 	}
 }

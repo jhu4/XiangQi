@@ -48,4 +48,6 @@ public class GammaXiangqiBoard extends XiangqiBoard{
 		board[7][3]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK);
 		board[7][1]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK);
 	}
+	
+	
 }

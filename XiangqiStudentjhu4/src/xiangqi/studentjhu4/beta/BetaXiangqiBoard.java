@@ -52,4 +52,19 @@ public class BetaXiangqiBoard extends XiangqiBoard{
 		blackpieces.put(new Integer(203), board[4][3]);
 		blackGeneralLocation=makeCoordinate(1,3);
 	}
+	
+	@Override
+	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect){
+		boolean validCoordinate=where.getFile()>0 && where.getFile()<files 
+										&&where.getRank()>0 && where.getRank()<ranks;
+		if(aspect==XiangqiColor.BLACK){
+			where=convertCoordinateToOtherColor(where);
+		}
+		if(validCoordinate){
+			return board[where.getRank()][where.getFile()];
+		}
+		else{
+			return XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
+		}
+	}
 }
