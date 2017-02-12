@@ -84,4 +84,32 @@ public class GammaXiangqiTest {
 		assertEquals(XiangqiPieceType.CHARIOT,p109r.getPieceType());
 		assertEquals(XiangqiPieceType.CHARIOT,p101r.getPieceType());	
 	}
+	
+	@Test //3
+	public void elephantInitializedCorrectly(){
+		final XiangqiPiece p13r=game.getPieceAt(makeCoordinate(1,3), XiangqiColor.RED);
+		final XiangqiPiece p17r=game.getPieceAt(makeCoordinate(1,7), XiangqiColor.RED);
+		assertEquals(XiangqiColor.RED,p13r.getColor());
+		assertEquals(XiangqiColor.RED,p17r.getColor());
+		assertEquals(XiangqiPieceType.ELEPHANT,p13r.getPieceType());
+		assertEquals(XiangqiPieceType.ELEPHANT,p17r.getPieceType());
+		final XiangqiPiece p107b=game.getPieceAt(makeCoordinate(10,7), XiangqiColor.BLACK);
+		final XiangqiPiece p103b=game.getPieceAt(makeCoordinate(10,3), XiangqiColor.BLACK);
+		assertEquals(XiangqiColor.RED,p107b.getColor());
+		assertEquals(XiangqiColor.RED,p103b.getColor());
+		assertEquals(XiangqiPieceType.ELEPHANT,p107b.getPieceType());
+		assertEquals(XiangqiPieceType.ELEPHANT,p103b.getPieceType());
+		final XiangqiPiece p13b=game.getPieceAt(makeCoordinate(1,3), XiangqiColor.BLACK);
+		final XiangqiPiece p17b=game.getPieceAt(makeCoordinate(1,7), XiangqiColor.BLACK);
+		assertEquals(XiangqiColor.BLACK,p13b.getColor());
+		assertEquals(XiangqiColor.BLACK,p17b.getColor());
+		assertEquals(XiangqiPieceType.ELEPHANT,p13b.getPieceType());
+		assertEquals(XiangqiPieceType.ELEPHANT,p17b.getPieceType());
+		final XiangqiPiece p107r=game.getPieceAt(makeCoordinate(10,7), XiangqiColor.RED);
+		final XiangqiPiece p103r=game.getPieceAt(makeCoordinate(10,3), XiangqiColor.RED);
+		assertEquals(XiangqiColor.BLACK,p107r.getColor());
+		assertEquals(XiangqiColor.BLACK,p103r.getColor());
+		assertEquals(XiangqiPieceType.ELEPHANT,p107r.getPieceType());
+		assertEquals(XiangqiPieceType.ELEPHANT,p103r.getPieceType());
+	}
 }
