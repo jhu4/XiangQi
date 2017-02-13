@@ -28,12 +28,5 @@ public class GeneralRule extends XiangqiPieceRule{
 		}
 		return true;
 	}
-	
-	private boolean destFileBoundaryRule(int sm, int lar, XiangqiCoordinate dest){
-		return dest.getFile()<=lar && dest.getFile()>=sm;
-	}
-	
-	private boolean destRankBoundaryRule(int sm, int lar, XiangqiCoordinate dest){
-		return dest.getRank()<=lar && dest.getRank()>=sm;
-	}
+
 }

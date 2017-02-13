@@ -166,4 +166,26 @@ public abstract class XiangqiPieceRule {
 	protected boolean oneDistanceRule(XiangqiCoordinate source,XiangqiCoordinate dest){
 		return calculateDistance(source,dest)==1;
 	}
+	
+	/**
+	 * Test if the destination go out of the file boundary(inclusive)
+	 * @param sm smaller boundary
+	 * @param lar larger boundary
+	 * @param dest the destination coordinate
+	 * @return true if it is in the boundary
+	 */
+	protected boolean destFileBoundaryRule(int sm, int lar, XiangqiCoordinate dest){
+		return dest.getFile()<=lar && dest.getFile()>=sm;
+	}
+	
+	/**
+	 * Test if the destination go out of the rank boundary(inclusive)
+	 * @param sm smaller boundary
+	 * @param lar larger boundary
+	 * @param dest the destination coordinate
+	 * @return true if it is in the boundary
+	 */
+	protected boolean destRankBoundaryRule(int sm, int lar, XiangqiCoordinate dest){
+		return dest.getRank()<=lar && dest.getRank()>=sm;
+	}
 }

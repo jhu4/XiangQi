@@ -312,8 +312,67 @@ public class GammaXiangqiTest {
 	}
 	
 	@Test //24
-	public void chariotCanMoveForward(){
+	public void chariotCanMoveVertically(){
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1), makeCoordinate(2,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1), makeCoordinate(3,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,1), makeCoordinate(1,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(3,1), makeCoordinate(2,1)));
 	}
 	
+	@Test //25
+	public void chariotCanMoveHorizontally(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1), makeCoordinate(1,2)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1), makeCoordinate(1,2)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2), makeCoordinate(1,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,2), makeCoordinate(1,1)));
+	}
+	
+	@Test //26
+	public void chariotCanNotEatSameColorPiece(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1), makeCoordinate(4,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1), makeCoordinate(4,1)));
+	}
+	
+	@Test //27
+	public void chariotCanNotJump(){
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1), makeCoordinate(10,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1), makeCoordinate(2,1)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,1), makeCoordinate(10,1)));
+	}
+	
+	@Test //28
+	public void advisorCanMoveDiagonallyWithDistanceOne(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,4)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,4)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,6), makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,6), makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,6)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,6)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(3,4), makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(3,4), makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(1,4)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(1,4)));
+	}
+	
+	@Test //29
+	public void advisorCanNotMoveOrthogaonally(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,5)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,5), makeCoordinate(2,4)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,4)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,5), makeCoordinate(2,4)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,4)));
+	}
+	
+	@Test //30
+	public void advisorCanNotMoveOutOfThePalace(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,5)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,3)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,5)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,3)));
+	}
 }

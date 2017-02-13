@@ -13,7 +13,17 @@ public class AdvisorRule extends XiangqiPieceRule{
 
 	@Override
 	protected boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest) {
-		return calculateDistance(source, dest)==2;
+		return versionRule(dest) && calculateDistance(source, dest)==2;
 	}
 
+	protected boolean versionRule(XiangqiCoordinate dest){
+		switch (version){
+			case GAMMA_XQ:
+				return destFileBoundaryRule(4,6,dest)
+						&& destRankBoundaryRule(1,3,dest);
+			default:
+				System.out.println("GeneralRule::versionRule default");
+		}
+		return true;
+	}
 }
