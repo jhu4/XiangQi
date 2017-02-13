@@ -298,17 +298,9 @@ public class GammaXiangqiTest {
 		assertEquals(XiangqiPieceType.NONE,p55b.getPieceType());
 	}
 	
-	@Test //23
+	@Test(expected=CompletionException.class) //23
 	public void catchExceptionWhenGetPieceAtInvalidPlace(){
-		final XiangqiPiece invalid;
-		boolean isCompletionException=false;
-		try{
-			invalid=game.getPieceAt(makeCoordinate(-1,-1), XiangqiColor.RED);
-		}
-		catch(CompletionException e){
-			isCompletionException=true;
-		}
-		assertTrue(isCompletionException);
+		final XiangqiPiece invalid=game.getPieceAt(makeCoordinate(-1,-1), XiangqiColor.RED);
 	}
 	
 	@Test //24
@@ -374,5 +366,9 @@ public class GammaXiangqiTest {
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,3)));
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,5)));
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(1,4), makeCoordinate(2,3)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,6)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(3,6), makeCoordinate(4,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,6)));
+		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(3,6), makeCoordinate(4,5)));
 	}
 }
