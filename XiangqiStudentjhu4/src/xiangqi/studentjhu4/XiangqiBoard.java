@@ -38,7 +38,6 @@ public abstract class XiangqiBoard{
 			where=convertCoordinateToOtherColor(where);
 		}
 		return board[where.getRank()][where.getFile()];
-		
 	}
 	
 	/**
@@ -158,6 +157,20 @@ public abstract class XiangqiBoard{
 	 */
 	public XiangqiCoordinate getGeneralLocation(XiangqiColor color){
 		return color==XiangqiColor.RED?redGeneralLocation:blackGeneralLocation;
+	}
+	
+	/**
+	 * Count the number of pieces on the board in a color
+	 * @param color The color of the pieces
+	 * @return the number of the pieces
+	 */
+	public int piecesLeft(XiangqiColor color){
+		if(color==XiangqiColor.RED){
+			return redpieces.size();
+		}
+		else{
+			return blackpieces.size();
+		}
 	}
 	
 	private int getNumberPieceInFileBetween(int file, int start,int end) {

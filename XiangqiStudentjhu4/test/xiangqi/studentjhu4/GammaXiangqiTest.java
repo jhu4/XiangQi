@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import xiangqi.XiangqiGameFactory;
+import xiangqi.common.MoveResult;
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiCoordinate;
 import xiangqi.common.XiangqiGame;
@@ -288,6 +289,16 @@ public class GammaXiangqiTest {
 	}
 	
 	@Test //22
+	public void getPieceAtreturnNoneNone(){
+		final XiangqiPiece p21r=game.getPieceAt(makeCoordinate(2,1), XiangqiColor.RED);
+		final XiangqiPiece p55b=game.getPieceAt(makeCoordinate(5,5), XiangqiColor.BLACK);
+		assertEquals(XiangqiColor.NONE,p21r.getColor());
+		assertEquals(XiangqiColor.NONE,p55b.getColor());
+		assertEquals(XiangqiPieceType.NONE,p21r.getPieceType());
+		assertEquals(XiangqiPieceType.NONE,p55b.getPieceType());
+	}
+	
+	@Test //23
 	public void catchExceptionWhenGetPieceAtInvalidPlace(){
 		final XiangqiPiece invalid;
 		boolean isCompletionException=false;
@@ -299,4 +310,10 @@ public class GammaXiangqiTest {
 		}
 		assertTrue(isCompletionException);
 	}
+	
+	@Test //24
+	public void chariotCanMoveForward(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1), makeCoordinate(2,1)));
+	}
+	
 }
