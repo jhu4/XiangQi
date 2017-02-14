@@ -371,4 +371,12 @@ public class GammaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(2,5), makeCoordinate(3,6)));
 		assertEquals(MoveResult.ILLEGAL,game.makeMove(makeCoordinate(3,6), makeCoordinate(4,5)));
 	}
+	
+	@Test //31
+	public void elephantCanMoveDiagonallyInDistanceOfTwo(){
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3), makeCoordinate(3,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,3), makeCoordinate(3,1)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,7), makeCoordinate(3,5)));
+		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,7), makeCoordinate(3,5)));
+	}
 }

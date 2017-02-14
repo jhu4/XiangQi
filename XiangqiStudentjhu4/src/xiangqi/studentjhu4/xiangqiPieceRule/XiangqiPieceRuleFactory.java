@@ -15,6 +15,8 @@ public class XiangqiPieceRuleFactory{
 				return new AdvisorRule(type,version);
 			case "General":
 				return new GeneralRule(type,version);
+			case "Elephant":
+				return new ElephantRule(type,version);
 			default:
 				return new NoneRule(type,version);
 		}

@@ -39,6 +39,9 @@ public class CoordinateValidatorFactory {
 			case "General":
 				validators.add(orthogonalValidator);
 				break;
+			case "Elephant":
+				validators.add(diagonalValidator);
+				break;
 			default:
 				//not yet implemented or None type
 				break;
