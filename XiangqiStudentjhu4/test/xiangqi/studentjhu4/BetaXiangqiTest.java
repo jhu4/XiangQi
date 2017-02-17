@@ -21,19 +21,21 @@ import xiangqi.common.XiangqiPieceType;
 public class BetaXiangqiTest {
 	private XiangqiGame game;
 	
+	// Helper methods
+	private static XiangqiCoordinate makeCoordinate(int rank, int file)
+	{
+		return new TestCoordinate(rank, file);
+	}
+	
 	static class TestCoordinate implements XiangqiCoordinate{
 		private final int rank;
 		private final int file;
 		
-		private TestCoordinate(int rank, int file){
+		public TestCoordinate(int rank, int file){
 			this.rank=rank;
 			this.file=file;
 		}
-		
-		public static XiangqiCoordinate makeCoordinate(int rank,int file){
-			return new TestCoordinate(rank,file);
-		}
-		 
+
 		@Override
 		public int getRank() {
 			return rank;
@@ -43,11 +45,6 @@ public class BetaXiangqiTest {
 		public int getFile() {
 			return file;
 		}
-	}
-	
-	// wrapper method
-	private static XiangqiCoordinate makeCoordinate(int rank, int file){
-		return TestCoordinate.makeCoordinate(rank, file);
 	}
 	
 	@Before
@@ -464,19 +461,5 @@ public class BetaXiangqiTest {
 		assertTrue(game.getMoveMessage().length()>=1);
 	}
 	
-//	@Test //35 
-//	public void simpleCheckMateCheck(){
-//		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(4,1)));
-//		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(4,1)));
-//		assertEquals(MoveResult.RED_WINS,game.makeMove(makeCoordinate(4,1),makeCoordinate(4,3)));
-//	}
-//	
-//	@Test //36
-//	public void simpleCheckMateCheckBlack(){
-//		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(4,1)));
-//		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(4,1)));
-//		assertEquals(MoveResult.OK,game.makeMove(makeCoordinate(4,1),makeCoordinate(1,1)));
-//		assertEquals(MoveResult.BLACK_WINS,game.makeMove(makeCoordinate(4,1),makeCoordinate(4,3)));
-//	}
-	
 }
+

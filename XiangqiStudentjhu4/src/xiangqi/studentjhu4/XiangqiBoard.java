@@ -98,10 +98,10 @@ public abstract class XiangqiBoard{
 	}
 	
 	/**
-	 * Get the numbers of piece from a coordinate to another coordinate
+	 * Get the numbers of piece from a coordinate to another coordinate in an orthogonal path
 	 * @param from the start location(exclusive)
 	 * @param to the end location(exclusive)
-	 * @return
+	 * @return the number of pieces on the path
 	 */
 	public int getNumberPieceOrthogonalPathBtw(XiangqiCoordinateImpl from,XiangqiCoordinateImpl to) {
 		if(boardColor==XiangqiColor.BLACK){
@@ -111,9 +111,42 @@ public abstract class XiangqiBoard{
 		if(from.getRank()==to.getRank()){
 			return getNumberPieceInRankBetween(from.getRank(),from.getFile(),to.getFile());
 		}
-		else{
+		else if(from.getFile()==to.getFile()){
 			return getNumberPieceInFileBetween(to.getFile(), from.getRank(),to.getRank());
 		}
+		else{
+			throw new CompletionException("XiangqiBoard::getNumberPieceOrthogonalPathBtw Not an orthogonal path"
+					, new Throwable());
+		}
+	}
+	
+	/**
+	 * 
+	 * Get the numbers of piece from a coordinate to another coordinate in a diagonal path
+	 * @param from the start location(exclusive)
+	 * @param to the end location(exclusive)
+	 * @return the number of pieces on the path
+	 */
+	public int getNumberPieceDiagonalPathBtw(XiangqiCoordinateImpl from,
+			XiangqiCoordinateImpl to) {
+		if(Math.abs(from.getFile()-to.getFile())!=Math.abs(from.getRank()-to.getRank())){
+			throw new CompletionException("XiangqiBoard::getNumberPieceDiagonalPathBtw Not a diagonal path"
+					, new Throwable());
+		}
+		int result=0;
+		if(boardColor==XiangqiColor.BLACK){
+			from=convertCoordinateToOtherColor(from);
+			to=convertCoordinateToOtherColor(to);
+		}
+		int fileDirection=from.getFile()<to.getFile()?1:-1;
+		int rankDirection=from.getRank()<to.getRank()?1:-1;
+		for(int i=1;i<Math.abs(from.getRank()-to.getRank());i++){
+			if(board[from.getRank()+i*rankDirection][from.getFile()+i*fileDirection].getPieceType()
+					!=XiangqiPieceType.NONE){
+				result++;
+			}
+		}
+		return result;
 	}
 	
 	/**

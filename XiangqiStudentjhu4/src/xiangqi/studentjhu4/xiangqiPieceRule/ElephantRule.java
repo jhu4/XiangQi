@@ -1,5 +1,7 @@
 package xiangqi.studentjhu4.xiangqiPieceRule;
 
+import static xiangqi.studentjhu4.XiangqiCoordinateImpl.makeCoordinate;
+
 import xiangqi.common.XiangqiCoordinate;
 import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPieceType;
@@ -12,7 +14,12 @@ public class ElephantRule extends XiangqiPieceRule {
 	}
 
 	protected boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest) {
-		return this.calculateDistance(source, dest)==4;
+		return this.calculateDistance(source, dest)==4 && calculatePiecesOnDiagonal(board,source,dest)==0;
 	}
-
+	
+	private int calculatePiecesOnDiagonal(XiangqiBoard board,XiangqiCoordinate source,XiangqiCoordinate dest){
+		return board.getNumberPieceDiagonalPathBtw(makeCoordinate(source.getRank(),source.getFile())
+				,makeCoordinate(dest.getRank(),dest.getFile()));
+	}
+	
 }
