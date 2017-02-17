@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static xiangqi.common.XiangqiColor.*;
 import static xiangqi.common.XiangqiPieceType.*;
+import static xiangqi.common.MoveResult.*;
 
 import java.util.concurrent.CompletionException;
 
@@ -86,8 +87,7 @@ public class GammaXiangqiTest {
 			blackAdvisor = makePiece(ADVISOR, BLACK),
 			blackGeneral = makePiece(GENERAL, BLACK),
 			blackSoldier = makePiece(SOLDIER, BLACK);
-	
-
+			
 	static class TestCoordinate implements XiangqiCoordinate
 	{
 		private final int rank;
@@ -169,235 +169,235 @@ public class GammaXiangqiTest {
 	
 	@Test //2
 	public void redChariotsInitializedCorrectlyInRedAspect(){
-		final XiangqiPiece p11r=game.getPieceAt(c11, XiangqiColor.RED);
-		final XiangqiPiece p19r=game.getPieceAt(makeCoordinate(1,9), XiangqiColor.RED);
-		assertEquals(XiangqiColor.RED,p11r.getColor());
-		assertEquals(XiangqiColor.RED,p19r.getColor());
-		assertEquals(XiangqiPieceType.CHARIOT,p11r.getPieceType());
-		assertEquals(XiangqiPieceType.CHARIOT,p19r.getPieceType());
+		final XiangqiPiece p11r=game.getPieceAt(c11, RED);
+		final XiangqiPiece p19r=game.getPieceAt(makeCoordinate(1,9), RED);
+		assertEquals(RED,p11r.getColor());
+		assertEquals(RED,p19r.getColor());
+		assertEquals(CHARIOT,p11r.getPieceType());
+		assertEquals(CHARIOT,p19r.getPieceType());
 	}
 			
 	@Test //3
 	public void blackChariotsInitializedCorrectlyInRedApspect(){
-		final XiangqiPiece p101r=game.getPieceAt(c101, XiangqiColor.RED);
-		final XiangqiPiece p109r=game.getPieceAt(makeCoordinate(10,9), XiangqiColor.RED);
-		assertEquals(XiangqiColor.BLACK,p109r.getColor());
-		assertEquals(XiangqiColor.BLACK,p101r.getColor());
-		assertEquals(XiangqiPieceType.CHARIOT,p109r.getPieceType());
-		assertEquals(XiangqiPieceType.CHARIOT,p101r.getPieceType());		
+		final XiangqiPiece p101r=game.getPieceAt(c101, RED);
+		final XiangqiPiece p109r=game.getPieceAt(makeCoordinate(10,9), RED);
+		assertEquals(BLACK,p109r.getColor());
+		assertEquals(BLACK,p101r.getColor());
+		assertEquals(CHARIOT,p109r.getPieceType());
+		assertEquals(CHARIOT,p101r.getPieceType());		
 	}	
 
 	@Test //4
 	public void redChariotsInitializedCorrectlyInBlackApspect(){	
-		final XiangqiPiece p101b=game.getPieceAt(c101, XiangqiColor.BLACK);
-		final XiangqiPiece p109b=game.getPieceAt(makeCoordinate(10,9), XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.RED,p109b.getColor());
-		assertEquals(XiangqiColor.RED,p101b.getColor());
-		assertEquals(XiangqiPieceType.CHARIOT,p109b.getPieceType());
-		assertEquals(XiangqiPieceType.CHARIOT,p101b.getPieceType());
+		final XiangqiPiece p101b=game.getPieceAt(c101, BLACK);
+		final XiangqiPiece p109b=game.getPieceAt(makeCoordinate(10,9), BLACK);
+		assertEquals(RED,p109b.getColor());
+		assertEquals(RED,p101b.getColor());
+		assertEquals(CHARIOT,p109b.getPieceType());
+		assertEquals(CHARIOT,p101b.getPieceType());
 	}
 	
 	@Test //5
 	public void blackChariotsInitializedCorrectlyInBlackApspect(){
-		final XiangqiPiece p11b=game.getPieceAt(c11, XiangqiColor.BLACK);
-		final XiangqiPiece p19b=game.getPieceAt(makeCoordinate(1,9), XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.BLACK,p11b.getColor());
-		assertEquals(XiangqiColor.BLACK,p19b.getColor());
-		assertEquals(XiangqiPieceType.CHARIOT,p11b.getPieceType());
-		assertEquals(XiangqiPieceType.CHARIOT,p19b.getPieceType());
+		final XiangqiPiece p11b=game.getPieceAt(c11, BLACK);
+		final XiangqiPiece p19b=game.getPieceAt(makeCoordinate(1,9), BLACK);
+		assertEquals(BLACK,p11b.getColor());
+		assertEquals(BLACK,p19b.getColor());
+		assertEquals(CHARIOT,p11b.getPieceType());
+		assertEquals(CHARIOT,p19b.getPieceType());
 	}
 	
 	@Test //6
 	public void redElephantInitializedCorrectlyInRedAspect(){
-		final XiangqiPiece p13r=game.getPieceAt(c13, XiangqiColor.RED);
-		final XiangqiPiece p17r=game.getPieceAt(c17, XiangqiColor.RED);
-		assertEquals(XiangqiColor.RED,p13r.getColor());
-		assertEquals(XiangqiColor.RED,p17r.getColor());
-		assertEquals(XiangqiPieceType.ELEPHANT,p13r.getPieceType());
-		assertEquals(XiangqiPieceType.ELEPHANT,p17r.getPieceType());
+		final XiangqiPiece p13r=game.getPieceAt(c13, RED);
+		final XiangqiPiece p17r=game.getPieceAt(c17, RED);
+		assertEquals(RED,p13r.getColor());
+		assertEquals(RED,p17r.getColor());
+		assertEquals(ELEPHANT,p13r.getPieceType());
+		assertEquals(ELEPHANT,p17r.getPieceType());
 	}
 
 	@Test //7
 	public void redElephantInitializedCorrectlyInBlackAspect(){
-		final XiangqiPiece p107b=game.getPieceAt(c107, XiangqiColor.BLACK);
-		final XiangqiPiece p103b=game.getPieceAt(c103, XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.RED,p107b.getColor());
-		assertEquals(XiangqiColor.RED,p103b.getColor());
-		assertEquals(XiangqiPieceType.ELEPHANT,p107b.getPieceType());
-		assertEquals(XiangqiPieceType.ELEPHANT,p103b.getPieceType());
+		final XiangqiPiece p107b=game.getPieceAt(c107, BLACK);
+		final XiangqiPiece p103b=game.getPieceAt(c103, BLACK);
+		assertEquals(RED,p107b.getColor());
+		assertEquals(RED,p103b.getColor());
+		assertEquals(ELEPHANT,p107b.getPieceType());
+		assertEquals(ELEPHANT,p103b.getPieceType());
 	}
 	
 
 	@Test //8
 	public void blackElephantInitializedCorrectlyInBlackAspect(){
-		final XiangqiPiece p13b=game.getPieceAt(c13, XiangqiColor.BLACK);
-		final XiangqiPiece p17b=game.getPieceAt(c17, XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.BLACK,p13b.getColor());
-		assertEquals(XiangqiColor.BLACK,p17b.getColor());
-		assertEquals(XiangqiPieceType.ELEPHANT,p13b.getPieceType());
-		assertEquals(XiangqiPieceType.ELEPHANT,p17b.getPieceType());
+		final XiangqiPiece p13b=game.getPieceAt(c13, BLACK);
+		final XiangqiPiece p17b=game.getPieceAt(c17, BLACK);
+		assertEquals(BLACK,p13b.getColor());
+		assertEquals(BLACK,p17b.getColor());
+		assertEquals(ELEPHANT,p13b.getPieceType());
+		assertEquals(ELEPHANT,p17b.getPieceType());
 	}
 	
 
 	@Test //9
 	public void blackElephantInitializedCorrectlyInRedAspect(){
-		final XiangqiPiece p107r=game.getPieceAt(c107, XiangqiColor.RED);
-		final XiangqiPiece p103r=game.getPieceAt(c103, XiangqiColor.RED);
-		assertEquals(XiangqiColor.BLACK,p107r.getColor());
-		assertEquals(XiangqiColor.BLACK,p103r.getColor());
-		assertEquals(XiangqiPieceType.ELEPHANT,p107r.getPieceType());
-		assertEquals(XiangqiPieceType.ELEPHANT,p103r.getPieceType());
+		final XiangqiPiece p107r=game.getPieceAt(c107, RED);
+		final XiangqiPiece p103r=game.getPieceAt(c103, RED);
+		assertEquals(BLACK,p107r.getColor());
+		assertEquals(BLACK,p103r.getColor());
+		assertEquals(ELEPHANT,p107r.getPieceType());
+		assertEquals(ELEPHANT,p103r.getPieceType());
 	}
 	
 	@Test //10
 	public void redAdvisorInitializedCorrectlyInRedAspect(){
-		final XiangqiPiece p14r=game.getPieceAt(c14, XiangqiColor.RED);
-		final XiangqiPiece p16r=game.getPieceAt(c16, XiangqiColor.RED);
-		assertEquals(XiangqiColor.RED,p14r.getColor());
-		assertEquals(XiangqiColor.RED,p16r.getColor());
-		assertEquals(XiangqiPieceType.ADVISOR,p14r.getPieceType());
-		assertEquals(XiangqiPieceType.ADVISOR,p16r.getPieceType());
+		final XiangqiPiece p14r=game.getPieceAt(c14, RED);
+		final XiangqiPiece p16r=game.getPieceAt(c16, RED);
+		assertEquals(RED,p14r.getColor());
+		assertEquals(RED,p16r.getColor());
+		assertEquals(ADVISOR,p14r.getPieceType());
+		assertEquals(ADVISOR,p16r.getPieceType());
 	}
 	
 	@Test //11
 	public void redAdvisorInitializedCorrectlyInBlackAspect(){
-		final XiangqiPiece p106b=game.getPieceAt(c106, XiangqiColor.BLACK);
-		final XiangqiPiece p104b=game.getPieceAt(makeCoordinate(10,4), XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.RED,p106b.getColor());
-		assertEquals(XiangqiColor.RED,p104b.getColor());
-		assertEquals(XiangqiPieceType.ADVISOR,p106b.getPieceType());
-		assertEquals(XiangqiPieceType.ADVISOR,p104b.getPieceType());
+		final XiangqiPiece p106b=game.getPieceAt(c106, BLACK);
+		final XiangqiPiece p104b=game.getPieceAt(makeCoordinate(10,4), BLACK);
+		assertEquals(RED,p106b.getColor());
+		assertEquals(RED,p104b.getColor());
+		assertEquals(ADVISOR,p106b.getPieceType());
+		assertEquals(ADVISOR,p104b.getPieceType());
 	}
 	
 	
 	@Test //12
 	public void blackAdvisorInitializedCorrectlyInBlackAspect(){
-		final XiangqiPiece p14b=game.getPieceAt(c14, XiangqiColor.BLACK);
-		final XiangqiPiece p16b=game.getPieceAt(c16, XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.BLACK,p14b.getColor());
-		assertEquals(XiangqiColor.BLACK,p16b.getColor());
-		assertEquals(XiangqiPieceType.ADVISOR,p14b.getPieceType());
-		assertEquals(XiangqiPieceType.ADVISOR,p16b.getPieceType());
+		final XiangqiPiece p14b=game.getPieceAt(c14, BLACK);
+		final XiangqiPiece p16b=game.getPieceAt(c16, BLACK);
+		assertEquals(BLACK,p14b.getColor());
+		assertEquals(BLACK,p16b.getColor());
+		assertEquals(ADVISOR,p14b.getPieceType());
+		assertEquals(ADVISOR,p16b.getPieceType());
 	}
 	
 	@Test //13
 	public void blackAdvisorInitializedCorrectlyInRedAspect(){
-		final XiangqiPiece p106r=game.getPieceAt(c106, XiangqiColor.RED);
-		final XiangqiPiece p104r=game.getPieceAt(makeCoordinate(10,4), XiangqiColor.RED);
-		assertEquals(XiangqiColor.BLACK,p106r.getColor());
-		assertEquals(XiangqiColor.BLACK,p104r.getColor());
-		assertEquals(XiangqiPieceType.ADVISOR,p106r.getPieceType());
-		assertEquals(XiangqiPieceType.ADVISOR,p104r.getPieceType());
+		final XiangqiPiece p106r=game.getPieceAt(c106, RED);
+		final XiangqiPiece p104r=game.getPieceAt(makeCoordinate(10,4), RED);
+		assertEquals(BLACK,p106r.getColor());
+		assertEquals(BLACK,p104r.getColor());
+		assertEquals(ADVISOR,p106r.getPieceType());
+		assertEquals(ADVISOR,p104r.getPieceType());
 	}
 	
 	@Test //14
 	public void redGeneralInitializedCorrectlyInRedRAspect(){
-		final XiangqiPiece p15r=game.getPieceAt(makeCoordinate(1,5), XiangqiColor.RED);
-		assertEquals(XiangqiColor.RED,p15r.getColor());
-		assertEquals(XiangqiPieceType.GENERAL,p15r.getPieceType());
+		final XiangqiPiece p15r=game.getPieceAt(makeCoordinate(1,5), RED);
+		assertEquals(RED,p15r.getColor());
+		assertEquals(GENERAL,p15r.getPieceType());
 	}
 	
 	@Test //15
 	public void blackGeneralInitializedCorrectlyInRedAspect(){
-		final XiangqiPiece p105r=game.getPieceAt(c105, XiangqiColor.RED);
-		assertEquals(XiangqiColor.BLACK,p105r.getColor());
-		assertEquals(XiangqiPieceType.GENERAL,p105r.getPieceType());
+		final XiangqiPiece p105r=game.getPieceAt(c105, RED);
+		assertEquals(BLACK,p105r.getColor());
+		assertEquals(GENERAL,p105r.getPieceType());
 	}
 	
 	@Test //16
 	public void blackGeneralInitializedCorrectlyInBlackAspect(){
-		final XiangqiPiece p15b=game.getPieceAt(makeCoordinate(1,5), XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.BLACK,p15b.getColor());
-		assertEquals(XiangqiPieceType.GENERAL,p15b.getPieceType());
+		final XiangqiPiece p15b=game.getPieceAt(makeCoordinate(1,5), BLACK);
+		assertEquals(BLACK,p15b.getColor());
+		assertEquals(GENERAL,p15b.getPieceType());
 	}
 	
 	@Test //17
 	public void redGeneralInitializedCorrectlyInBlackAspect(){
-		final XiangqiPiece p105b=game.getPieceAt(c105, XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.RED,p105b.getColor());
-		assertEquals(XiangqiPieceType.GENERAL,p105b.getPieceType());
+		final XiangqiPiece p105b=game.getPieceAt(c105, BLACK);
+		assertEquals(RED,p105b.getColor());
+		assertEquals(GENERAL,p105b.getPieceType());
 	}
 	
 	@Test //18
 	public void redSoldierInitializedCorrectlyInRedAspect(){
-		final XiangqiPiece p41r=game.getPieceAt(c41, XiangqiColor.RED);
-		final XiangqiPiece p43r=game.getPieceAt(c43, XiangqiColor.RED);
-		final XiangqiPiece p45r=game.getPieceAt(c45, XiangqiColor.RED);
-		final XiangqiPiece p47r=game.getPieceAt(c47, XiangqiColor.RED);
-		final XiangqiPiece p49r=game.getPieceAt(c49, XiangqiColor.RED);
-		assertEquals(XiangqiColor.RED,p41r.getColor());
-		assertEquals(XiangqiColor.RED,p43r.getColor());
-		assertEquals(XiangqiColor.RED,p45r.getColor());
-		assertEquals(XiangqiColor.RED,p47r.getColor());
-		assertEquals(XiangqiColor.RED,p49r.getColor());
-		assertEquals(XiangqiPieceType.SOLDIER,p41r.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p43r.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p45r.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p47r.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p49r.getPieceType());
+		final XiangqiPiece p41r=game.getPieceAt(c41, RED);
+		final XiangqiPiece p43r=game.getPieceAt(c43, RED);
+		final XiangqiPiece p45r=game.getPieceAt(c45, RED);
+		final XiangqiPiece p47r=game.getPieceAt(c47, RED);
+		final XiangqiPiece p49r=game.getPieceAt(c49, RED);
+		assertEquals(RED,p41r.getColor());
+		assertEquals(RED,p43r.getColor());
+		assertEquals(RED,p45r.getColor());
+		assertEquals(RED,p47r.getColor());
+		assertEquals(RED,p49r.getColor());
+		assertEquals(SOLDIER,p41r.getPieceType());
+		assertEquals(SOLDIER,p43r.getPieceType());
+		assertEquals(SOLDIER,p45r.getPieceType());
+		assertEquals(SOLDIER,p47r.getPieceType());
+		assertEquals(SOLDIER,p49r.getPieceType());
 	}
 	
 	@Test //19
 	public void blackSoldierInitializedCorrectlyInBlackAspect(){
-		final XiangqiPiece p41b=game.getPieceAt(c41, XiangqiColor.BLACK);
-		final XiangqiPiece p43b=game.getPieceAt(c43, XiangqiColor.BLACK);
-		final XiangqiPiece p45b=game.getPieceAt(c45, XiangqiColor.BLACK);
-		final XiangqiPiece p47b=game.getPieceAt(c47, XiangqiColor.BLACK);
-		final XiangqiPiece p49b=game.getPieceAt(c49, XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.BLACK,p41b.getColor());
-		assertEquals(XiangqiColor.BLACK,p43b.getColor());
-		assertEquals(XiangqiColor.BLACK,p45b.getColor());
-		assertEquals(XiangqiColor.BLACK,p47b.getColor());
-		assertEquals(XiangqiColor.BLACK,p49b.getColor());
-		assertEquals(XiangqiPieceType.SOLDIER,p41b.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p43b.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p45b.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p47b.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p49b.getPieceType());
+		final XiangqiPiece p41b=game.getPieceAt(c41, BLACK);
+		final XiangqiPiece p43b=game.getPieceAt(c43, BLACK);
+		final XiangqiPiece p45b=game.getPieceAt(c45, BLACK);
+		final XiangqiPiece p47b=game.getPieceAt(c47, BLACK);
+		final XiangqiPiece p49b=game.getPieceAt(c49, BLACK);
+		assertEquals(BLACK,p41b.getColor());
+		assertEquals(BLACK,p43b.getColor());
+		assertEquals(BLACK,p45b.getColor());
+		assertEquals(BLACK,p47b.getColor());
+		assertEquals(BLACK,p49b.getColor());
+		assertEquals(SOLDIER,p41b.getPieceType());
+		assertEquals(SOLDIER,p43b.getPieceType());
+		assertEquals(SOLDIER,p45b.getPieceType());
+		assertEquals(SOLDIER,p47b.getPieceType());
+		assertEquals(SOLDIER,p49b.getPieceType());
 	}
 	
 	@Test //20
 	public void redSoldierInitializedCorrectlyInBlackAspect(){
-		final XiangqiPiece p71b=game.getPieceAt(c71, XiangqiColor.BLACK);
-		final XiangqiPiece p73b=game.getPieceAt(c73, XiangqiColor.BLACK);
-		final XiangqiPiece p75b=game.getPieceAt(c75, XiangqiColor.BLACK);
-		final XiangqiPiece p77b=game.getPieceAt(c77, XiangqiColor.BLACK);
-		final XiangqiPiece p79b=game.getPieceAt(c79, XiangqiColor.BLACK);
-		assertEquals(XiangqiColor.RED,p71b.getColor());
-		assertEquals(XiangqiColor.RED,p73b.getColor());
-		assertEquals(XiangqiColor.RED,p75b.getColor());
-		assertEquals(XiangqiColor.RED,p77b.getColor());
-		assertEquals(XiangqiColor.RED,p79b.getColor());
-		assertEquals(XiangqiPieceType.SOLDIER,p71b.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p73b.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p75b.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p77b.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p79b.getPieceType());
+		final XiangqiPiece p71b=game.getPieceAt(c71, BLACK);
+		final XiangqiPiece p73b=game.getPieceAt(c73, BLACK);
+		final XiangqiPiece p75b=game.getPieceAt(c75, BLACK);
+		final XiangqiPiece p77b=game.getPieceAt(c77, BLACK);
+		final XiangqiPiece p79b=game.getPieceAt(c79, BLACK);
+		assertEquals(RED,p71b.getColor());
+		assertEquals(RED,p73b.getColor());
+		assertEquals(RED,p75b.getColor());
+		assertEquals(RED,p77b.getColor());
+		assertEquals(RED,p79b.getColor());
+		assertEquals(SOLDIER,p71b.getPieceType());
+		assertEquals(SOLDIER,p73b.getPieceType());
+		assertEquals(SOLDIER,p75b.getPieceType());
+		assertEquals(SOLDIER,p77b.getPieceType());
+		assertEquals(SOLDIER,p79b.getPieceType());
 	}
 	
 	@Test //21
 	public void blackSoldierInitializedCorrectlyInRedAspect(){
-		final XiangqiPiece p71r=game.getPieceAt(c71, XiangqiColor.RED);
-		final XiangqiPiece p73r=game.getPieceAt(c73, XiangqiColor.RED);
-		final XiangqiPiece p75r=game.getPieceAt(c75, XiangqiColor.RED);
-		final XiangqiPiece p77r=game.getPieceAt(c77, XiangqiColor.RED);
-		final XiangqiPiece p79r=game.getPieceAt(c79, XiangqiColor.RED);
-		assertEquals(XiangqiColor.BLACK,p71r.getColor());
-		assertEquals(XiangqiColor.BLACK,p73r.getColor());
-		assertEquals(XiangqiColor.BLACK,p75r.getColor());
-		assertEquals(XiangqiColor.BLACK,p77r.getColor());
-		assertEquals(XiangqiColor.BLACK,p79r.getColor());
-		assertEquals(XiangqiPieceType.SOLDIER,p71r.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p73r.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p75r.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p77r.getPieceType());
-		assertEquals(XiangqiPieceType.SOLDIER,p79r.getPieceType());
+		final XiangqiPiece p71r=game.getPieceAt(c71, RED);
+		final XiangqiPiece p73r=game.getPieceAt(c73, RED);
+		final XiangqiPiece p75r=game.getPieceAt(c75, RED);
+		final XiangqiPiece p77r=game.getPieceAt(c77, RED);
+		final XiangqiPiece p79r=game.getPieceAt(c79, RED);
+		assertEquals(BLACK,p71r.getColor());
+		assertEquals(BLACK,p73r.getColor());
+		assertEquals(BLACK,p75r.getColor());
+		assertEquals(BLACK,p77r.getColor());
+		assertEquals(BLACK,p79r.getColor());
+		assertEquals(SOLDIER,p71r.getPieceType());
+		assertEquals(SOLDIER,p73r.getPieceType());
+		assertEquals(SOLDIER,p75r.getPieceType());
+		assertEquals(SOLDIER,p77r.getPieceType());
+		assertEquals(SOLDIER,p79r.getPieceType());
 	}
 	
 	@Test //22
 	public void getPieceAtreturnNoneNone(){
-		final XiangqiPiece p21r=game.getPieceAt(c21, XiangqiColor.RED);
-		final XiangqiPiece p55b=game.getPieceAt(c55, XiangqiColor.BLACK);
+		final XiangqiPiece p21r=game.getPieceAt(c21, RED);
+		final XiangqiPiece p55b=game.getPieceAt(c55, BLACK);
 		assertEquals(XiangqiColor.NONE,p21r.getColor());
 		assertEquals(XiangqiColor.NONE,p55b.getColor());
 		assertEquals(XiangqiPieceType.NONE,p21r.getPieceType());
@@ -406,113 +406,118 @@ public class GammaXiangqiTest {
 	
 	@Test(expected=CompletionException.class) //23
 	public void catchExceptionWhenGetPieceAtInvalidPlace(){
-		final XiangqiPiece invalid=game.getPieceAt(makeCoordinate(-1,-1), XiangqiColor.RED);
+		final XiangqiPiece invalid=game.getPieceAt(makeCoordinate(-1,-1), RED);
 	}
 	
 	@Test //24
 	public void chariotCanMoveVertically(){
-		assertEquals(MoveResult.OK,game.makeMove(c11, c21));
-		assertEquals(MoveResult.OK,game.makeMove(c11, c31));
-		assertEquals(MoveResult.OK,game.makeMove(c21, c11));
-		assertEquals(MoveResult.OK,game.makeMove(c31, c21));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c11, c31));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c31, c21));
 	}
 	
 	@Test //25
 	public void chariotCanMoveHorizontally(){
-		assertEquals(MoveResult.OK,game.makeMove(c11, c12));
-		assertEquals(MoveResult.OK,game.makeMove(c11, c12));
-		assertEquals(MoveResult.OK,game.makeMove(c12, c11));
-		assertEquals(MoveResult.OK,game.makeMove(c12, c11));
+		assertEquals(OK,game.makeMove(c11, c12));
+		assertEquals(OK,game.makeMove(c11, c12));
+		assertEquals(OK,game.makeMove(c12, c11));
+		assertEquals(OK,game.makeMove(c12, c11));
 	}
 	
 	@Test //26
 	public void chariotCanNotEatSameColorPiece(){
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c11, c41));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c11, c41));
+		assertEquals(ILLEGAL,game.makeMove(c11, c41));
+		assertEquals(ILLEGAL,game.makeMove(c11, c41));
 	}
 	
 	@Test //27
 	public void chariotCanNotJump(){
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c11, c101));
-		assertEquals(MoveResult.OK,game.makeMove(c11, c21));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c11, c101));
+		assertEquals(ILLEGAL,game.makeMove(c11, c101));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(ILLEGAL,game.makeMove(c11, c101));
 	}
 	
 	@Test //28
 	public void chariotCanNotMoveDiagonally(){
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c11, c22));
-		assertEquals(MoveResult.OK,game.makeMove(c11, c12));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c11, c22));
+		assertEquals(ILLEGAL,game.makeMove(c11, c22));
+		assertEquals(OK,game.makeMove(c11, c12));
+		assertEquals(ILLEGAL,game.makeMove(c11, c22));
 	}
 	@Test //29
 	public void advisorCanMoveDiagonallyWithDistanceOne(){
-		assertEquals(MoveResult.OK,game.makeMove(c14, c25));
-		assertEquals(MoveResult.OK,game.makeMove(c14, c25));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c34));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c34));
-		assertEquals(MoveResult.OK,game.makeMove(c16, c25));
-		assertEquals(MoveResult.OK,game.makeMove(c16, c25));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c36));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c36));
-		assertEquals(MoveResult.OK,game.makeMove(c34, c25));
-		assertEquals(MoveResult.OK,game.makeMove(c34, c25));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c14));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c14));
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(OK,game.makeMove(c25, c34));
+		assertEquals(OK,game.makeMove(c25, c34));
+		assertEquals(OK,game.makeMove(c16, c25));
+		assertEquals(OK,game.makeMove(c16, c25));
+		assertEquals(OK,game.makeMove(c25, c36));
+		assertEquals(OK,game.makeMove(c25, c36));
+		assertEquals(OK,game.makeMove(c34, c25));
+		assertEquals(OK,game.makeMove(c34, c25));
+		assertEquals(OK,game.makeMove(c25, c14));
+		assertEquals(OK,game.makeMove(c25, c14));
 	}
 	
 	@Test //29
 	public void advisorCanNotMoveOrthogaonally(){
-		assertEquals(MoveResult.OK,game.makeMove(c14, c25));
-		assertEquals(MoveResult.OK,game.makeMove(c14, c25));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c25, c24));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c25, c35));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c34));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c25, c24));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c25, c35));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c34));
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(ILLEGAL,game.makeMove(c25, c24));
+		assertEquals(ILLEGAL,game.makeMove(c25, c35));
+		assertEquals(OK,game.makeMove(c25, c34));
+		assertEquals(ILLEGAL,game.makeMove(c25, c24));
+		assertEquals(ILLEGAL,game.makeMove(c25, c35));
+		assertEquals(OK,game.makeMove(c25, c34));
 	}
 	
 	@Test //30
 	public void advisorCanNotMoveOutOfThePalace(){
-		assertEquals(MoveResult.OK,game.makeMove(c14, c25));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c14, c23));
-		assertEquals(MoveResult.OK,game.makeMove(c14, c25));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c14, c23));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c36));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c36, c45));
-		assertEquals(MoveResult.OK,game.makeMove(c25, c36));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c36, c45));
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(ILLEGAL,game.makeMove(c14, c23));
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(ILLEGAL,game.makeMove(c14, c23));
+		assertEquals(OK,game.makeMove(c25, c36));
+		assertEquals(ILLEGAL,game.makeMove(c36, c45));
+		assertEquals(OK,game.makeMove(c25, c36));
+		assertEquals(ILLEGAL,game.makeMove(c36, c45));
 	}
 	
 	@Test //32
 	public void elephantCanMoveDiagonallyInDistanceOfTwo(){
-		assertEquals(MoveResult.OK,game.makeMove(c13, c31));
-		assertEquals(MoveResult.OK,game.makeMove(c13, c31));
-		assertEquals(MoveResult.OK,game.makeMove(c17, c35));
-		assertEquals(MoveResult.OK,game.makeMove(c17, c35));
+		assertEquals(OK,game.makeMove(c13, c31));
+		assertEquals(redElephant,game.getPieceAt(c31, RED));
+		assertEquals(OK,game.makeMove(c13, c31));
+		assertEquals(OK,game.makeMove(c17, c35));
+		assertEquals(OK,game.makeMove(c17, c35));
 	}
 	
 	@Test //33
 	public void elephantCanNotMoveInOneOrThreeDiagonal(){
-		assertEquals(MoveResult.ILLEGAL, game.makeMove(c13, c22));
-		assertEquals(MoveResult.ILLEGAL, game.makeMove(c13,c57));
+		assertEquals(ILLEGAL, game.makeMove(c13, c22));
+		assertEquals(ILLEGAL, game.makeMove(c13,c57));
 	}
 	
 	@Test //34
 	public void elephantCanNotMoveOrthogonally(){
-		assertEquals(MoveResult.ILLEGAL, game.makeMove(c13,c53));
-		assertEquals(MoveResult.OK, game.makeMove(c13,c31));
-		assertEquals(MoveResult.OK, game.makeMove(c11, c21));
-		assertEquals(MoveResult.ILLEGAL, game.makeMove(c13,c53));
+		assertEquals(ILLEGAL, game.makeMove(c13,c53));
+		assertEquals(OK, game.makeMove(c13,c31));
+		assertEquals(OK, game.makeMove(c11, c21));
+		assertEquals(ILLEGAL, game.makeMove(c13,c53));
 	}
 	@Test //35
 	public void elephantCanNotMoveIfBlocked(){
-		assertEquals(MoveResult.OK,game.makeMove(c11, c21));
-		assertEquals(MoveResult.OK,game.makeMove(c11, c21));
-		assertEquals(MoveResult.OK,game.makeMove(c21, c22));
-		assertEquals(MoveResult.OK,game.makeMove(c21, c22));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c13, c31));
-		assertEquals(MoveResult.OK,game.makeMove(c45, c55));
-		assertEquals(MoveResult.ILLEGAL,game.makeMove(c13, c31));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c21, c22));
+		assertEquals(OK,game.makeMove(c21, c22));
+		assertEquals(ILLEGAL,game.makeMove(c13, c31));
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(ILLEGAL,game.makeMove(c13, c31));
 	}
+	
+//	@Test //36
+//	public void generalCanMoveVertically(){
+//	}
 }
