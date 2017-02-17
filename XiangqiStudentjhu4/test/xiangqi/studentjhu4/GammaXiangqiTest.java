@@ -492,6 +492,11 @@ public class GammaXiangqiTest {
 		assertEquals(MoveResult.OK,game.makeMove(c17, c35));
 	}
 	
+	@Test //33
+	public void elephantCanNotMoveInOneOrThreeDiagonal(){
+		assertEquals(MoveResult.ILLEGAL, game.makeMove(c13,c22));
+		assertEquals(MoveResult.ILLEGAL, game.makeMove(c13,c57));
+	}
 	
 	@Test //34
 	public void elephantCanNotMoveIfBlocked(){
