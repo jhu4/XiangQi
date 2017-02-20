@@ -22,7 +22,7 @@
 <fullyQualifiedTypeName name="xiangqi.studentjhu4.XiangqiBoard"/>
 <fullyQualifiedTypeName name="xiangqi.studentjhu4.gamma.GammaXiangqiBoard"/>
 <fullyQualifiedTypeName name="java.util.concurrent.CompletionException"/>
-<fullyQualifiedTypeName name="xiangqi.common.XiangqiColor"/>
 <fullyQualifiedTypeName name="xiangqi.common.XiangqiCoordinate"/>
 <fullyQualifiedTypeName name="xiangqi.common.MoveResult"/>
+<fullyQualifiedTypeName name="xiangqi.common.XiangqiColor"/>
 </qualifiedTypeNameHistroy>
