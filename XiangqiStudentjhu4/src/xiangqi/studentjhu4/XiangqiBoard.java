@@ -73,6 +73,31 @@ public abstract class XiangqiBoard{
 		alterColor();
 	}
 	
+	public void reverseMove(XiangqiMove move){
+		boardColor=move.color;
+		redpieces=move.redpieces;
+		blackpieces=move.blackpieces;
+		redGeneralLocation=move.redGeneralLocation;
+		blackGeneralLocation=move.blackGeneralLocation;
+		XiangqiCoordinate src=move.src;
+		XiangqiCoordinate dest=move.dest;
+		if(boardColor==XiangqiColor.BLACK){
+			src=convertCoordinateToOtherColor(src);
+			dest=convertCoordinateToOtherColor(dest);
+		}
+		board[src.getRank()][src.getFile()]=move.srcPiece;
+		board[dest.getRank()][dest.getFile()]=move.destPiece;
+	}
+	
+	
+	public void updatePiecesList(XiangqiCoordinate source, XiangqiCoordinate dest){
+		XiangqiPiece pc= getPieceAt(source,getBoardColor());
+		if(pc.getPieceType()==XiangqiPieceType.GENERAL){
+			updateGeneralLocation(dest);
+		}
+		updatePiecesLocations(source, dest);
+	}
+	
 	/**
 	 * Update the general location
 	 * @param newlocation the new location

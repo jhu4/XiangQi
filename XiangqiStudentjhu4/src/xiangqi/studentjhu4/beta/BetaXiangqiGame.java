@@ -50,9 +50,9 @@ public class BetaXiangqiGame implements XiangqiGame {
 			board.makeMove(source,dest);
 			moveCounter++;
 			result=(moveCounter>=MoveBound)?MoveResult.DRAW:MoveResult.OK;
-			if(isCheckmate(enemyColor)){
-				result=boardColor==XiangqiColor.RED?MoveResult.RED_WINS:MoveResult.BLACK_WINS;
-			} 
+//			if(isCheckmate(enemyColor)){
+//				result=boardColor==XiangqiColor.RED?MoveResult.RED_WINS:MoveResult.BLACK_WINS;
+//			} 
 		}
 		else{
 			result=MoveResult.ILLEGAL;

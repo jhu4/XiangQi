@@ -4,6 +4,7 @@ import static xiangqi.studentjhu4.XiangqiCoordinateImpl.makeCoordinate;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Stack;
 
 import xiangqi.common.MoveResult;
 import xiangqi.common.XiangqiColor;
@@ -14,6 +15,7 @@ import xiangqi.common.XiangqiPiece;
 import xiangqi.common.XiangqiPieceType;
 import xiangqi.studentjhu4.XiangqiBoard;
 import xiangqi.studentjhu4.XiangqiBoardFactory;
+import xiangqi.studentjhu4.XiangqiMove;
 import xiangqi.studentjhu4.xiangqiPieceRule.XiangqiPieceRule;
 import xiangqi.studentjhu4.xiangqiPieceRule.XiangqiPieceRuleFactory;
 
@@ -23,6 +25,7 @@ public class GammaXiangqiGame implements XiangqiGame{
 	int moveCounter=0;
 	final int MoveBound=50;
 	MoveResult lastMoveResult;
+	Stack<XiangqiMove> movement=new Stack<XiangqiMove>();
 	
 	public GammaXiangqiGame(){
 		board=XiangqiBoardFactory.makeXiangqiBoard(XiangqiGameVersion.GAMMA_XQ);
@@ -42,19 +45,20 @@ public class GammaXiangqiGame implements XiangqiGame{
 		XiangqiColor boardColor=board.getBoardColor();
 		XiangqiColor enemyColor=board.getBoardColor()==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
 		if(isValidMove(source,dest,board.getBoardColor())){
-			XiangqiPiece pc=board.getPieceAt(source,board.getBoardColor());
-			if(pc.getPieceType()==XiangqiPieceType.GENERAL){
-				board.updateGeneralLocation(dest);
-			}
-			else{
-				board.updatePiecesLocations(source, dest);
-			}
+			movement.push(new XiangqiMove(board,source,dest));
+			//update the board state
+			board.updatePiecesList(source, dest);
 			board.makeMove(source,dest);
+			//reverse the board state if it is illegal
+			if(this.isGeneralUnderAttack(boardColor)){
+				board.reverseMove(movement.pop());
+				return MoveResult.ILLEGAL;
+			}
 			moveCounter++;
 			result=(moveCounter>=MoveBound)?MoveResult.DRAW:MoveResult.OK;
 			if(isCheckmate(enemyColor)){
 				result=boardColor==XiangqiColor.RED?MoveResult.RED_WINS:MoveResult.BLACK_WINS;
-			} 
+			}
 		}
 		else{
 			result=MoveResult.ILLEGAL;
