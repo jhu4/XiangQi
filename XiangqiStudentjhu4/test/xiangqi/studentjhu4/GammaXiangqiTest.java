@@ -633,8 +633,18 @@ public class GammaXiangqiTest {
 		assertEquals(ILLEGAL,game.makeMove(c73, c63));
 	}
 	
-//	@Test //47
-//	public void playerCannotSuicide(){
-//		
-//	}
+	@Test //47
+	public void playerCannotSuicide(){
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c55, c65));
+		assertEquals(OK,game.makeMove(c21, c25));
+		assertEquals(blackSoldier,game.getPieceAt(c65, BLACK));
+		assertEquals(ILLEGAL,game.makeMove(c65, c64));
+		assertEquals(blackSoldier,game.getPieceAt(c65, BLACK));
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(OK,game.makeMove(c49, c59));
+		assertEquals(OK,game.makeMove(c65, c64));
+	}
 }
