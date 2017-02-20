@@ -86,7 +86,7 @@ public class GammaXiangqiGame implements XiangqiGame{
 	}
 	
 	private boolean isCheckmate(XiangqiColor aspect){
-		return isGeneralUnderAttack(aspect);
+		return false;
 	}
 	
 	private boolean isGeneralUnderAttack(XiangqiColor aspect){

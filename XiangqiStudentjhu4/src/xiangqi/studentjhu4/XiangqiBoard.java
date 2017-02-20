@@ -48,6 +48,11 @@ public abstract class XiangqiBoard{
 		return boardColor;
 	}
 	
+	/**
+	 * Update the board with the move
+	 * @param source from coordinate
+	 * @param dest to coordinate
+	 */
 	public void makeMove(XiangqiCoordinate source, XiangqiCoordinate dest) {
 		if(boardColor==XiangqiColor.BLACK){
 			source=convertCoordinateToOtherColor(source);
@@ -190,6 +195,19 @@ public abstract class XiangqiBoard{
 	 */
 	public XiangqiCoordinate getGeneralLocation(XiangqiColor color){
 		return color==XiangqiColor.RED?redGeneralLocation:blackGeneralLocation;
+	}
+	
+	/**
+	 * Get the opponent general location in my aspect
+	 * @return general coordinate in my aspect
+	 */
+	public XiangqiCoordinate getOpponentGeneralLocation(){
+		if(boardColor==XiangqiColor.RED){
+			return convertCoordinateToOtherColor(blackGeneralLocation);
+		}
+		else{
+			return convertCoordinateToOtherColor(redGeneralLocation);
+		}
 	}
 	
 	/**

@@ -561,5 +561,19 @@ public class GammaXiangqiTest {
 		assertEquals(ILLEGAL,game.makeMove(c35, c45));
 	}
 	
+	@Test //40.5
+	public void generalCanDoFlyingGeneralMove(){
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c55, c65));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c65, c75));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c75, c85));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c85, c95));
+		assertEquals(OK,game.makeMove(c15, c25));
+		assertEquals(OK,game.makeMove(c15, c95));
+	}
 	
 }

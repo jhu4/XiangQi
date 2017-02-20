@@ -1,5 +1,6 @@
 package xiangqi.studentjhu4.xiangqiPieceRule;
 
+import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiCoordinate;
 import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPieceType;
@@ -14,22 +15,35 @@ public class GeneralRule extends XiangqiPieceRule{
 
 	@Override
 	protected boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest) {
-		return versionRule(dest)
-				&& oneDistanceRule(source,dest);
+		if(isFlyingGeneralMove(board,dest)){
+			return this.calculatePiecesOnOrthogonalPath(board, source, dest)==0;
+		}
+		else{
+			return versionRule(board,source,dest)
+					&& oneDistanceRule(source,dest);
+		}
 	}
 
-	private boolean versionRule( XiangqiCoordinate dest){
+	private boolean versionRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest){
 		switch (version){
 			case BETA_XQ:
 				return destFileBoundaryRule(2,4,dest)
 						&& destRankBoundaryRule(1,1,dest);
 			case GAMMA_XQ:
 				return destRankBoundaryRule(1,3,dest)
-						&& destFileBoundaryRule(4,6,dest);
+							&& destFileBoundaryRule(4,6,dest);
 			default:
 				System.out.println("GeneralRule::versionRule default");
 		}
 		return false;
 	}
-
+	
+	private boolean isFlyingGeneralMove(XiangqiBoard board, XiangqiCoordinate dest){
+		XiangqiCoordinate G=board.getOpponentGeneralLocation();
+		if(G.getFile()==dest.getFile() 
+				&& G.getRank()==dest.getRank()){
+			return true;
+		}
+		return false;
+	}
 }
