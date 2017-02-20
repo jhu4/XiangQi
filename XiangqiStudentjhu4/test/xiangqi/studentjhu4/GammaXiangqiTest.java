@@ -599,12 +599,35 @@ public class GammaXiangqiTest {
 	}
 	
 	@Test //44
-	public void soldierCanMoveHorizontallyInOpponentSide(){
+	public void soldierCanMoveHorizontallyOverRiver(){
 		assertEquals(OK,game.makeMove(c41, c51));
 		assertEquals(OK,game.makeMove(c45, c55));
 		assertEquals(OK,game.makeMove(c51, c61));
 		assertEquals(OK,game.makeMove(c55, c65));
 		assertEquals(OK,game.makeMove(c61, c62));
 		assertEquals(OK,game.makeMove(c65, c66));
+	}
+	
+	@Test //45
+	public void soldierCanNotMoveBackwardInOurSide(){
+		assertEquals(ILLEGAL,game.makeMove(c45, c35));
+		assertEquals(OK,game.makeMove(c41, c51));
+		assertEquals(OK,game.makeMove(c49, c59));
+		assertEquals(ILLEGAL,game.makeMove(c51, c41));
+		assertEquals(OK,game.makeMove(c51, c61));
+		assertEquals(ILLEGAL,game.makeMove(c59, c49));
+	}
+	
+	@Test //46
+	public void soldierCanNotMoveBackwardOverRiver(){
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c43, c53));
+		assertEquals(OK,game.makeMove(c55, c65));
+		assertEquals(OK,game.makeMove(c53, c63));
+		assertEquals(OK,game.makeMove(c65, c75));
+		assertEquals(OK,game.makeMove(c63, c73));
+		assertEquals(ILLEGAL,game.makeMove(c75, c65));
+		assertEquals(OK,game.makeMove(c75, c76));
+		assertEquals(ILLEGAL,game.makeMove(c73, c63));
 	}
 }
