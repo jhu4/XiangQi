@@ -634,7 +634,7 @@ public class GammaXiangqiTest {
 	}
 	
 	@Test //47
-	public void playerCannotSuicide(){
+	public void playerCannotSuicideUsingChariotToCheck(){
 		assertEquals(OK,game.makeMove(c45, c55));
 		assertEquals(OK,game.makeMove(c45, c55));
 		assertEquals(OK,game.makeMove(c11, c21));
@@ -646,5 +646,20 @@ public class GammaXiangqiTest {
 		assertEquals(OK,game.makeMove(c14, c25));
 		assertEquals(OK,game.makeMove(c49, c59));
 		assertEquals(OK,game.makeMove(c65, c64));
+	}
+	
+	@Test //48
+	public void playerMustProtectingItsGeneral(){
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c19, c29));
+		assertEquals(OK,game.makeMove(c55, c65));
+		assertEquals(OK,game.makeMove(c29, c28));
+		assertEquals(OK,game.makeMove(c65, c75));
+		assertEquals(OK,game.makeMove(c28, c98));
+		assertEquals(OK,game.makeMove(c75, c85));
+		assertEquals(OK,game.makeMove(c98, c95));
+		assertEquals(ILLEGAL,game.makeMove(c85, c95));
+		assertEquals(ILLEGAL,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c14, c25));
 	}
 }
