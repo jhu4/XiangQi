@@ -5,6 +5,11 @@ Two Integers not in order: [2,1]->[1,2]	DONE
 Three Integers in order: [1,2,3]->[1,2,3] DONE
 Three Integers not in order: [3,1,2]->[1,2,3] DONE
 Three Integers not in order: [3,2,1]->[1,2,3] DONE
+Four Integers in order: [1,2,3,4]->[1,2,3,4] DONE
 Four Integers not in order: [4,3,2,1]->[1,2,3,4] DONE
 Four Integers not in order with a tie: [4,3,4,1]->[1,3,4,4] DONE
-Seven Integers not 
+Five integers with all equal elements: [5,5,5,5,5]->[5,5,5,5,5] DONE
+Five characters in order: [a,b,c,d,e]->[a,b,c,d,e] DONE
+Five characters not in order: [c,d,e,a,b]->[a,b,c,d,e] DONE
+Five characters with ties and not in order: [c,c,d,a,a]->[a,a,c,c,d] DONE
+Six characters with special characters and capitals and not in order: [c,C,!,A,a,a]->[!,A,C,a,a,c] DONE

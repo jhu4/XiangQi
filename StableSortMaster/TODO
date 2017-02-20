@@ -1,0 +1,12 @@
+// Just check for sorted, not necessarily stably sorted
+X Sort empty array -> empty array
+X Sort [1] -> [1]
+X Sort [1, 2] -> [1, 2]
+X Sort [2, 1] -> [1, 2]
+X Sort [0, 1, -1] -> [-1, 0, 1]
+X Sort [5, 4, 14] -> [4, 5, 14]
+X Sort an array of Integers and not Sortables
+X Sortable<String> [c, e, a, r] = [a, c, e, r]
+X Make sure all of the previous cases are stably sorted (with the exception of an array of Integers)
+X Generate n random tests
+X Sorting all same numbers is stable.

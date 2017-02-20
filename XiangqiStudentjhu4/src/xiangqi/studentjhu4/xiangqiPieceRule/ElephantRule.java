@@ -14,7 +14,9 @@ public class ElephantRule extends XiangqiPieceRule {
 	}
 
 	protected boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest) {
-		return this.calculateDistance(source, dest)==4 && calculatePiecesOnDiagonal(board,source,dest)==0;
+		return this.calculateDistance(source, dest)==4 
+				&& calculatePiecesOnDiagonal(board,source,dest)==0
+				&& destRankBoundaryRule(1, 5, dest);
 	}
 	
 	private int calculatePiecesOnDiagonal(XiangqiBoard board,XiangqiCoordinate source,XiangqiCoordinate dest){

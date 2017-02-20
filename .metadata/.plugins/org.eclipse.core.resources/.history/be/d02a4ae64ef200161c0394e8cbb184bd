@@ -1,0 +1,12 @@
+package xiangqi.studentjhu4.xiangqiPieceRule;
+
+import xiangqi.common.XiangqiGameVersion;
+import xiangqi.common.XiangqiPieceType;
+
+public class ElephantRule extends XiangqiPieceRule {
+
+	public ElephantRule(XiangqiPieceType type, XiangqiGameVersion version) {
+		super(type, version);
+	}
+
+}

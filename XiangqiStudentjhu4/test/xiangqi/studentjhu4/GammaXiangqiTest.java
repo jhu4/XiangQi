@@ -506,6 +506,7 @@ public class GammaXiangqiTest {
 		assertEquals(OK, game.makeMove(c11, c21));
 		assertEquals(ILLEGAL, game.makeMove(c13,c53));
 	}
+	
 	@Test //35
 	public void elephantCanNotMoveIfBlocked(){
 		assertEquals(OK,game.makeMove(c11, c21));
@@ -517,7 +518,48 @@ public class GammaXiangqiTest {
 		assertEquals(ILLEGAL,game.makeMove(c13, c31));
 	}
 	
-//	@Test //36
-//	public void generalCanMoveVertically(){
-//	}
+	@Test //36
+	public void elephantCanNotCrossTheRiver(){
+		assertEquals(OK,game.makeMove(c13, c35));
+		assertEquals(OK,game.makeMove(c17, c39));
+		assertEquals(OK,game.makeMove(c35, c53));
+		assertEquals(OK,game.makeMove(c39, c57));
+		assertEquals(ILLEGAL,game.makeMove(c53, c75));
+		assertEquals(OK,game.makeMove(c53, c31));
+		assertEquals(ILLEGAL,game.makeMove(c57,c79));
+	}
+	
+	@Test //37
+	public void generalCanMoveVertically(){
+		assertEquals(OK,game.makeMove(c15, c25));
+		assertEquals(OK,game.makeMove(c15, c25));
+		assertEquals(OK,game.makeMove(c25, c35));
+		assertEquals(OK,game.makeMove(c25, c35));
+	}
+	
+	@Test //38
+	public void generalCanMoveHorizontally(){
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(OK,game.makeMove(c16, c25));
+		assertEquals(OK,game.makeMove(c15, c14));
+		assertEquals(OK,game.makeMove(c15, c16));
+	}
+	
+	@Test //39
+	public void generalCanNoTMoveDiagonally(){
+		assertEquals(ILLEGAL,game.makeMove(c15, c24));
+	}
+	
+	@Test //40
+	public void generalCanNotMoveOutOfPalace(){
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(OK,game.makeMove(c15, c25));
+		assertEquals(OK,game.makeMove(c15, c14));
+		assertEquals(OK,game.makeMove(c25, c35));
+		assertEquals(ILLEGAL,game.makeMove(c14, c13));
+		assertEquals(OK,game.makeMove(c14, c24));
+		assertEquals(ILLEGAL,game.makeMove(c35, c45));
+	}
+	
+	
 }

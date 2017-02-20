@@ -1,5 +1,0 @@
-empty element []->[] DONE	
-One element: [1]->[1]	DONE
-Two elements in order: [1,2]->[1,2]	DONE
-Two elements not in order: [2,1]->[1,2]	DONE
-Three elements [3,1,2]->[1,2,3]	DONE

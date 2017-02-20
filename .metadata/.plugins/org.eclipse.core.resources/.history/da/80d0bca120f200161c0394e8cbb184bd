@@ -1,0 +1,69 @@
+package xiangqi.studentjhu4.gamma;
+
+import java.util.HashMap;
+
+import xiangqi.common.MoveResult;
+import xiangqi.common.XiangqiColor;
+import xiangqi.common.XiangqiCoordinate;
+import xiangqi.common.XiangqiGame;
+import xiangqi.common.XiangqiGameVersion;
+import xiangqi.common.XiangqiPiece;
+import xiangqi.common.XiangqiPieceType;
+import xiangqi.studentjhu4.XiangqiBoard;
+import xiangqi.studentjhu4.XiangqiBoardFactory;
+import xiangqi.studentjhu4.xiangqiPieceRule.XiangqiPieceRule;
+import xiangqi.studentjhu4.xiangqiPieceRule.XiangqiPieceRuleFactory;
+
+public class GammaXiangqiGame implements XiangqiGame{
+	private XiangqiBoard board;
+	HashMap<String,XiangqiPieceRule> rulemap;
+	int moveCounter=0;
+	final int MoveBound=20;
+	MoveResult lastMoveResult;
+	
+	public GammaXiangqiGame(){
+		board=XiangqiBoardFactory.makeXiangqiBoard(XiangqiGameVersion.GAMMA_XQ);
+		rulemap=new  HashMap<String,XiangqiPieceRule>();
+		rulemap.put("",XiangqiPieceRuleFactory.makeXiangqiPieceRule(XiangqiPieceType.NONE,XiangqiGameVersion.GAMMA_XQ));
+		rulemap.put("Chariot",XiangqiPieceRuleFactory.makeXiangqiPieceRule(XiangqiPieceType.CHARIOT,XiangqiGameVersion.GAMMA_XQ));
+	}
+	
+	@Override
+	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
+		MoveResult result;
+		XiangqiColor boardColor=board.getBoardColor();
+		XiangqiColor enemyColor=board.getBoardColor()==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
+		if(isValidMove(source,dest,board.getBoardColor())){
+			XiangqiPiece pc=board.getPieceAt(source,board.getBoardColor());
+			if(pc.getPieceType()==XiangqiPieceType.GENERAL){
+				board.updateGeneralLocation(dest);
+			}
+			else{
+				board.updatePiecesLocations(source, dest);
+			}
+			board.makeMove(source,dest);
+			moveCounter++;
+			result=(moveCounter>=MoveBound)?MoveResult.DRAW:MoveResult.OK;
+			if(isCheckmate(enemyColor)){
+				result=boardColor==XiangqiColor.RED?MoveResult.RED_WINS:MoveResult.BLACK_WINS;
+			} 
+		}
+		else{
+			result=MoveResult.ILLEGAL;
+		}
+		updateLastMoveResult(result);
+		return result;
+	}
+
+	@Override
+	public String getMoveMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
+		return board.getPieceAt(where, aspect);
+	}
+
+}

@@ -1,2 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="xiangqi.studentjhu4.AlphaXiangqiGame"/>
+<fullyQualifiedTypeName name="xiangqi.XiangqiGameFactory"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="xiangqi.studentjhu4.XiangqiPieceImpl"/>
+<fullyQualifiedTypeName name="xiangqi.studentjhu4.BetaXiangqiGame"/>
+<fullyQualifiedTypeName name="xiangqi.studentjhu4.ValidatorFactory"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="xiangqiPieceRule.XiangqiPieceRule"/>
+<fullyQualifiedTypeName name="xiangqiPieceRule.XiangqiPieceRuleFactory"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="xiangqi.common.XiangqiGameVersion"/>
+<fullyQualifiedTypeName name="xiangqi.studentjhu4.XiangqiCoordinateImpl"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="xiangqi.common.XiangqiGame"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="xiangqi.studentjhu4.gamma.GammaXiangqiGame"/>
+<fullyQualifiedTypeName name="xiangqi.common.XiangqiPiece"/>
+<fullyQualifiedTypeName name="xiangqi.common.XiangqiPieceType"/>
+<fullyQualifiedTypeName name="xiangqi.studentjhu4.XiangqiBoard"/>
+<fullyQualifiedTypeName name="xiangqi.studentjhu4.gamma.GammaXiangqiBoard"/>
+<fullyQualifiedTypeName name="java.util.concurrent.CompletionException"/>
+<fullyQualifiedTypeName name="xiangqi.common.XiangqiColor"/>
+<fullyQualifiedTypeName name="xiangqi.common.XiangqiCoordinate"/>
+<fullyQualifiedTypeName name="xiangqi.common.MoveResult"/>
+</qualifiedTypeNameHistroy>

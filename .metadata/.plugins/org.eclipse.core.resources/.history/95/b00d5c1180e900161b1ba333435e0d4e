@@ -1,8 +1,0 @@
-empty element []->[] DONE	
-One Integer: [1]->[1] DONE
-Two Integers in order: [1,2]->[1,2]	DONE
-Two Integers not in order: [2,1]->[1,2]	DONE
-Three Integers in order: [1,2,3]->[1,2,3] DONE
-Three Integers not in order: [3,1,2]->[1,2,3] DONE
-Three Integers not in order: [3,2,1]->[1,2,3] DONE
-Four Integers not in order: [4,3,2,1]->[1,2,3,4] DONE
