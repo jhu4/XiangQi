@@ -1,0 +1,10 @@
+This is the starter code for Xiàngqí, a Chines chess game engine.
+When you import it into Eclipse you should do the following:
+	- Change the project name to XiangqiStudentyyy, where "yyy" is your
+	  WPI username.
+	- Change the package xiangqi.studentxxx to xiangstudentyyy, just as
+	  you change the project name. The xiangqi.studentxxx package is in
+	  both the src and test folders.
+	- Remove src/xiangqi.studentxxx.package-info.java.
+	- Remove test/xiangqi.studentxxx.testpackageinfo.java.
+	- Remove this file.
