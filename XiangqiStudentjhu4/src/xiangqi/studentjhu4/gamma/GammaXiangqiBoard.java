@@ -63,8 +63,18 @@ public class GammaXiangqiBoard extends XiangqiBoard{
 		board[7][5]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK);
 		board[7][3]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK);
 		board[7][1]=XiangqiPieceImpl.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK);
+		blackpieces.put(new Integer(101), board[10][9]);
+		blackpieces.put(new Integer(103), board[10][7]);
+		blackpieces.put(new Integer(104), board[10][6]);
+		blackpieces.put(new Integer(105), board[10][5]);
+		blackpieces.put(new Integer(106), board[10][4]);
+		blackpieces.put(new Integer(107), board[10][3]);
+		blackpieces.put(new Integer(109), board[10][1]);
+		blackpieces.put(new Integer(401),board[7][9]);
+		blackpieces.put(new Integer(403),board[7][7]);
+		blackpieces.put(new Integer(405),board[7][5]);
+		blackpieces.put(new Integer(407),board[7][3]);
+		blackpieces.put(new Integer(409),board[7][1]);
 		blackGeneralLocation=makeCoordinate(1,5);
 	}
-	
-	
 }

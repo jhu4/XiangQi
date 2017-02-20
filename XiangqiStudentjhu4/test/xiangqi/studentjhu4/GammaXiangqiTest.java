@@ -622,14 +622,14 @@ public class GammaXiangqiTest {
 	
 	@Test //46
 	public void soldierCanNotMoveBackwardOverRiver(){
-		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c49, c59));
 		assertEquals(OK,game.makeMove(c43, c53));
-		assertEquals(OK,game.makeMove(c55, c65));
+		assertEquals(OK,game.makeMove(c59, c69));
 		assertEquals(OK,game.makeMove(c53, c63));
-		assertEquals(OK,game.makeMove(c65, c75));
+		assertEquals(OK,game.makeMove(c69, c79));
 		assertEquals(OK,game.makeMove(c63, c73));
-		assertEquals(ILLEGAL,game.makeMove(c75, c65));
-		assertEquals(OK,game.makeMove(c75, c76));
+		assertEquals(ILLEGAL,game.makeMove(c79, c69));
+		assertEquals(OK,game.makeMove(c79, c78));
 		assertEquals(ILLEGAL,game.makeMove(c73, c63));
 	}
 	
