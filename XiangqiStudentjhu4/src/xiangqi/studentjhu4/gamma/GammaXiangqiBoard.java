@@ -14,6 +14,7 @@ public class GammaXiangqiBoard extends XiangqiBoard{
 	public GammaXiangqiBoard(){
 		ranks=11;
 		files=10;
+		river=6;
 		board=new XiangqiPiece[ranks][files];
 		redpieces=new HashMap<Integer,XiangqiPiece>();
 		blackpieces=new HashMap<Integer,XiangqiPiece>();

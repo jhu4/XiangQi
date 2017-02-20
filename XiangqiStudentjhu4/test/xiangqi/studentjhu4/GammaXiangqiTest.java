@@ -404,7 +404,8 @@ public class GammaXiangqiTest {
 		assertEquals(XiangqiPieceType.NONE,p55b.getPieceType());
 	}
 	
-	@Test(expected=CompletionException.class) //23
+	//23
+	@Test(expected=CompletionException.class) 
 	public void catchExceptionWhenGetPieceAtInvalidPlace(){
 		final XiangqiPiece invalid=game.getPieceAt(makeCoordinate(-1,-1), RED);
 	}
@@ -552,6 +553,8 @@ public class GammaXiangqiTest {
 	
 	@Test //40
 	public void generalCanNotMoveOutOfPalace(){
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c45, c55));
 		assertEquals(OK,game.makeMove(c14, c25));
 		assertEquals(OK,game.makeMove(c15, c25));
 		assertEquals(OK,game.makeMove(c15, c14));
@@ -559,6 +562,7 @@ public class GammaXiangqiTest {
 		assertEquals(ILLEGAL,game.makeMove(c14, c13));
 		assertEquals(OK,game.makeMove(c14, c24));
 		assertEquals(ILLEGAL,game.makeMove(c35, c45));
+		assertEquals(ILLEGAL,game.makeMove(c35, c55));
 	}
 	
 	@Test //40.5
@@ -575,5 +579,32 @@ public class GammaXiangqiTest {
 		assertEquals(OK,game.makeMove(c15, c25));
 		assertEquals(OK,game.makeMove(c15, c95));
 	}
+		
+	@Test //41
+	public void soldierCanMoveForwardInDistanceOfOne(){
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c41, c51));
+	}
 	
+	@Test //42
+	public void soldierCanNotMoveDiagonally(){
+		assertEquals(ILLEGAL,game.makeMove(c41, c52));
+	}
+	
+	@Test //43
+	public void soldierCanNotMoveHorizontalInOurSide(){
+		assertEquals(ILLEGAL,game.makeMove(c41, c42));
+		assertEquals(OK,game.makeMove(c41, c51));
+		assertEquals(ILLEGAL,game.makeMove(c43, c44));		
+	}
+	
+	@Test //44
+	public void soldierCanMoveHorizontallyInOpponentSide(){
+		assertEquals(OK,game.makeMove(c41, c51));
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c51, c61));
+		assertEquals(OK,game.makeMove(c55, c65));
+		assertEquals(OK,game.makeMove(c61, c62));
+		assertEquals(OK,game.makeMove(c65, c66));
+	}
 }

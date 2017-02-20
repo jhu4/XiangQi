@@ -13,6 +13,20 @@ public class SoldierRule extends XiangqiPieceRule{
 
 	@Override
 	protected boolean testSpecificRule(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest) {
-		return calculateDistance(source, dest)==1;
+		if(isOverRiver(board,source)){
+			return calculateDistance(source, dest)==1;
+		}
+		return calculateDistance(source, dest)==1 && source.getFile()==dest.getFile();
+	}
+	
+	private boolean versionRule(){
+		if(version==XiangqiGameVersion.GAMMA_XQ){
+			
+		}
+		return true;
+	}
+	
+	private boolean isOverRiver(XiangqiBoard board, XiangqiCoordinate source){
+		return source.getRank()>=board.getRiverBound();
 	}
 }

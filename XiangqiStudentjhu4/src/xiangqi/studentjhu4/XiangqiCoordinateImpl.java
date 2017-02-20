@@ -51,8 +51,8 @@ public class XiangqiCoordinateImpl implements XiangqiCoordinate{
 		return Math.abs(file-c.getFile())==1 && Math.abs(rank-c.getRank())==1;
 	}
 
-	public boolean isForward(XiangqiCoordinateImpl c) {
-		return c.getRank()-rank>0;
+	public boolean isNotBackward(XiangqiCoordinateImpl c) {
+		return c.getRank()-rank>=0;
 	}
 
 	public int distanceTo(XiangqiCoordinateImpl c){

@@ -13,6 +13,7 @@ public abstract class XiangqiBoard{
 	protected XiangqiPiece[][] board;
 	protected int ranks;
 	protected int files;
+	protected int river;
 	protected HashMap<Integer,XiangqiPiece> redpieces;
 	protected HashMap<Integer,XiangqiPiece> blackpieces;
 	protected XiangqiCoordinateImpl redGeneralLocation;
@@ -46,6 +47,14 @@ public abstract class XiangqiBoard{
 	 */
 	public XiangqiColor getBoardColor(){
 		return boardColor;
+	}
+	
+	/**
+	 * Get the boundary representing crossing the river
+	 * @return boundary of the river
+	 */
+	public int getRiverBound(){
+		return river;
 	}
 	
 	/**

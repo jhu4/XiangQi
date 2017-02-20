@@ -13,13 +13,9 @@ public class CoordinateValidatorFactory {
 	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> orthogonalValidator = 
 			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isOrthogonal(c2);
 	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> diagonalValidator = 
-			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isDiagonal(c2);
-			
-	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> sameFileValidator = 
-			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isSameFile(c2);
-			
-	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> forwardValidator = 
-			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isForward(c2);
+			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isDiagonal(c2);		
+	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> notBackwardValidator = 
+			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isNotBackward(c2);
 			
 	public static List<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> makeValidators(XiangqiPieceType type)
 	{
@@ -30,8 +26,7 @@ public class CoordinateValidatorFactory {
 				validators.add(orthogonalValidator);
 				break;
 			case "Soldier":
-				validators.add(sameFileValidator);
-				validators.add(forwardValidator);
+				validators.add(notBackwardValidator);
 				break;
 			case "Advisor":
 				validators.add(diagonalValidator);
