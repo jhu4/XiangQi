@@ -43,15 +43,17 @@ public class GammaXiangqiGame implements XiangqiGame{
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate dest) {
 		MoveResult result;
 		XiangqiColor boardColor=board.getBoardColor();
-		XiangqiColor enemyColor=board.getBoardColor()==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
+		XiangqiColor enemyColor=boardColor==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
 		if(isValidMove(source,dest,board.getBoardColor())){
 			movement.push(new XiangqiMove(board,source,dest));
 			//update the board state
 			board.updatePiecesList(source, dest);
+			//here alters the board color
 			board.makeMove(source,dest);
 			//reverse the board state if it is illegal
-			if(this.isGeneralUnderAttack(boardColor)){
+			if(isGeneralUnderAttack(boardColor)){
 				board.reverseMove(movement.pop());
+				updateLastMoveResult(MoveResult.ILLEGAL);
 				return MoveResult.ILLEGAL;
 			}
 			moveCounter++;
@@ -69,8 +71,7 @@ public class GammaXiangqiGame implements XiangqiGame{
 
 	@Override
 	public String getMoveMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return lastMoveResult==MoveResult.ILLEGAL?"ILLEGAL MOVE":null;
 	}
 
 	@Override
@@ -89,7 +90,34 @@ public class GammaXiangqiGame implements XiangqiGame{
 		}
 	}
 	
-	private boolean isCheckmate(XiangqiColor aspect){
+	private boolean isCheckmate(XiangqiColor color){
+		return isGeneralUnderAttack(color) 
+				&& !canAnyPiecesSolveCheck(color);
+	}
+	
+	private boolean canAnyPiecesSolveCheck(XiangqiColor color){
+		XiangqiCoordinate futureCoordinate;
+		HashMap<Integer,XiangqiPiece> copy=new HashMap<Integer,XiangqiPiece>(board.getPieces(color));
+		Collection<Integer> mypiecesLocation=copy.keySet();
+		for(Integer key: mypiecesLocation){
+			XiangqiCoordinate loca=makeCoordinate((key-key%100)/100,key%100);
+			for(int rank=1;rank<board.getExclusiveRankBound();rank++){
+				for(int file=1;file<board.getExclusiveFileBound();file++){
+					futureCoordinate=makeCoordinate(rank,file);
+					if(isValidMove(loca,futureCoordinate,color)){
+						movement.push(new XiangqiMove(board,loca,futureCoordinate));
+						board.updatePiecesList(loca,futureCoordinate);
+						board.makeMove(loca,futureCoordinate);
+						//reverse the board state if it is illegal
+						if(!isGeneralUnderAttack(color)){
+							board.reverseMove(movement.pop());
+							return true;
+						}
+						board.reverseMove(movement.pop());
+					}
+				}
+			}
+		}
 		return false;
 	}
 	

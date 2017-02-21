@@ -2,6 +2,7 @@ package xiangqi.studentjhu4;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static xiangqi.common.XiangqiColor.*;
 import static xiangqi.common.XiangqiPieceType.*;
 import static xiangqi.common.MoveResult.*;
@@ -662,4 +663,30 @@ public class GammaXiangqiTest {
 		assertEquals(ILLEGAL,game.makeMove(c11, c21));
 		assertEquals(OK,game.makeMove(c14, c25));
 	}
+	
+	
+	@Test //49
+	public void noIllegalMsgWithOKMove(){
+		assertEquals(OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(null,game.getMoveMessage());
+	}
+	
+	@Test //50
+	public void illegalMsgWithIllegalMove(){
+		assertEquals(ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,3)));
+		assertTrue(game.getMoveMessage().length()>=1);
+	}
+	
+	@Test //51
+	public void legalMsgWorkSeveralTimes(){
+		assertEquals(ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,3)));
+		assertEquals(OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
+		assertEquals(null,game.getMoveMessage());
+	}
+	
+//	@Test //49
+//	public void testCheckmate(){
+//		
+//	}
+	
 }
