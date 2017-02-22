@@ -35,7 +35,7 @@ public class GeneralRule extends XiangqiPieceRule{
 			default:
 				System.out.println("GeneralRule::versionRule default");
 		}
-		return false;
+		return true;
 	}
 	
 	private boolean isFlyingGeneralMove(XiangqiBoard board, XiangqiCoordinate dest){

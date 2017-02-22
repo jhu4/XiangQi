@@ -47,10 +47,6 @@ public class XiangqiCoordinateImpl implements XiangqiCoordinate{
 		return rank==c.getRank();
 	}
 	
-	public boolean isOneDiagonal(XiangqiCoordinateImpl c) {
-		return Math.abs(file-c.getFile())==1 && Math.abs(rank-c.getRank())==1;
-	}
-
 	public boolean isNotBackward(XiangqiCoordinateImpl c) {
 		return c.getRank()-rank>=0;
 	}

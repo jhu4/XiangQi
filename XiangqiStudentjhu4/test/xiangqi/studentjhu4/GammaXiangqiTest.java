@@ -743,4 +743,15 @@ public class GammaXiangqiTest {
 		assertEquals(BLACK_WINS,game.makeMove(c69, c65));//black
 	}
 	
+	@Test //54
+	public void testMoveResultDraw(){
+		for(int i=0;i<12;i++){
+			assertEquals(OK,game.makeMove(c11, c21));
+			assertEquals(OK,game.makeMove(c11, c21));
+			assertEquals(OK,game.makeMove(c21, c11));
+			assertEquals(OK,game.makeMove(c21, c11));
+		}
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(DRAW,game.makeMove(c11, c21));
+	}
 }

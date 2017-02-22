@@ -22,7 +22,7 @@ public class AdvisorRule extends XiangqiPieceRule{
 				return destFileBoundaryRule(4,6,dest)
 						&& destRankBoundaryRule(1,3,dest);
 			default:
-				System.out.println("GeneralRule::versionRule default");
+//				System.out.println("AdvisorRule::versionRule default");
 		}
 		return true;
 	}
