@@ -82,36 +82,9 @@ public class BetaXiangqiGame implements XiangqiGame {
 		}
 	}
 	
-	private boolean isValidMockMove(XiangqiCoordinate source, XiangqiCoordinate dest, XiangqiColor aspect){
-		XiangqiPiece pc=getPieceAt(source,aspect);
-		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
-		if(rule.mockTest(board, source, dest)){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
-	
 	private void updateLastMoveResult(MoveResult mr){
 		this.lastMoveResult=mr;
 	}
 	
-	
-	private boolean isGeneralUnderAttack(XiangqiColor aspect){
-		XiangqiColor enemyColor=aspect==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
-		XiangqiCoordinate generalLocationInEnemyAspect=
-				board.convertCoordinateToOtherColor(board.getGeneralLocation(aspect));
-		Collection<Integer> enemysLocation=board.getPieces(enemyColor).keySet();
-		for(Integer key: enemysLocation){
-			XiangqiCoordinate loca=makeCoordinate((key-key%100)/100,key%100);
-			if(isValidMockMove(loca,generalLocationInEnemyAspect,enemyColor))
-				return true;
-		} 
-		return false; 
-	}
-	
-	private boolean isCheckmate(XiangqiColor aspect){
-		return isGeneralUnderAttack(aspect);
-	}
+
 }

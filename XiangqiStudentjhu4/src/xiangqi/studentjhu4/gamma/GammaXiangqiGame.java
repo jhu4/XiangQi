@@ -123,26 +123,20 @@ public class GammaXiangqiGame implements XiangqiGame{
 	
 	private boolean isGeneralUnderAttack(XiangqiColor aspect){
 		XiangqiColor enemyColor=aspect==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
-		XiangqiCoordinate generalLocationInEnemyAspect=
-				board.convertCoordinateToOtherColor(board.getGeneralLocation(aspect));
+		XiangqiCoordinate thisGeneralLocationInEnemyAspect=board.convertCoordinateToOtherColor(board.getGeneralLocation(aspect));
 		Collection<Integer> enemysLocation=board.getPieces(enemyColor).keySet();
 		for(Integer key: enemysLocation){
 			XiangqiCoordinate loca=makeCoordinate((key-key%100)/100,key%100);
-			if(enemyColor!=board.getBoardColor()){
-				loca=board.convertCoordinateToOtherColor(loca);
-			}
-			if(isValidMockMove(loca,generalLocationInEnemyAspect,board.getBoardColor()))
+			if(isValidMockMove(loca,thisGeneralLocationInEnemyAspect,enemyColor))
 				return true;
-//			if(isValidMockMove(loca,generalLocationInEnemyAspect,enemyColor))
-//				return true;
-		} 
+		}
 		return false; 
 	}
 	
-	private boolean isValidMockMove(XiangqiCoordinate source, XiangqiCoordinate dest, XiangqiColor aspect){
-		XiangqiPiece pc=getPieceAt(source,aspect);
+	private boolean isValidMockMove(XiangqiCoordinate source, XiangqiCoordinate dest, XiangqiColor enemyAspect){
+		XiangqiPiece pc=getPieceAt(source,enemyAspect);
 		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
-		if(rule.mockTest(board, source, dest)){
+		if(rule.mockTest(board,source, dest,enemyAspect)){
 			return true;
 		}
 		else{
