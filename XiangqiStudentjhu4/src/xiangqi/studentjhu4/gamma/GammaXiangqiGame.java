@@ -128,8 +128,13 @@ public class GammaXiangqiGame implements XiangqiGame{
 		Collection<Integer> enemysLocation=board.getPieces(enemyColor).keySet();
 		for(Integer key: enemysLocation){
 			XiangqiCoordinate loca=makeCoordinate((key-key%100)/100,key%100);
-			if(isValidMockMove(loca,generalLocationInEnemyAspect,enemyColor))
+			if(enemyColor!=board.getBoardColor()){
+				loca=board.convertCoordinateToOtherColor(loca);
+			}
+			if(isValidMockMove(loca,generalLocationInEnemyAspect,board.getBoardColor()))
 				return true;
+//			if(isValidMockMove(loca,generalLocationInEnemyAspect,enemyColor))
+//				return true;
 		} 
 		return false; 
 	}

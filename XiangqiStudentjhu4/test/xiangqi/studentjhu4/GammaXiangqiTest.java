@@ -682,11 +682,65 @@ public class GammaXiangqiTest {
 		assertEquals(ILLEGAL,game.makeMove(makeCoordinate(1,1),makeCoordinate(1,3)));
 		assertEquals(OK,game.makeMove(makeCoordinate(1,1),makeCoordinate(2,1)));
 		assertEquals(null,game.getMoveMessage());
+		assertEquals(ILLEGAL,game.makeMove(c45, c44));
+		assertTrue(game.getMoveMessage().length()>=5);
 	}
 	
-//	@Test //49
-//	public void testCheckmate(){
-//		
-//	}
+	@Test //52
+	public void testRedWins(){
+		assertEquals(OK,game.makeMove(c11, c21));//red
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c21, c24));//red
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c24, c104));//red
+		assertEquals(ILLEGAL,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c15, c25));
+		assertEquals(OK,game.makeMove(c19, c29));//red
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c29, c26));//red
+		assertEquals(OK,game.makeMove(c55, c65));
+		assertEquals(OK,game.makeMove(c26, c106));//red
+		assertEquals(OK,game.makeMove(c41, c51));
+		assertEquals(OK,game.makeMove(c45, c55));//red
+		assertEquals(OK,game.makeMove(c17, c39));
+		assertEquals(OK,game.makeMove(c55, c65));//red
+		assertEquals(OK,game.makeMove(c49, c59));
+		assertEquals(OK,game.makeMove(c65, c75));//red
+		assertEquals(OK,game.makeMove(c13, c31));
+		assertEquals(RED_WINS,game.makeMove(c75, c85));//red
+		assertEquals(redSoldier,game.getPieceAt(c85, RED));
+		assertEquals(blackGeneral,game.getPieceAt(c95, RED));
+		assertEquals(redChariot,game.getPieceAt(c104, RED));
+		assertEquals(redChariot,game.getPieceAt(c14, BLACK));
+		assertEquals(noPiece,game.getPieceAt(c15, BLACK));
+		assertEquals(noPiece,game.getPieceAt(c24, BLACK));
+		assertEquals(noPiece,game.getPieceAt(c26, BLACK));
+		assertEquals(noPiece,game.getPieceAt(c34, BLACK));
+		assertEquals(noPiece,game.getPieceAt(c36, BLACK));
+	}
+	
+	@Test //53
+	public void testBlackWin(){
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c11, c21));//black
+		assertEquals(OK,game.makeMove(c41, c51));
+		assertEquals(OK,game.makeMove(c21, c24));//black
+		assertEquals(OK,game.makeMove(c55, c65));
+		assertEquals(OK,game.makeMove(c24, c104));//black
+		assertEquals(OK,game.makeMove(c15, c25));
+		assertEquals(OK,game.makeMove(c104, c103));//black
+		assertEquals(OK,game.makeMove(c51, c61));
+		assertEquals(OK,game.makeMove(c103, c106));//black
+		assertEquals(OK,game.makeMove(c61, c71));
+		assertEquals(OK,game.makeMove(c19, c49));//black
+		assertEquals(OK,game.makeMove(c25, c35));
+		assertEquals(OK,game.makeMove(c14, c25));//black
+		assertEquals(OK,game.makeMove(c47, c57));
+		assertEquals(OK,game.makeMove(c15, c14));//black
+		assertEquals(OK,game.makeMove(c49, c59));
+		assertEquals(OK,game.makeMove(c49, c69));//black
+		assertEquals(OK,game.makeMove(c57, c67));
+		assertEquals(BLACK_WINS,game.makeMove(c69, c65));//black
+	}
 	
 }
