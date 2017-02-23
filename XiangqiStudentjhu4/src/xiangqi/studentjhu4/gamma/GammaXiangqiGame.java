@@ -80,7 +80,13 @@ public class GammaXiangqiGame implements XiangqiGame{
 	}
 	
 	private boolean isValidMove(XiangqiCoordinate source, XiangqiCoordinate dest, XiangqiColor aspect){
-		XiangqiPiece pc=getPieceAt(source,aspect);
+		XiangqiPiece pc;
+		try{
+			pc=getPieceAt(source,aspect);
+		}
+		catch(Exception e){
+			return false;
+		}
 		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
 		if(rule.test(board, source, dest)){
 			return true;
