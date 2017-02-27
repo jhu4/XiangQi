@@ -15,6 +15,7 @@ package xiangqi;
 import xiangqi.common.*;
 import xiangqi.studentjhu4.alpha.AlphaXiangqiGame;
 import xiangqi.studentjhu4.beta.BetaXiangqiGame;
+import xiangqi.studentjhu4.delta.DeltaXiangqiGame;
 import xiangqi.studentjhu4.gamma.GammaXiangqiGame;
 
 /**
@@ -37,6 +38,8 @@ public class XiangqiGameFactory
 				return new BetaXiangqiGame();
 			case GAMMA_XQ:
 				return new GammaXiangqiGame();
+			case DELTA_XQ:
+				return new DeltaXiangqiGame();
 			default:
 				System.out.println("XiangqiGameFactory::makeXiangqiGame Default");
 				return null;

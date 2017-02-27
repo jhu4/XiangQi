@@ -1,21 +1,16 @@
 package xiangqi.studentjhu4.beta;
 
-import java.util.Collection;
 import java.util.HashMap;
 import xiangqi.common.MoveResult;
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiCoordinate;
-import xiangqi.common.XiangqiGame;
 import xiangqi.common.XiangqiGameVersion;
 import xiangqi.common.XiangqiPiece;
 import xiangqi.common.XiangqiPieceType;
-import xiangqi.studentjhu4.XiangqiBoard;
 import xiangqi.studentjhu4.XiangqiBoardFactory;
 import xiangqi.studentjhu4.XiangqiGameImpl;
 import xiangqi.studentjhu4.xiangqiPieceRule.XiangqiPieceRule;
 import xiangqi.studentjhu4.xiangqiPieceRule.XiangqiPieceRuleFactory;
-
-import static xiangqi.studentjhu4.XiangqiCoordinateImpl.makeCoordinate;
 
 public class BetaXiangqiGame extends XiangqiGameImpl {
 	
