@@ -11,20 +11,16 @@ import xiangqi.common.XiangqiPiece;
 import xiangqi.common.XiangqiPieceType;
 import xiangqi.studentjhu4.XiangqiBoard;
 import xiangqi.studentjhu4.XiangqiBoardFactory;
+import xiangqi.studentjhu4.XiangqiGameImpl;
 import xiangqi.studentjhu4.xiangqiPieceRule.XiangqiPieceRule;
 import xiangqi.studentjhu4.xiangqiPieceRule.XiangqiPieceRuleFactory;
 
 import static xiangqi.studentjhu4.XiangqiCoordinateImpl.makeCoordinate;
 
-public class BetaXiangqiGame implements XiangqiGame {
-	private XiangqiBoard board;
-	HashMap<String,XiangqiPieceRule> rulemap;
-	int moveCounter=0;
-	final int MoveBound=20;
-	MoveResult lastMoveResult;
-	
+public class BetaXiangqiGame extends XiangqiGameImpl {
 	
 	public BetaXiangqiGame(){
+		moveBound=20;
 		board=XiangqiBoardFactory.makeXiangqiBoard(XiangqiGameVersion.BETA_XQ);
 		rulemap=new  HashMap<String,XiangqiPieceRule>();
 		rulemap.put("",XiangqiPieceRuleFactory.makeXiangqiPieceRule(XiangqiPieceType.NONE,XiangqiGameVersion.BETA_XQ));
@@ -37,8 +33,6 @@ public class BetaXiangqiGame implements XiangqiGame {
 	@Override
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate dest){
 		MoveResult result;
-		XiangqiColor boardColor=board.getBoardColor();
-		XiangqiColor enemyColor=board.getBoardColor()==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
 		if(isValidMove(source,dest,board.getBoardColor())){
 			XiangqiPiece pc=board.getPieceAt(source,board.getBoardColor());
 			if(pc.getPieceType()==XiangqiPieceType.GENERAL){
@@ -49,10 +43,7 @@ public class BetaXiangqiGame implements XiangqiGame {
 			}
 			board.makeMove(source,dest);
 			moveCounter++;
-			result=(moveCounter>=MoveBound)?MoveResult.DRAW:MoveResult.OK;
-//			if(isCheckmate(enemyColor)){
-//				result=boardColor==XiangqiColor.RED?MoveResult.RED_WINS:MoveResult.BLACK_WINS;
-//			} 
+			result=(moveCounter>=moveBound)?MoveResult.DRAW:MoveResult.OK;
 		}
 		else{
 			result=MoveResult.ILLEGAL;
@@ -70,8 +61,9 @@ public class BetaXiangqiGame implements XiangqiGame {
 	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
 		return board.getPieceAt(where, aspect);
 	}
-		
-	private boolean isValidMove(XiangqiCoordinate source, XiangqiCoordinate dest, XiangqiColor aspect){
+	
+	@Override
+	protected boolean isValidMove(XiangqiCoordinate source, XiangqiCoordinate dest, XiangqiColor aspect){
 		XiangqiPiece pc=getPieceAt(source,aspect);
 		XiangqiPieceRule rule=rulemap.get(pc.getPieceType().getPrintableName());
 		if(rule.test(board, source, dest)){
@@ -81,10 +73,4 @@ public class BetaXiangqiGame implements XiangqiGame {
 			return false;
 		}
 	}
-	
-	private void updateLastMoveResult(MoveResult mr){
-		this.lastMoveResult=mr;
-	}
-	
-
 }
