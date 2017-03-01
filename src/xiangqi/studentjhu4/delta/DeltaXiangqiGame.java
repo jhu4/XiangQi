@@ -33,6 +33,16 @@ public class DeltaXiangqiGame extends XiangqiGameImpl{
 	}
 	
 	@Override
+	protected void updateChecker(XiangqiColor aspect, XiangqiMove move){
+		if(aspect==XiangqiColor.RED){
+			redchecker.update(move);
+		}
+		else{
+			blackchecker.update(move);
+		}
+	}
+	
+	@Override
 	protected boolean isRepetitiveMove(XiangqiMove move){
 		if(board.getBoardColor()==XiangqiColor.RED){
 			return redchecker.isRepetitionMove(move);

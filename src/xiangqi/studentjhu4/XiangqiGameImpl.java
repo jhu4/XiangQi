@@ -43,6 +43,7 @@ public class XiangqiGameImpl implements XiangqiGame{
 				updateLastMoveResult(MoveResult.ILLEGAL);
 				return MoveResult.ILLEGAL;
 			}
+			updateChecker(boardColor,newMove);
 			moveCounter++;
 			result=(moveCounter>=moveBound)?MoveResult.DRAW:MoveResult.OK;
 			if(isCheckmate(enemyColor)){
@@ -81,6 +82,10 @@ public class XiangqiGameImpl implements XiangqiGame{
 		else{
 			return false;
 		}
+	}
+	
+	protected void updateChecker(XiangqiColor aspect, XiangqiMove move){
+		//doing nothing
 	}
 	
 	protected boolean isRepetitiveMove(XiangqiMove move){

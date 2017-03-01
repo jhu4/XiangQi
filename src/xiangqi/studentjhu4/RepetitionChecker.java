@@ -33,8 +33,15 @@ public class RepetitionChecker {
 				return true;
 			}
 		}
-		moveHashes.add(newest);
 		return false;
+	}
+	
+	/**
+	 * Update the check with a move
+	 * @param move XiangqiMove that a player made
+	 */
+	public void update(XiangqiMove move) {
+		moveHashes.add(hashMoveToString(move));
 	}
 	
 	private String hashMoveToString(XiangqiMove move){
