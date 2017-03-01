@@ -900,5 +900,24 @@ private XiangqiGame game;
 		assertEquals(ILLEGAL,game.makeMove(c31, c52));
 	}
 	
-	
+	//67
+	@Test
+	public void testHorseCanCaptureEnemy(){
+		assertEquals(OK,game.makeMove(c12, c33));
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c33, c25));
+		assertEquals(OK,game.makeMove(c55, c65));
+		assertEquals(OK,game.makeMove(c25, c37));
+		assertEquals(OK,game.makeMove(c65, c75));
+		assertEquals(OK,game.makeMove(c37, c45));
+		assertEquals(OK,game.makeMove(c43, c53));
+		assertEquals(OK,game.makeMove(c32, c35));
+		assertEquals(ILLEGAL,game.makeMove(c41, c51));
+		assertEquals(OK,game.makeMove(c14, c25));
+		assertEquals(OK,game.makeMove(c45, c64));
+		assertEquals(ILLEGAL,game.makeMove(c51, c61));
+		assertEquals(OK,game.makeMove(c25, c14));
+		assertEquals(OK,game.makeMove(c64, c83));
+		assertEquals(OK,game.makeMove(c18, c37));
+	}
 }
