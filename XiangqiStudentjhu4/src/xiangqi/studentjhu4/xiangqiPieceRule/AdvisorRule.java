@@ -19,6 +19,7 @@ public class AdvisorRule extends XiangqiPieceRule{
 	protected boolean versionRule(XiangqiCoordinate dest){
 		switch (version){
 			case GAMMA_XQ:
+			case DELTA_XQ:
 				return destFileBoundaryRule(4,6,dest)
 						&& destRankBoundaryRule(1,3,dest);
 			default:

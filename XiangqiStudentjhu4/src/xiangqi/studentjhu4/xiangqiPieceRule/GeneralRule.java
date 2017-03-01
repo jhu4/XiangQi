@@ -30,6 +30,7 @@ public class GeneralRule extends XiangqiPieceRule{
 				return destFileBoundaryRule(2,4,dest)
 						&& destRankBoundaryRule(1,1,dest);
 			case GAMMA_XQ:
+			case DELTA_XQ:
 				return destRankBoundaryRule(1,3,dest)
 							&& destFileBoundaryRule(4,6,dest);
 			default:
