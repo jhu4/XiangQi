@@ -27,7 +27,12 @@ public class XiangqiGameImpl implements XiangqiGame{
 		XiangqiColor boardColor=board.getBoardColor();
 		XiangqiColor enemyColor=boardColor==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
 		if(isValidMove(source,dest,board.getBoardColor())){
-			movement.push(new XiangqiMove(board,source,dest));
+			XiangqiMove newMove=new XiangqiMove(board,source,dest);
+			//check repetition moves
+			if(isRepetitiveMove(newMove)){
+				return boardColor==XiangqiColor.RED?MoveResult.BLACK_WINS:MoveResult.RED_WINS;
+			}
+			movement.push(newMove);
 			//update the board state
 			board.updatePiecesList(source, dest);
 			//here alters the board color
@@ -76,6 +81,10 @@ public class XiangqiGameImpl implements XiangqiGame{
 		else{
 			return false;
 		}
+	}
+	
+	protected boolean isRepetitiveMove(XiangqiMove move){
+		return false;
 	}
 	
 	protected boolean isCheckmate(XiangqiColor color){

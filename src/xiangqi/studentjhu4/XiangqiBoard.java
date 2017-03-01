@@ -19,6 +19,7 @@ public abstract class XiangqiBoard{
 	protected XiangqiCoordinateImpl redGeneralLocation;
 	protected XiangqiCoordinateImpl blackGeneralLocation;
 	protected XiangqiColor boardColor=XiangqiColor.RED;
+	
 	/**
 	 * Method used for querying the board.
 	 * @param where the coordinate to access
