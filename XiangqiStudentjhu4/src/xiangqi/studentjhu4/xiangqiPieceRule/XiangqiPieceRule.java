@@ -41,7 +41,7 @@ public abstract class XiangqiPieceRule {
 	 * @param dest The destination coordinate on the board
 	 * @return true if the move is valid, false otherwise
 	 */
-	public boolean mockTest(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest,XiangqiColor enemyAspect){
+	public boolean virtualTest(XiangqiBoard board, XiangqiCoordinate source, XiangqiCoordinate dest,XiangqiColor enemyAspect){
 		XiangqiCoordinate src=board.getBoardColor()==enemyAspect?source:board.convertCoordinateToOtherColor(source);
 		XiangqiCoordinate des=board.getBoardColor()==enemyAspect?dest:board.convertCoordinateToOtherColor(dest);
 		return testDestNotOutOfBoundRule(board,source,dest)
