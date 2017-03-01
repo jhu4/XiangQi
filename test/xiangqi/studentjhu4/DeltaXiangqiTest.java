@@ -446,6 +446,18 @@ private XiangqiGame game;
 		assertEquals(OK,game.makeMove(c31, c21));
 	}
 	
+	//24.5
+	@Test 
+	public void pieceCannotStayAtSameLocation(){
+		assertEquals(ILLEGAL,game.makeMove(c11, c11));
+		assertEquals(ILLEGAL,game.makeMove(c12, c12));
+		assertEquals(ILLEGAL,game.makeMove(c13, c13));
+		assertEquals(ILLEGAL,game.makeMove(c14, c14));
+		assertEquals(ILLEGAL,game.makeMove(c15, c15));
+		assertEquals(ILLEGAL,game.makeMove(c32, c32));
+		assertEquals(ILLEGAL,game.makeMove(c41, c41));
+	}
+	
 	@Test //25
 	public void chariotCanMoveHorizontally(){
 		assertEquals(OK,game.makeMove(c11, c21));
@@ -802,11 +814,57 @@ private XiangqiGame game;
 		
 	}
 	
-//	//56
-//	@Test
-//	public void testCannonCanMoveOrthogonally(){
-//		assertEquals(OK,game.makeMove(c32, c43));
-//		assertEquals(OK,game.makeMove(c32, c35));
-//	}
-
+	//56
+	@Test
+	public void testCannonCanNotEatSameColor(){
+		assertEquals(ILLEGAL,game.makeMove(c32, c38));
+	}
+	
+	//57
+	public void testCannonCanNotMoveDiagonally(){
+		assertEquals(ILLEGAL,game.makeMove(c32,c21));
+	}
+	
+	//58
+	@Test
+	public void testCannonCanMoveOrthogonally(){
+		assertEquals(OK,game.makeMove(c32, c42));
+		assertEquals(OK,game.makeMove(c32, c37));
+	}
+	
+	//59
+	@Test
+	public void testCannonCanJumpOverOnePieceToAttak(){
+		assertEquals(OK,game.makeMove(c32, c102));
+		assertEquals(OK,game.makeMove(c32, c102));
+	}
+	
+	//60
+	@Test
+	public void testCannonCanNotJumperOverMoreThanOnePieceToAttack(){
+		assertEquals(OK,game.makeMove(c32, c72));
+		assertEquals(OK,game.makeMove(c32, c102));
+		assertEquals(ILLEGAL,game.makeMove(c72, c77));
+		assertEquals(ILLEGAL,game.makeMove(c72, c79));
+	}
+	
+	//61
+	@Test
+	public void testCannonCanNotJumpWhenOnlyMoving(){
+		assertEquals(OK,game.makeMove(c32, c72));
+		assertEquals(OK,game.makeMove(c32, c102));
+		assertEquals(ILLEGAL,game.makeMove(c72, c74));
+		assertEquals(ILLEGAL,game.makeMove(c72, c76));
+		assertEquals(ILLEGAL,game.makeMove(c72, c78));
+	}
+	
+	//62
+	@Test
+	public void testCannonCanNotAttackIfNotJumping(){
+		assertEquals(OK,game.makeMove(c32, c72));
+		assertEquals(OK,game.makeMove(c32, c72));
+		assertEquals(ILLEGAL,game.makeMove(c72, c73));
+		assertEquals(ILLEGAL,game.makeMove(c72, c71));
+	}
+	
 }

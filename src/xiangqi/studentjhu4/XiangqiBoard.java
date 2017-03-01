@@ -89,7 +89,11 @@ public abstract class XiangqiBoard{
 		board[dest.getRank()][dest.getFile()]=move.destPiece;
 	}
 	
-	
+	/**
+	 * Update the pieces information on board
+	 * @param source Move from
+	 * @param dest Move to
+	 */
 	public void updatePiecesList(XiangqiCoordinate source, XiangqiCoordinate dest){
 		XiangqiPiece pc= getPieceAt(source,getBoardColor());
 		if(pc.getPieceType()==XiangqiPieceType.GENERAL){
@@ -98,10 +102,6 @@ public abstract class XiangqiBoard{
 		updatePiecesLocations(source, dest);
 	}
 	
-	/**
-	 * Update the general location
-	 * @param newlocation the new location
-	 */
 	protected void updateGeneralLocation(XiangqiCoordinate newlocation){
 		if(boardColor==XiangqiColor.RED){
 			redGeneralLocation=makeCoordinate(newlocation.getRank(),newlocation.getFile());
@@ -111,11 +111,6 @@ public abstract class XiangqiBoard{
 		}
 	}
 	
-	/**
-	 * Update the pieces with new coordinate
-	 * @param source old coordinate
-	 * @param dest new coordinate
-	 */
 	protected void updatePiecesLocations(XiangqiCoordinate source, XiangqiCoordinate dest){
 		XiangqiPiece updatepc;
 		if(boardColor==XiangqiColor.RED){

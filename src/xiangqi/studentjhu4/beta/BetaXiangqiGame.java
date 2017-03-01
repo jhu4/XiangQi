@@ -29,7 +29,6 @@ public class BetaXiangqiGame extends XiangqiGameImpl {
 	public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate dest){
 		MoveResult result;
 		if(isValidMove(source,dest,board.getBoardColor())){
-			XiangqiPiece pc=board.getPieceAt(source,board.getBoardColor());
 			board.updatePiecesList(source, dest);
 			board.makeMove(source,dest);
 			moveCounter++;
