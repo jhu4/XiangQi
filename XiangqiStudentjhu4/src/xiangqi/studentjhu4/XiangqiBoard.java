@@ -102,7 +102,7 @@ public abstract class XiangqiBoard{
 	 * Update the general location
 	 * @param newlocation the new location
 	 */
-	public void updateGeneralLocation(XiangqiCoordinate newlocation){
+	protected void updateGeneralLocation(XiangqiCoordinate newlocation){
 		if(boardColor==XiangqiColor.RED){
 			redGeneralLocation=makeCoordinate(newlocation.getRank(),newlocation.getFile());
 		}
@@ -116,7 +116,7 @@ public abstract class XiangqiBoard{
 	 * @param source old coordinate
 	 * @param dest new coordinate
 	 */
-	public void updatePiecesLocations(XiangqiCoordinate source, XiangqiCoordinate dest){
+	protected void updatePiecesLocations(XiangqiCoordinate source, XiangqiCoordinate dest){
 		XiangqiPiece updatepc;
 		if(boardColor==XiangqiColor.RED){
 			//if there is a black piece on the destination coordinate, remove it from the black list
@@ -241,20 +241,6 @@ public abstract class XiangqiBoard{
 		}
 		else{
 			return convertCoordinateToOtherColor(redGeneralLocation);
-		}
-	}
-	
-	/**
-	 * Count the number of pieces on the board in a color
-	 * @param color The color of the pieces
-	 * @return the number of the pieces
-	 */
-	public int piecesLeft(XiangqiColor color){
-		if(color==XiangqiColor.RED){
-			return redpieces.size();
-		}
-		else{
-			return blackpieces.size();
 		}
 	}
 	

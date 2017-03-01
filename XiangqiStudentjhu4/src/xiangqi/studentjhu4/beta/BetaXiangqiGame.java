@@ -30,12 +30,7 @@ public class BetaXiangqiGame extends XiangqiGameImpl {
 		MoveResult result;
 		if(isValidMove(source,dest,board.getBoardColor())){
 			XiangqiPiece pc=board.getPieceAt(source,board.getBoardColor());
-			if(pc.getPieceType()==XiangqiPieceType.GENERAL){
-				board.updateGeneralLocation(dest);
-			}
-			else{
-				board.updatePiecesLocations(source, dest);
-			}
+			board.updatePiecesList(source, dest);
 			board.makeMove(source,dest);
 			moveCounter++;
 			result=(moveCounter>=moveBound)?MoveResult.DRAW:MoveResult.OK;
