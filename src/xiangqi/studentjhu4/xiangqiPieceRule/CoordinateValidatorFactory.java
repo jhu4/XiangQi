@@ -16,6 +16,10 @@ public class CoordinateValidatorFactory {
 			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isDiagonal(c2);		
 	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> notBackwardValidator = 
 			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> c1.isNotBackward(c2);
+	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> notOrthogonalValidator = 
+			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> !c1.isOrthogonal(c2);
+	private static BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl> notDiagonalValidator = 
+			(XiangqiCoordinateImpl c1, XiangqiCoordinateImpl c2) -> !c1.isDiagonal(c2);			
 			
 	public static List<BiPredicate<XiangqiCoordinateImpl, XiangqiCoordinateImpl>> makeValidators(XiangqiPieceType type)
 	{
@@ -39,6 +43,11 @@ public class CoordinateValidatorFactory {
 				break;
 			case "Cannon":
 				validators.add(orthogonalValidator);
+				break;
+			case "Horse":
+				validators.add(notOrthogonalValidator);
+				validators.add(notDiagonalValidator);
+				break;	
 			default:
 				//not yet implemented or None type
 				break;

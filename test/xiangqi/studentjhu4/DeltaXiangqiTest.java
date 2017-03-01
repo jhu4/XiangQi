@@ -867,4 +867,38 @@ private XiangqiGame game;
 		assertEquals(ILLEGAL,game.makeMove(c72, c71));
 	}
 	
+	//63
+	@Test
+	public void testHorseCannotMoveOrthogonally(){
+		assertEquals(OK,game.makeMove(c32, c52));
+		assertEquals(OK,game.makeMove(c38, c58));
+		assertEquals(ILLEGAL,game.makeMove(c12, c42));
+		assertEquals(ILLEGAL,game.makeMove(c18, c48));
+	}
+	
+	//64
+	@Test
+	public void testHorseCannotMoveDiagonally(){
+		assertEquals(ILLEGAL,game.makeMove(c12, c34));
+		assertEquals(ILLEGAL,game.makeMove(c18, c36));
+	}
+	
+	//65
+	@Test
+	public void testHorseCanMoveOneOrthogonalOneDiagonal(){
+		assertEquals(OK,game.makeMove(c12, c33));
+		assertEquals(OK,game.makeMove(c18, c39));
+	}
+	
+	//66
+	@Test
+	public void testHorseCannotJumpOverPieces(){
+		assertEquals(ILLEGAL,game.makeMove(c12, c24));
+		assertEquals(OK,game.makeMove(c12, c31));
+		assertEquals(ILLEGAL,game.makeMove(c18, c26));
+		assertEquals(OK,game.makeMove(c12, c31));
+		assertEquals(ILLEGAL,game.makeMove(c31, c52));
+	}
+	
+	
 }
