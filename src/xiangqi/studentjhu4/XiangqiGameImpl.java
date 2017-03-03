@@ -49,7 +49,12 @@ public class XiangqiGameImpl implements XiangqiGame{
 			result=(moveCounter>=moveBound)?MoveResult.DRAW:MoveResult.OK;
 			if(isCheckmate(enemyColor)){
 				result=boardColor==XiangqiColor.RED?MoveResult.RED_WINS:MoveResult.BLACK_WINS;
-			} 
+			}
+			else{//check stalemate
+				if(!canAnypieceMoveWithoutGeneralBeingChecked(enemyColor)){
+					result=boardColor==XiangqiColor.RED?MoveResult.RED_WINS:MoveResult.BLACK_WINS;
+				}
+			}
 		}
 		else{
 			result=MoveResult.ILLEGAL;
@@ -95,10 +100,10 @@ public class XiangqiGameImpl implements XiangqiGame{
 	
 	protected boolean isCheckmate(XiangqiColor color){
 		return isGeneralUnderAttack(color) 
-				&& !canAnyPiecesSolveCheck(color);
+				&& !canAnypieceMoveWithoutGeneralBeingChecked(color);
 	}
 	
-	protected boolean canAnyPiecesSolveCheck(XiangqiColor color){
+	protected boolean canAnypieceMoveWithoutGeneralBeingChecked(XiangqiColor color){
 		XiangqiCoordinate futureCoordinate;
 		HashMap<Integer,XiangqiPiece> copy=new HashMap<Integer,XiangqiPiece>(board.getPieces(color));
 		Collection<Integer> mypiecesLocation=copy.keySet();

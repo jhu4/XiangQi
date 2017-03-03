@@ -24,6 +24,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import xiangqi.XiangqiGameFactory;
+import xiangqi.common.MoveResult;
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiCoordinate;
 import xiangqi.common.XiangqiGame;
@@ -175,9 +176,19 @@ private XiangqiGame game;
 		return new TestPiece(pieceType, color);
 	}
 	
-	
-	
-	
+	private void makeValidMoves(XiangqiCoordinate ... c)
+	{
+		int i = 1;
+		while (i < c.length) {
+			MoveResult mr = game.makeMove(c[i-1], c[i]);
+			if (mr == ILLEGAL) {
+				System.out.println("From "+c[i-1].getRank()+c[i-1].getFile() + " to " +c[i].getRank()+c[i].getFile()+ " : " +game.getMoveMessage());
+				assertTrue(false);
+			}
+			assertEquals(OK, mr);
+			i += 2;
+		}
+	}
 	
 	@Before
 	public void setup(){
@@ -965,5 +976,44 @@ private XiangqiGame game;
 		assertEquals(OK,game.makeMove(c11, c21));
 		assertEquals(OK,game.makeMove(c21, c11));
 		assertEquals(BLACK_WINS,game.makeMove(c21, c11));
+	}
+	
+	//normal test cases to make sure I didn't forget to implement something
+	//71
+	@Test
+	public void testRedWin(){
+		makeValidMoves(c32,c102,c19,c39
+				,c38,c108,c11,c31
+				,c102,c104,c38,c33
+				,c104,c106,c17,c35
+				,c106,c86);
+		assertEquals(ILLEGAL,game.makeMove(c15, c14));
+		makeValidMoves(c15, c25
+				,c86,c88,c39,c19
+				,c108,c101,c31,c11
+				,c101,c109,c35,c57
+				,c49,c59,c13,c35
+				,c59,c69,c41,c51
+				,c19,c69,c35,c53
+				,c69,c67,c57,c35
+				,c88,c85,c45,c55
+				,c67,c65,c43,c53
+				,c65,c67);
+		assertEquals(ILLEGAL,game.makeMove(c33, c39));
+		makeValidMoves(c25,c26
+				,c67,c87,c26,c16
+				,c85,c86,c47,c57
+				,c86,c106);
+		assertEquals(ILLEGAL,game.makeMove(c49, c59));
+		makeValidMoves(c16,c26
+				,c14,c25,c26,c25
+				,c15,c14,c49,c59
+				,c87,c97,c25,c35
+				,c45,c55,c59,c69
+				,c55,c65,c57,c67
+				,c65,c75,c35,c34
+				,c11,c31,c69,c79
+				,c31,c41,c67,c77);
+		assertEquals(RED_WINS,game.makeMove(c41,c43));
 	}
 }
