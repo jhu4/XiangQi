@@ -27,16 +27,17 @@ public class XiangqiGameImpl implements XiangqiGame{
 		XiangqiColor boardColor=board.getBoardColor();
 		XiangqiColor enemyColor=boardColor==XiangqiColor.RED?XiangqiColor.BLACK:XiangqiColor.RED;
 		if(isValidMove(source,dest,board.getBoardColor())){
-			XiangqiMove newMove=new XiangqiMove(board,source,dest);
-			//check repetition moves
-			if(isRepetitiveMove(newMove)){
-				return boardColor==XiangqiColor.RED?MoveResult.BLACK_WINS:MoveResult.RED_WINS;
-			}
-			movement.push(newMove);
+			//save a copy of the board state before the move
+			movement.push(new XiangqiMove(board,source,dest));
 			//update the board state
 			board.updatePiecesList(source, dest);
-			//here alters the board color
+			//here alters the board color and actually make a move
 			board.makeMove(source,dest);
+			XiangqiMove newMove=new XiangqiMove(board,source,dest);
+			//check repetition moves
+			if(isRepetitiveMove(newMove,boardColor)){
+				return boardColor==XiangqiColor.RED?MoveResult.BLACK_WINS:MoveResult.RED_WINS;
+			}
 			//reverse the board state if it is illegal
 			if(isGeneralUnderAttack(boardColor)){
 				board.reverseMove(movement.pop());
@@ -88,7 +89,7 @@ public class XiangqiGameImpl implements XiangqiGame{
 		//doing nothing
 	}
 	
-	protected boolean isRepetitiveMove(XiangqiMove move){
+	protected boolean isRepetitiveMove(XiangqiMove move, XiangqiColor aspect){
 		return false;
 	}
 	
