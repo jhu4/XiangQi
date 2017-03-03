@@ -938,7 +938,22 @@ private XiangqiGame game;
 		assertEquals(BLACK_WINS,game.makeMove(c11, c21));
 	}
 	
-	//69
+	//68
+	@Test
+	public void testRepetitionCheckingRedWin1(){
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c45, c55));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(RED_WINS,game.makeMove(c21, c11));
+	}
+	
+	//70
 	@Test
 	public void testRepetitionCheckingBlackWins2(){
 		assertEquals(OK,game.makeMove(c45, c55));

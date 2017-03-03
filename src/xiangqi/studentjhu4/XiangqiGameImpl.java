@@ -31,7 +31,7 @@ public class XiangqiGameImpl implements XiangqiGame{
 			movement.push(new XiangqiMove(board,source,dest));
 			//update the board state
 			board.updatePiecesList(source, dest);
-			//here alters the board color and actually make a move
+			//here alters the board color and actually make a move on the board
 			board.makeMove(source,dest);
 			XiangqiMove newMove=new XiangqiMove(board,source,dest);
 			//check repetition moves
