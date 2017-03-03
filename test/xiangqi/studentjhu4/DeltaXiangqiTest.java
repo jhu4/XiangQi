@@ -817,7 +817,9 @@ private XiangqiGame game;
 	//56
 	@Test
 	public void testCannonCanNotEatSameColor(){
-		assertEquals(ILLEGAL,game.makeMove(c32, c38));
+		assertEquals(OK,game.makeMove(c32, c42));
+		assertEquals(OK,game.makeMove(c32, c33));
+		assertEquals(ILLEGAL,game.makeMove(c42, c48));
 	}
 	
 	//57
@@ -888,6 +890,7 @@ private XiangqiGame game;
 	public void testHorseCanMoveOneOrthogonalOneDiagonal(){
 		assertEquals(OK,game.makeMove(c12, c33));
 		assertEquals(OK,game.makeMove(c18, c39));
+		assertEquals(OK,game.makeMove(c33, c25));
 	}
 	
 	//66
@@ -920,4 +923,34 @@ private XiangqiGame game;
 		assertEquals(OK,game.makeMove(c64, c83));
 		assertEquals(OK,game.makeMove(c18, c37));
 	}
+	
+	//68
+	@Test
+	public void testRepetitionCheckingBlackWinSimpleVersion(){
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(BLACK_WINS,game.makeMove(c11, c21));
+	}
+	
+	//69
+	@Test
+	public void testRepetitionCheckingRedWinSimpleVersion(){
+		assertEquals(OK,game.makeMove(c41, c51));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c11, c21));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(OK,game.makeMove(c21, c11));
+		assertEquals(RED_WINS,game.makeMove(c11, c21));
+	}
+	
 }

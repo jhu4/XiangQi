@@ -12,7 +12,7 @@ public class RepetitionChecker {
 	private int repetition;
 	public RepetitionChecker(int range, int repetition){
 		moveHashes=new ArrayList<String>();
-		this.checkrange=range;
+		this.checkrange=range-1;
 		this.repetition=repetition-1;
 	}
 	
@@ -24,8 +24,8 @@ public class RepetitionChecker {
 	public boolean isRepetitionMove(XiangqiMove move){
 		String newest=hashMoveToString(move);
 		int count=0;
-		int exclusiveLowerBound=(moveHashes.size()-checkrange)>0?(moveHashes.size()-checkrange):0;
-		for(int i=moveHashes.size()-1;i>exclusiveLowerBound;i--){
+		int inclusiveLowerBound=(moveHashes.size()-checkrange)>0?(moveHashes.size()-checkrange):0;
+		for(int i=moveHashes.size()-1;i>=inclusiveLowerBound;i--){
 			if(newest.equals(moveHashes.get(i))){
 				count++;
 			}
