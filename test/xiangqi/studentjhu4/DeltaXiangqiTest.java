@@ -1016,4 +1016,33 @@ private XiangqiGame game;
 				,c31,c41,c67,c77);
 		assertEquals(RED_WINS,game.makeMove(c41,c43));
 	}
+	
+	//72
+	@Test
+	public void testBlackWin2(){
+		makeValidMoves(c16,c25,c11,c21
+				,c15,c16,c38,c108
+				,c11,c21,c108,c106
+				,c21,c31,c19,c39
+				,c25,c36,c21,c24
+				,c17,c39,c106,c102
+				,c16,c15,c24,c84
+				,c19,c29,c32,c62
+				,c38,c48,c12,c33
+				,c29,c26,c43,c53
+				,c48,c38,c33,c54
+				,c45,c55,c54,c75
+				,c43,c53,c75,c94
+				,c47,c57,c94,c86
+				,c15,c25,c86,c107
+				,c25,c15,c62,c65
+				,c49,c59,c84,c85
+				,c15,c14,c39, c36);
+		assertEquals(ILLEGAL,game.makeMove(c31,c21));
+		makeValidMoves(c32,c34,c36,c86
+				,c31,c34,c107,c86
+				,c57,c67,c85,c95
+				,c67,c77);
+		assertEquals(BLACK_WINS,game.makeMove(c86,c98));
+	}
 }
