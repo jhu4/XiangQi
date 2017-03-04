@@ -31,6 +31,9 @@ public abstract class XiangqiBoard{
 	 *   XiangqiColor.NONE.
 	 */
 	public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
+		if (aspect==XiangqiColor.NONE){
+			return XiangqiPieceImpl.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
+		}
 		boolean validCoordinate=where.getFile()>0 && where.getFile()<files 
 										&&where.getRank()>0 && where.getRank()<ranks;								
 		if(!validCoordinate){

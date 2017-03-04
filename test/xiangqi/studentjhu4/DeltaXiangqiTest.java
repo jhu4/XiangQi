@@ -428,13 +428,14 @@ private XiangqiGame game;
 	}
 	
 	@Test //22
-	public void getPieceAtreturnNoneNone(){
+	public void getPieceAtReturnNoneNone(){
 		final XiangqiPiece p21r=game.getPieceAt(c21, RED);
 		final XiangqiPiece p55b=game.getPieceAt(c55, BLACK);
 		assertEquals(XiangqiColor.NONE,p21r.getColor());
 		assertEquals(XiangqiColor.NONE,p55b.getColor());
 		assertEquals(XiangqiPieceType.NONE,p21r.getPieceType());
 		assertEquals(XiangqiPieceType.NONE,p55b.getPieceType());
+		assertEquals(noPiece,game.getPieceAt(c101, XiangqiColor.NONE));
 	}
 	
 	//23
